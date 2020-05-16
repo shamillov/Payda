@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.google.android.material.appbar.AppBarLayout
 import com.shamilov.payda.R
 
 class ProfileFragment : Fragment() {
@@ -15,6 +16,9 @@ class ProfileFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_profile, container, false)
+        val appBarLayout = activity?.findViewById<AppBarLayout>(R.id.toolbarLayout)
+        appBarLayout?.setExpanded(true, true)
+
         return root
     }
 }

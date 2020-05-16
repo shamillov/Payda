@@ -1,0 +1,2 @@
+rootProject.name='Payda'
+include ':app'

@@ -3,14 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.ActiveFragment">
+    tools:context=".ui.fragments.ActiveFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewActive"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Active Fragment"
-        android:gravity="center"
-        android:textSize="20sp"/>
+        tools:listitem="@layout/item_donation_active"/>
+
+    <ProgressBar
+        android:id="@+id/progressBarActive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"/>
 
 </FrameLayout>

@@ -1,9 +1,9 @@
-package com.shamilov.payda.adapters
+package com.shamilov.payda.ui.adapters
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.shamilov.payda.ui.ActiveFragment
-import com.shamilov.payda.ui.CompletedFragment
+import com.shamilov.payda.ui.fragments.ActiveFragment
+import com.shamilov.payda.ui.fragments.CompletedFragment
 
 class OrdersPagerAdapter(fragment: Fragment): FragmentStateAdapter(fragment) {
 

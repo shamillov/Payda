@@ -5,4 +5,7 @@
     <string name="title_fund">Фонды</string>
     <string name="tabLayout_active_donation">Активные</string>
     <string name="tabLayout_completed_donation">Завершенные</string>
+    <string name="cardView_donation_help">Помочь</string>
+    <string name="cardView_donation_task">цель</string>
+    <string name="cardView_donation_progress">собрано</string>
 </resources>

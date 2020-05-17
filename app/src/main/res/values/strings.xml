@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Payda</string>
-    <string name="title_home">Home</string>
-    <string name="title_profile">Profile</string>
-    <string name="title_fund">Fund</string>
+    <string name="title_home">Сборы</string>
+    <string name="title_profile">Профиль</string>
+    <string name="title_fund">Фонды</string>
+    <string name="tabLayout_active_donation">Активные</string>
+    <string name="tabLayout_completed_donation">Завершенные</string>
 </resources>

@@ -27,9 +27,9 @@ class HomeFragment : Fragment() {
         val tabLayoutMediator = TabLayoutMediator(tabLayout, viewPager, TabLayoutMediator.TabConfigurationStrategy {
                 tab, position ->
             if (position == 0)
-                tab.text = "Active"
+                tab.text = getString(R.string.tabLayout_active_donation)
             else
-                tab.text = "Complete"
+                tab.text = getString(R.string.tabLayout_completed_donation)
         })
         tabLayoutMediator.attach()
 

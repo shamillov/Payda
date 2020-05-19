@@ -27,6 +27,6 @@ class DonationActiveAdapter(private var list: List<Donation>):
     }
 
     inner class DonationViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        var textView: TextView = itemView.textview
+        var textView: TextView = itemView.tvFundLocationActive
     }
 }

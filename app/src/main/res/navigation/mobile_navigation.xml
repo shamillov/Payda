@@ -22,4 +22,10 @@
         android:name="com.shamilov.payda.ui.fragments.FundFragment"
         android:label="@string/title_fund"
         tools:layout="@layout/fragment_fund" />
+
+    <fragment
+        android:id="@+id/navigation_contact"
+        android:name="com.shamilov.payda.ui.fragments.ContactFragment"
+        android:label="Send"
+        tools:layout="@layout/fragment_contact"/>
 </navigation>

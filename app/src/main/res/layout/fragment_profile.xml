@@ -1,67 +1,184 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:background="@color/backgroundWhite"
     android:padding="18dp">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="210.0"
-        android:textStyle="bold"
-        android:textSize="50sp"
-        android:gravity="center"/>
-
-    <TextView
+        android:id="@+id/tvUserDonationCount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="мои пожертвования" />
+        android:text="210.0"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/textView6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="мои пожертвования"
+        app:layout_constraintTop_toBottomOf="@+id/tvUserDonationCount"/>
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/materialCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:padding="6dp"
-        android:text="Избранное"
-        android:textSize="18sp"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="12dp"
+                android:paddingStart="14dp"
+                android:text="Избранное"
+                android:textColor="@color/textColorBlack"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@color/backgroundWhite" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="12dp"
+                android:paddingStart="14dp"
+                android:text="Мои пожертвования"
+                android:textColor="@color/textColorBlack"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@color/backgroundWhite" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="12dp"
+                android:paddingStart="14dp"
+                android:text="Банковские карты"
+                android:textColor="@color/textColorBlack"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@color/backgroundWhite" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="12dp"
+                android:paddingStart="14dp"
+                android:text="Поддержать проект Payda"
+                android:textColor="@color/textColorBlack"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@color/backgroundWhite" />
+
+            <TextView
+                android:id="@+id/tvSendUs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="12dp"
+                android:paddingStart="14dp"
+                android:text="Написать нам"
+                android:textColor="@color/textColorBlack"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@color/backgroundWhite" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="12dp"
+                android:paddingStart="14dp"
+                android:text="Поделиться"
+                android:textColor="@color/textColorBlack"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="6dp"
-        android:textSize="18sp"
-        android:text="Мои пожертвования"/>
+        android:text="Мы в соц.сетях:"
+        android:layout_marginBottom="6dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/materialCardView2"/>
 
-    <TextView
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/materialCardView2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="6dp"
-        android:textSize="18sp"
-        android:text="Банковские карты"/>
+        android:layout_height="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="6dp"
-        android:textSize="18sp"
-        android:text="Поддержать проект Payda"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="6dp"
-        android:textSize="18sp"
-        android:text="Написать нам"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="6dp"
-        android:textSize="18sp"
-        android:text="Поделиться"/>
-
-</LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="14dp"
+                android:src="@drawable/logo_instagram_share"/>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

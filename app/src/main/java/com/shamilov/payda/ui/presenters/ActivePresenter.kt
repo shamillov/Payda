@@ -6,7 +6,15 @@ import com.shamilov.payda.ui.views.ActiveView
 
 class ActivePresenter(private val view: ActiveView) {
 
-    fun getDonation() {
+    fun getData(hasNetwork: Boolean) {
+        if(hasNetwork) {
+            getDonation()
+        } else {
+            view.showNetworkError()
+        }
+    }
+
+    private fun getDonation() {
         view.showProgressBar()
 
         val handler = Handler()

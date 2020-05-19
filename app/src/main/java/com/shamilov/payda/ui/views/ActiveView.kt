@@ -6,4 +6,5 @@ import com.shamilov.payda.ui.interfaces.BaseView
 interface ActiveView: BaseView {
     fun onSuccess(data: List<Donation>)
     fun onFailure(error: String)
+    fun showNetworkError()
 }

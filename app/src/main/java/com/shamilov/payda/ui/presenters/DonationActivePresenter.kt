@@ -2,16 +2,15 @@ package com.shamilov.payda.ui.presenters
 
 import android.os.Handler
 import com.shamilov.payda.data.models.Donation
-import com.shamilov.payda.ui.views.ActiveView
+import com.shamilov.payda.ui.views.DonationActiveView
 
-class ActivePresenter(private val view: ActiveView) {
+class DonationActivePresenter(private val view: DonationActiveView) {
 
     fun getData(hasNetwork: Boolean) {
-        if(hasNetwork) {
+        if (hasNetwork)
             getDonation()
-        } else {
+        else
             view.showNetworkError()
-        }
     }
 
     private fun getDonation() {

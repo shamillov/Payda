@@ -13,44 +13,49 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.shamilov.payda.R
 import com.shamilov.payda.data.models.Donation
 import com.shamilov.payda.ui.adapters.DonationActiveAdapter
-import com.shamilov.payda.ui.presenters.ActivePresenter
-import com.shamilov.payda.ui.views.ActiveView
-import kotlinx.android.synthetic.main.fragment_active.*
+import com.shamilov.payda.ui.interfaces.OnDonationClickListener
+import com.shamilov.payda.ui.presenters.DonationCompletedPresenter
+import com.shamilov.payda.ui.views.DonationCompletedView
+import kotlinx.android.synthetic.main.fragment_completed.*
 
-class ActiveFragment : Fragment(), ActiveView, SwipeRefreshLayout.OnRefreshListener {
+class DonationCompletedFragment : Fragment(), DonationCompletedView, SwipeRefreshLayout.OnRefreshListener, OnDonationClickListener {
 
-    val TAG = ActiveFragment::class.java.simpleName
+    private val TAG: String = DonationCompletedFragment::class.java.simpleName
 
-    private lateinit var presenter: ActivePresenter
+    private lateinit var presenter: DonationCompletedPresenter
+    private lateinit var adapter: DonationActiveAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_active, container, false)
+        return inflater.inflate(R.layout.fragment_completed, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        swipeRefreshDonationActive.setOnRefreshListener(this)
-        presenter = ActivePresenter(this)
+        swipeRefreshDonationCompleted.setOnRefreshListener(this)
+
+        adapter = DonationActiveAdapter(this)
+        recyclerViewCompleted.adapter = adapter
+
+        presenter = DonationCompletedPresenter(this)
         presenter.getData(isNetworkAvailable())
     }
 
     override fun showProgressBar() {
-        progressBarActive.visibility = View.VISIBLE
-        recyclerViewActive.visibility = View.GONE
-        tvNetworkErrorActive.visibility = View.GONE
+        progressBarCompleted.visibility = View.VISIBLE
+        recyclerViewCompleted.visibility = View.GONE
     }
 
     override fun hideProgressBar() {
-        progressBarActive.visibility = View.GONE
-        recyclerViewActive.visibility = View.VISIBLE
+        progressBarCompleted.visibility = View.GONE
+        recyclerViewCompleted.visibility = View.VISIBLE
     }
 
     override fun onSuccess(data: List<Donation>) {
-        recyclerViewActive.adapter = DonationActiveAdapter(data)
+        adapter.setData(data)
     }
 
     override fun onFailure(error: String) {
@@ -58,8 +63,7 @@ class ActiveFragment : Fragment(), ActiveView, SwipeRefreshLayout.OnRefreshListe
     }
 
     override fun showNetworkError() {
-        tvNetworkErrorActive.visibility = View.VISIBLE
-        recyclerViewActive.visibility = View.GONE
+
     }
 
     private fun isNetworkAvailable(): Boolean {
@@ -69,6 +73,14 @@ class ActiveFragment : Fragment(), ActiveView, SwipeRefreshLayout.OnRefreshListe
 
     override fun onRefresh() {
         presenter.getData(isNetworkAvailable())
-        swipeRefreshDonationActive.isRefreshing = false
+        swipeRefreshDonationCompleted.isRefreshing = false
+    }
+
+    override fun onDonationClick(itemPosition: Int) {
+
+    }
+
+    override fun onDonationHelpClick(itemPosition: Int) {
+
     }
 }

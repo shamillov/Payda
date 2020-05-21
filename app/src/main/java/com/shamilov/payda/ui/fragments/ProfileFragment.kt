@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.appbar.AppBarLayout
 import com.shamilov.payda.R
 
 class ProfileFragment : Fragment(), View.OnClickListener {
@@ -18,11 +19,11 @@ class ProfileFragment : Fragment(), View.OnClickListener {
     ): View? {
         val root = inflater.inflate(R.layout.fragment_profile, container, false)
 
+        val appBarLayout = activity?.findViewById<AppBarLayout>(R.id.toolbarLayout)
+        appBarLayout?.elevation = 5F
+
         var textView: TextView = root.findViewById(R.id.tvSendUs)
         textView.setOnClickListener(this)
-
-//        val appBarLayout = activity?.findViewById<AppBarLayout>(R.id.toolbarLayout)
-//        appBarLayout?.setExpanded(true, true)
 
         return root
     }

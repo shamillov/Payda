@@ -38,7 +38,5 @@ class HomeFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-//        val appBarLayout = activity?.findViewById<AppBarLayout>(R.id.toolbarLayout)
-//        appBarLayout?.setExpanded(true, true)
     }
 }

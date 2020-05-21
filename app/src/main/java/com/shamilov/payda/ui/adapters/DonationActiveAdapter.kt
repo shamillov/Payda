@@ -43,7 +43,7 @@ class DonationActiveAdapter(private val donationClickListener: OnDonationClickLi
         }
 
         fun bind(donation: Donation) {
-            textView.text = donation.city
+            textView.text = donation.fundLocation
         }
     }
 }

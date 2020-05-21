@@ -6,8 +6,6 @@ import com.shamilov.payda.ui.fragments.DonationActiveFragment
 import com.shamilov.payda.ui.fragments.DonationCompletedFragment
 
 class OrdersPagerAdapter(fragment: Fragment): FragmentStateAdapter(fragment) {
-
-
     override fun getItemCount(): Int {
         return 2
     }

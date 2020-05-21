@@ -9,9 +9,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.google.android.material.appbar.AppBarLayout
 
 import com.shamilov.payda.R
 import com.shamilov.payda.data.models.Donation
+import com.shamilov.payda.data.repository.DonationRepositoryImpl
+import com.shamilov.payda.domain.repository.DonationRepository
 import com.shamilov.payda.ui.adapters.DonationActiveAdapter
 import com.shamilov.payda.ui.interfaces.OnDonationClickListener
 import com.shamilov.payda.ui.presenters.DonationActivePresenter
@@ -24,6 +27,7 @@ class DonationActiveFragment : Fragment(), DonationActiveView, SwipeRefreshLayou
 
     private lateinit var presenter: DonationActivePresenter
     private lateinit var adapter: DonationActiveAdapter
+    private lateinit var repository: DonationRepository
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,12 +39,16 @@ class DonationActiveFragment : Fragment(), DonationActiveView, SwipeRefreshLayou
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        val appBarLayout = activity?.findViewById<AppBarLayout>(R.id.toolbarLayout)
+        appBarLayout?.elevation = 0F
+
         swipeRefreshDonationActive.setOnRefreshListener(this)
 
+        repository = DonationRepositoryImpl()
         adapter = DonationActiveAdapter(this)
         recyclerViewActive.adapter = adapter
 
-        presenter = DonationActivePresenter(this)
+        presenter = DonationActivePresenter(this, repository)
         presenter.getData(isNetworkAvailable())
     }
 

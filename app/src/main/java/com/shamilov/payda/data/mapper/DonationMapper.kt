@@ -10,7 +10,9 @@ class DonationMapper {
             donation.donationTitle,
             donation.donationDescription,
             donation.donationAmount,
-            donation.fundLocation
+            donation.fundLocation,
+            donation.donationProgress,
+            donation.images
         )
     }
 
@@ -20,7 +22,9 @@ class DonationMapper {
                 title = it.donationTitle,
                 description = it.donationDescription,
                 amount = it.donationAmount,
-                location = it.fundLocation
+                location = it.fundLocation,
+                progress = it.donationProgress,
+                images = it.images
             )
         }
     }

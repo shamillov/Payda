@@ -6,15 +6,15 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.shamilov.payda.R
-import com.shamilov.payda.data.models.Donation
-import com.shamilov.payda.ui.interfaces.OnDonationClickListener
+import com.shamilov.payda.domain.model.DonationActiveEntity
+import com.shamilov.payda.ui.interfaces.OnDonationActiveClickListener
 import kotlinx.android.synthetic.main.item_donation_active.view.*
 
-class DonationActiveAdapter(private val donationClickListener: OnDonationClickListener):
+class DonationActiveAdapter(private val listener: OnDonationActiveClickListener) :
     RecyclerView.Adapter<DonationActiveAdapter.DonationViewHolder>() {
-    private val donationList: MutableList<Donation> = ArrayList()
+    private val donationList: MutableList<DonationActiveEntity> = ArrayList()
 
-    fun setData(donationList: List<Donation>) {
+    fun setData(donationList: List<DonationActiveEntity>) {
         this.donationList.clear()
         this.donationList.addAll(donationList)
 
@@ -22,7 +22,8 @@ class DonationActiveAdapter(private val donationClickListener: OnDonationClickLi
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DonationViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_donation_active, parent, false)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_donation_active, parent, false)
         return DonationViewHolder(view)
     }
 
@@ -30,20 +31,26 @@ class DonationActiveAdapter(private val donationClickListener: OnDonationClickLi
         holder.bind(donationList[position])
     }
 
-    override fun getItemCount(): Int {
-        return donationList.count()
-    }
+    override fun getItemCount(): Int = donationList.count()
 
-    inner class DonationViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        var textView: TextView = itemView.tvFundLocationActive
+    inner class DonationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        var tvTitleActive: TextView = itemView.tvTitleActive
+        var tvDescriptionActive: TextView = itemView.tvDescriptionActive
+        var tvAmountActive: TextView = itemView.tvAmountActive
+        var tvFundLocationActive: TextView = itemView.tvFundLocationActive
+        var tvProgressActive: TextView = itemView.tvProgressActive
 
         init {
-            itemView.setOnClickListener { donationClickListener.onDonationClick(adapterPosition) }
-            itemView.btnDonationHelp.setOnClickListener { donationClickListener.onDonationHelpClick(adapterPosition) }
+            itemView.setOnClickListener { listener.onDonationClick(donationList[adapterPosition]) }
+            itemView.btnDonationHelp.setOnClickListener { listener.onDonationHelpClick(donationList[adapterPosition]) }
         }
 
-        fun bind(donation: Donation) {
-            textView.text = donation.fundLocation
+        fun bind(donation: DonationActiveEntity) {
+            tvTitleActive.text = donation.title
+            tvDescriptionActive.text = donation.description
+            tvAmountActive.text = donation.amount.toString()
+            tvFundLocationActive.text = donation.location
+            tvProgressActive.text = donation.progress.toString()
         }
     }
 }

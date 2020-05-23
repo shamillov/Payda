@@ -1,31 +1,24 @@
 package com.shamilov.payda.data.repository
 
-import com.google.gson.JsonArray
-import com.google.gson.JsonObject
-import com.shamilov.payda.data.models.Donation
+import com.shamilov.payda.data.mapper.DonationMapper
+import com.shamilov.payda.data.model.DonationCompletedData
 import com.shamilov.payda.data.remote.ApiClient
 import com.shamilov.payda.data.remote.api.DonationService
+import com.shamilov.payda.domain.model.DonationActiveEntity
 import com.shamilov.payda.domain.repository.DonationRepository
 import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 
-class DonationRepositoryImpl() : DonationRepository {
-    override fun getActiveDonation(): Observable<JsonArray> {
+class DonationRepositoryImpl(private val mapper: DonationMapper) : DonationRepository {
+    override fun getActiveDonation(): Observable<List<DonationActiveEntity>> {
         val donationService: DonationService = ApiClient.getInstance()!!
 
-        return donationService
-            .getActiveDonation()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
+        return donationService.getActiveDonation()
+            .map { mapper.mapList(it) }
     }
 
-    override fun getCompletedDonation(): Observable<Donation> {
+    override fun getCompletedDonation(): Observable<List<DonationCompletedData>> {
         val donationService: DonationService = ApiClient.getInstance()!!
 
-        return donationService
-            .getCompletedDonation()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
+        return donationService.getCompletedDonation()
     }
 }

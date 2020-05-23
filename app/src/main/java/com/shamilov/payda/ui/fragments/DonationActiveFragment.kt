@@ -8,26 +8,35 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.appbar.AppBarLayout
 
 import com.shamilov.payda.R
-import com.shamilov.payda.data.models.Donation
+import com.shamilov.payda.data.mapper.DonationMapper
 import com.shamilov.payda.data.repository.DonationRepositoryImpl
+import com.shamilov.payda.domain.executor.SchedulerProvider
+import com.shamilov.payda.domain.executor.SchedulerProviderImpl
 import com.shamilov.payda.domain.repository.DonationRepository
+import com.shamilov.payda.domain.interactor.GetActiveDonationUsecase
+import com.shamilov.payda.domain.model.DonationActiveEntity
 import com.shamilov.payda.ui.adapters.DonationActiveAdapter
-import com.shamilov.payda.ui.interfaces.OnDonationClickListener
+import com.shamilov.payda.ui.adapters.ImageSwitcherAdapter
+import com.shamilov.payda.ui.interfaces.OnDonationActiveClickListener
 import com.shamilov.payda.ui.presenters.DonationActivePresenter
 import com.shamilov.payda.ui.views.DonationActiveView
 import kotlinx.android.synthetic.main.fragment_active.*
 
-class DonationActiveFragment : Fragment(), DonationActiveView, SwipeRefreshLayout.OnRefreshListener, OnDonationClickListener {
+class DonationActiveFragment : Fragment(), DonationActiveView, SwipeRefreshLayout.OnRefreshListener, OnDonationActiveClickListener {
 
     val TAG = DonationActiveFragment::class.java.simpleName
 
     private lateinit var presenter: DonationActivePresenter
     private lateinit var adapter: DonationActiveAdapter
     private lateinit var repository: DonationRepository
+    private lateinit var useCase: GetActiveDonationUsecase
+    private lateinit var schedulers: SchedulerProvider
+    private lateinit var mapper: DonationMapper
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,12 +53,22 @@ class DonationActiveFragment : Fragment(), DonationActiveView, SwipeRefreshLayou
 
         swipeRefreshDonationActive.setOnRefreshListener(this)
 
-        repository = DonationRepositoryImpl()
+        initAdapter()
+        init()
+    }
+
+    private fun init() {
+        schedulers = SchedulerProviderImpl()
+        mapper = DonationMapper()
+        repository = DonationRepositoryImpl(mapper)
+        useCase = GetActiveDonationUsecase(repository, schedulers)
+        presenter = DonationActivePresenter(this, useCase)
+        presenter.getData(isNetworkAvailable())
+    }
+
+    private fun initAdapter() {
         adapter = DonationActiveAdapter(this)
         recyclerViewActive.adapter = adapter
-
-        presenter = DonationActivePresenter(this, repository)
-        presenter.getData(isNetworkAvailable())
     }
 
     override fun showProgressBar() {
@@ -63,7 +82,7 @@ class DonationActiveFragment : Fragment(), DonationActiveView, SwipeRefreshLayou
         recyclerViewActive.visibility = View.VISIBLE
     }
 
-    override fun onSuccess(data: List<Donation>) {
+    override fun onSuccess(data: List<DonationActiveEntity>) {
         adapter.setData(data)
     }
 
@@ -86,11 +105,16 @@ class DonationActiveFragment : Fragment(), DonationActiveView, SwipeRefreshLayou
         swipeRefreshDonationActive.isRefreshing = false
     }
 
-    override fun onDonationClick(itemPosition: Int) {
-        Toast.makeText(context, "item $itemPosition", Toast.LENGTH_SHORT).show()
+    override fun onDonationClick(donation: DonationActiveEntity) {
+        Toast.makeText(context, donation.title, Toast.LENGTH_SHORT).show()
     }
 
-    override fun onDonationHelpClick(itemPosition: Int) {
-        Toast.makeText(context, "button $itemPosition", Toast.LENGTH_SHORT).show()
+    override fun onDonationHelpClick(donation: DonationActiveEntity) {
+        Toast.makeText(context, donation.description, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onDestroy() {
+        presenter.onDestroy()
+        super.onDestroy()
     }
 }

@@ -4,17 +4,25 @@ import com.shamilov.payda.domain.interactor.GetActiveDonationUsecase
 import com.shamilov.payda.ui.views.DonationActiveView
 import io.reactivex.disposables.CompositeDisposable
 
-class DonationActivePresenter(private val view: DonationActiveView, private val donationUseCase: GetActiveDonationUsecase) {
+/**
+ * Created by Shamilov on 20.05.2020
+ */
+class DonationActivePresenter (private val donationUseCase: GetActiveDonationUsecase) {
 
     private val TAG: String = DonationCompletedPresenter::class.java.simpleName
 
     private val disposable = CompositeDisposable()
+    private lateinit var view: DonationActiveView
 
     fun getData(hasNetwork: Boolean) {
         if (hasNetwork)
             getDonation()
         else
             view.showNetworkError()
+    }
+
+    fun attachView(view: DonationActiveView) {
+        this.view = view
     }
 
     private fun getDonation() {

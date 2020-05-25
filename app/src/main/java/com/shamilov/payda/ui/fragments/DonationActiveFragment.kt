@@ -8,35 +8,42 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.appbar.AppBarLayout
+import com.shamilov.payda.App
 
 import com.shamilov.payda.R
-import com.shamilov.payda.data.mapper.DonationMapper
-import com.shamilov.payda.data.repository.DonationRepositoryImpl
-import com.shamilov.payda.domain.executor.SchedulerProvider
-import com.shamilov.payda.domain.executor.SchedulerProviderImpl
-import com.shamilov.payda.domain.repository.DonationRepository
-import com.shamilov.payda.domain.interactor.GetActiveDonationUsecase
+import com.shamilov.payda.di.components.AppComponent
 import com.shamilov.payda.domain.model.DonationActiveEntity
 import com.shamilov.payda.ui.adapters.DonationActiveAdapter
-import com.shamilov.payda.ui.adapters.ImageSwitcherAdapter
 import com.shamilov.payda.ui.interfaces.OnDonationActiveClickListener
 import com.shamilov.payda.ui.presenters.DonationActivePresenter
 import com.shamilov.payda.ui.views.DonationActiveView
 import kotlinx.android.synthetic.main.fragment_active.*
+import javax.inject.Inject
 
+/**
+ * Created by Shamilov on 20.05.2020
+ */
 class DonationActiveFragment : Fragment(), DonationActiveView, SwipeRefreshLayout.OnRefreshListener, OnDonationActiveClickListener {
 
-    val TAG = DonationActiveFragment::class.java.simpleName
+    private val TAG = DonationActiveFragment::class.java.simpleName
 
-    private lateinit var presenter: DonationActivePresenter
+    @Inject
+    lateinit var presenter: DonationActivePresenter
     private lateinit var adapter: DonationActiveAdapter
-    private lateinit var repository: DonationRepository
-    private lateinit var useCase: GetActiveDonationUsecase
-    private lateinit var schedulers: SchedulerProvider
-    private lateinit var mapper: DonationMapper
+    private lateinit var appComponent: AppComponent
+//    private lateinit var repository: DonationRepository
+//    private lateinit var useCase: GetActiveDonationUsecase
+//    private lateinit var schedulers: SchedulerProvider
+//    private lateinit var mapper: DonationMapper
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        App.instance.getAppComponent().inject(this)
+        super.onCreate(savedInstanceState)
+
+        presenter.attachView(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,16 +61,17 @@ class DonationActiveFragment : Fragment(), DonationActiveView, SwipeRefreshLayou
         swipeRefreshDonationActive.setOnRefreshListener(this)
 
         initAdapter()
-        init()
+        presenter.getData(isNetworkAvailable())
+//        init()
     }
 
     private fun init() {
-        schedulers = SchedulerProviderImpl()
-        mapper = DonationMapper()
-        repository = DonationRepositoryImpl(mapper)
-        useCase = GetActiveDonationUsecase(repository, schedulers)
-        presenter = DonationActivePresenter(this, useCase)
-        presenter.getData(isNetworkAvailable())
+//        schedulers = SchedulerProviderImpl()
+//        mapper = DonationMapper()
+//        repository = DonationRepositoryImpl(mapper)
+//        useCase = GetActiveDonationUsecase(repository, schedulers)
+//        presenter = DonationActivePresenter(this, useCase)
+//        presenter.getData(isNetworkAvailable())
     }
 
     private fun initAdapter() {

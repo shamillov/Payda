@@ -14,9 +14,9 @@ class DonationActiveAdapter(private val listener: OnDonationActiveClickListener)
     RecyclerView.Adapter<DonationActiveAdapter.DonationViewHolder>() {
     private val donationList: MutableList<DonationActiveEntity> = ArrayList()
 
-    fun setData(donationList: List<DonationActiveEntity>) {
+    fun setData(list: List<DonationActiveEntity>) {
         this.donationList.clear()
-        this.donationList.addAll(donationList)
+        this.donationList.addAll(list)
 
         notifyDataSetChanged()
     }
@@ -29,6 +29,8 @@ class DonationActiveAdapter(private val listener: OnDonationActiveClickListener)
 
     override fun onBindViewHolder(holder: DonationViewHolder, position: Int) {
         holder.bind(donationList[position])
+        val imageAdapter = ImageAdapter()
+        holder.recyclerView.adapter = imageAdapter
     }
 
     override fun getItemCount(): Int = donationList.count()
@@ -39,6 +41,7 @@ class DonationActiveAdapter(private val listener: OnDonationActiveClickListener)
         var tvAmountActive: TextView = itemView.tvAmountActive
         var tvFundLocationActive: TextView = itemView.tvFundLocationActive
         var tvProgressActive: TextView = itemView.tvProgressActive
+        var recyclerView: RecyclerView = itemView.ivContentActive
 
         init {
             itemView.setOnClickListener { listener.onDonationClick(donationList[adapterPosition]) }

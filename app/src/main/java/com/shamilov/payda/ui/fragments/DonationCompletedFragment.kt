@@ -49,7 +49,7 @@ class DonationCompletedFragment : Fragment(), DonationCompletedView, SwipeRefres
 
     private fun init() {
         mapper = DonationMapper()
-        repository = DonationRepositoryImpl(mapper)
+//        repository = DonationRepositoryImpl(mapper)
         presenter = DonationCompletedPresenter(this)
         presenter.getData(isNetworkAvailable())
     }

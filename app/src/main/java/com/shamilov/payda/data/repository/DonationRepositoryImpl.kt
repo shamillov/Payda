@@ -8,17 +8,13 @@ import com.shamilov.payda.domain.model.DonationActiveEntity
 import com.shamilov.payda.domain.repository.DonationRepository
 import io.reactivex.Observable
 
-class DonationRepositoryImpl(private val mapper: DonationMapper) : DonationRepository {
+class DonationRepositoryImpl(private var api: DonationService, private val mapper: DonationMapper) : DonationRepository {
     override fun getActiveDonation(): Observable<List<DonationActiveEntity>> {
-        val donationService: DonationService = ApiClient.getInstance()!!
-
-        return donationService.getActiveDonation()
+        return api.getActiveDonation()
             .map { mapper.mapList(it) }
     }
 
     override fun getCompletedDonation(): Observable<List<DonationCompletedData>> {
-        val donationService: DonationService = ApiClient.getInstance()!!
-
-        return donationService.getCompletedDonation()
+        return api.getCompletedDonation()
     }
 }

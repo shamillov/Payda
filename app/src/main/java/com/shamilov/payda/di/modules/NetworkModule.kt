@@ -15,7 +15,6 @@ import javax.inject.Singleton
  */
 @Module
 class NetworkModule {
-
     @Provides
     @Singleton
     fun provideRetrofit(gsonConverterFactory: GsonConverterFactory,
@@ -25,7 +24,6 @@ class NetworkModule {
             .addConverterFactory(gsonConverterFactory)
             .addCallAdapterFactory(rxJava2CallAdapterFactory)
             .build()
-
     }
 
     @Provides
@@ -51,6 +49,4 @@ class NetworkModule {
     fun provideRxJava2CallAdapterFactory(): RxJava2CallAdapterFactory {
         return RxJava2CallAdapterFactory.create()
     }
-
-
 }

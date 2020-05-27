@@ -58,7 +58,7 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
+        <com.shamilov.payda.ui.adapters.NestedScrollableHost
             android:id="@+id/ivContentActive"
             android:layout_width="match_parent"
             android:layout_height="250dp"
@@ -66,7 +66,13 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/ivContentActive1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </com.shamilov.payda.ui.adapters.NestedScrollableHost>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout2"

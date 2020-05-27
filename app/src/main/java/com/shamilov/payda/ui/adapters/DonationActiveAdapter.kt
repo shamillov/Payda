@@ -5,9 +5,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import com.shamilov.payda.R
 import com.shamilov.payda.domain.model.DonationActiveEntity
 import com.shamilov.payda.ui.interfaces.OnDonationActiveClickListener
+import com.smarteist.autoimageslider.SliderView
+import com.smarteist.autoimageslider.SliderViewAdapter
 import kotlinx.android.synthetic.main.item_donation_active.view.*
 
 class DonationActiveAdapter(private val listener: OnDonationActiveClickListener) :
@@ -29,8 +32,9 @@ class DonationActiveAdapter(private val listener: OnDonationActiveClickListener)
 
     override fun onBindViewHolder(holder: DonationViewHolder, position: Int) {
         holder.bind(donationList[position])
-        val imageAdapter = ImageAdapter()
-        holder.recyclerView.adapter = imageAdapter
+
+        holder.viewPager.adapter = ImageSliderAdapter()
+//        holder.viewPager.orientation = ViewPager2.ORIENTATION_VERTICAL
     }
 
     override fun getItemCount(): Int = donationList.count()
@@ -41,7 +45,7 @@ class DonationActiveAdapter(private val listener: OnDonationActiveClickListener)
         var tvAmountActive: TextView = itemView.tvAmountActive
         var tvFundLocationActive: TextView = itemView.tvFundLocationActive
         var tvProgressActive: TextView = itemView.tvProgressActive
-        var recyclerView: RecyclerView = itemView.ivContentActive
+        var viewPager: ViewPager2 = itemView.ivContentActive1
 
         init {
             itemView.setOnClickListener { listener.onDonationClick(donationList[adapterPosition]) }

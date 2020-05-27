@@ -65,9 +65,12 @@ dependencies {
     def picasso = "2.71828"
     implementation "com.squareup.picasso:picasso:$picasso"
 
-    //ui
+    //CircleImage
     implementation 'de.hdodenhof:circleimageview:3.1.0'
-    
+
+    //ui
+    implementation 'com.github.smarteist:autoimageslider:1.3.7-appcompat'
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'

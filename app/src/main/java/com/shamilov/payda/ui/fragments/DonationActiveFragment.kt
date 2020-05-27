@@ -32,7 +32,6 @@ class DonationActiveFragment : Fragment(), DonationActiveView, SwipeRefreshLayou
     @Inject
     lateinit var presenter: DonationActivePresenter
     private lateinit var adapter: DonationActiveAdapter
-    private lateinit var appComponent: AppComponent
 //    private lateinit var repository: DonationRepository
 //    private lateinit var useCase: GetActiveDonationUsecase
 //    private lateinit var schedulers: SchedulerProvider

@@ -27,5 +27,5 @@
         android:id="@+id/navigation_contact"
         android:name="com.shamilov.payda.ui.fragments.ContactFragment"
         android:label="Send"
-        tools:layout="@layout/fragment_contact"/>
+        tools:layout="@layout/fragment_contact" />
 </navigation>

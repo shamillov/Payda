@@ -17,8 +17,10 @@ import javax.inject.Singleton
 class NetworkModule {
     @Provides
     @Singleton
-    fun provideRetrofit(gsonConverterFactory: GsonConverterFactory,
-                         rxJava2CallAdapterFactory: RxJava2CallAdapterFactory): Retrofit {
+    fun provideRetrofit(
+        gsonConverterFactory: GsonConverterFactory,
+        rxJava2CallAdapterFactory: RxJava2CallAdapterFactory
+    ): Retrofit {
         return Retrofit.Builder()
             .baseUrl(Const.BASE_URL)
             .addConverterFactory(gsonConverterFactory)
@@ -28,7 +30,7 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideService(retrofit: Retrofit):DonationService {
+    fun provideService(retrofit: Retrofit): DonationService {
         return retrofit.create(DonationService::class.java)
     }
 
@@ -40,7 +42,7 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideGsonConverterFactory():GsonConverterFactory {
+    fun provideGsonConverterFactory(): GsonConverterFactory {
         return GsonConverterFactory.create()
     }
 

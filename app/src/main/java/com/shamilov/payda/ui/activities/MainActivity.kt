@@ -1,10 +1,10 @@
 package com.shamilov.payda.ui.activities
 
 import android.os.Bundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.shamilov.payda.R
 
 class MainActivity : AppCompatActivity() {

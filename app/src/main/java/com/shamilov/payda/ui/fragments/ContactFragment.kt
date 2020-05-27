@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.shamilov.payda.R
 
-class ContactFragment: Fragment() {
+class ContactFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,

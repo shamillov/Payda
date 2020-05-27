@@ -7,7 +7,7 @@ import io.reactivex.disposables.CompositeDisposable
 /**
  * Created by Shamilov on 20.05.2020
  */
-class DonationActivePresenter (private val donationUseCase: GetActiveDonationUsecase) {
+class DonationActivePresenter(private val donationUseCase: GetActiveDonationUsecase) {
 
     private val TAG: String = DonationCompletedPresenter::class.java.simpleName
 
@@ -35,7 +35,8 @@ class DonationActivePresenter (private val donationUseCase: GetActiveDonationUse
             }, {
                 view.hideProgressBar()
                 view.onFailure(it.toString())
-            }))
+            })
+        )
     }
 
     fun onDestroy() {

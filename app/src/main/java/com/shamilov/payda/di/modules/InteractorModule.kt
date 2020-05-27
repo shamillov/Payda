@@ -15,7 +15,10 @@ class InteractorModule {
 
     @Singleton
     @Provides
-    fun provideGetActiveDonationUseCase(repository: DonationRepository, scheduler: SchedulerProvider): GetActiveDonationUsecase {
+    fun provideGetActiveDonationUseCase(
+        repository: DonationRepository,
+        scheduler: SchedulerProvider
+    ): GetActiveDonationUsecase {
         return GetActiveDonationUsecase(repository, scheduler)
     }
 }

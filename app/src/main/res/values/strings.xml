@@ -8,4 +8,7 @@
     <string name="cardView_donation_help">Помочь</string>
     <string name="cardView_donation_task">цель</string>
     <string name="cardView_donation_progress">собрано</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

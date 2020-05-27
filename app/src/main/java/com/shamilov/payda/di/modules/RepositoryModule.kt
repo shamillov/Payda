@@ -16,7 +16,10 @@ class RepositoryModule {
 
     @Singleton
     @Provides
-    fun provideDonationRepository(service: DonationService, mapper: DonationMapper): DonationRepository {
+    fun provideDonationRepository(
+        service: DonationService,
+        mapper: DonationMapper
+    ): DonationRepository {
         return DonationRepositoryImpl(service, mapper)
     }
 }

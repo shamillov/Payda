@@ -11,9 +11,9 @@ import com.shamilov.payda.R
 class FundFragment : Fragment() {
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_fund, container, false)
         val appBarLayout = activity?.findViewById<AppBarLayout>(R.id.toolbarLayout)

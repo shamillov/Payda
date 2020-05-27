@@ -3,17 +3,15 @@ package com.shamilov.payda.ui.fragments
 import android.content.Context
 import android.net.ConnectivityManager
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-
 import com.shamilov.payda.R
 import com.shamilov.payda.data.mapper.DonationMapper
 import com.shamilov.payda.data.model.DonationCompletedData
-import com.shamilov.payda.data.repository.DonationRepositoryImpl
 import com.shamilov.payda.domain.repository.DonationRepository
 import com.shamilov.payda.ui.adapters.DonationCompletedAdapter
 import com.shamilov.payda.ui.interfaces.OnDonationCompletedClickListener
@@ -21,7 +19,8 @@ import com.shamilov.payda.ui.presenters.DonationCompletedPresenter
 import com.shamilov.payda.ui.views.DonationCompletedView
 import kotlinx.android.synthetic.main.fragment_completed.*
 
-class DonationCompletedFragment : Fragment(), DonationCompletedView, SwipeRefreshLayout.OnRefreshListener,
+class DonationCompletedFragment : Fragment(), DonationCompletedView,
+    SwipeRefreshLayout.OnRefreshListener,
     OnDonationCompletedClickListener {
 
     private val TAG: String = DonationCompletedFragment::class.java.simpleName

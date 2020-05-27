@@ -3,12 +3,15 @@ package com.shamilov.payda
 import android.app.Application
 import com.shamilov.payda.di.components.AppComponent
 import com.shamilov.payda.di.components.DaggerAppComponent
-import com.shamilov.payda.di.modules.*
+import com.shamilov.payda.di.modules.ApplicationModule
+import com.shamilov.payda.di.modules.InteractorModule
+import com.shamilov.payda.di.modules.MapperModule
+import com.shamilov.payda.di.modules.PresenterModule
 
 /**
  * Created by Shamilov on 25.05.2020
  */
-class App: Application() {
+class App : Application() {
 
     private lateinit var appComponent: AppComponent
 

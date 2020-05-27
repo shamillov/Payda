@@ -3,17 +3,15 @@ package com.shamilov.payda.ui.fragments
 import android.content.Context
 import android.net.ConnectivityManager
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.appbar.AppBarLayout
 import com.shamilov.payda.App
-
 import com.shamilov.payda.R
-import com.shamilov.payda.di.components.AppComponent
 import com.shamilov.payda.domain.model.DonationActiveEntity
 import com.shamilov.payda.ui.adapters.DonationActiveAdapter
 import com.shamilov.payda.ui.interfaces.OnDonationActiveClickListener
@@ -25,7 +23,8 @@ import javax.inject.Inject
 /**
  * Created by Shamilov on 20.05.2020
  */
-class DonationActiveFragment : Fragment(), DonationActiveView, SwipeRefreshLayout.OnRefreshListener, OnDonationActiveClickListener {
+class DonationActiveFragment : Fragment(), DonationActiveView, SwipeRefreshLayout.OnRefreshListener,
+    OnDonationActiveClickListener {
 
     private val TAG = DonationActiveFragment::class.java.simpleName
 

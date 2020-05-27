@@ -5,8 +5,10 @@ import com.shamilov.payda.domain.model.DonationActiveEntity
 import com.shamilov.payda.domain.repository.DonationRepository
 import io.reactivex.Observable
 
-class GetActiveDonationUsecase(private val repository: DonationRepository,
-                               private val schedulers: SchedulerProvider): ObservableUseCase<DonationActiveEntity> {
+class GetActiveDonationUsecase(
+    private val repository: DonationRepository,
+    private val schedulers: SchedulerProvider
+) : ObservableUseCase<DonationActiveEntity> {
     override fun execute(): Observable<List<DonationActiveEntity>> {
         return repository.getActiveDonation()
             .subscribeOn(schedulers.io())

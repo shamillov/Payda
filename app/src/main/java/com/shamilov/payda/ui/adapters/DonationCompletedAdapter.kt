@@ -20,7 +20,8 @@ class DonationCompletedAdapter(private val listener: OnDonationCompletedClickLis
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DonationViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_donation_active, parent, false)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_donation_active, parent, false)
         return DonationViewHolder(view)
     }
 

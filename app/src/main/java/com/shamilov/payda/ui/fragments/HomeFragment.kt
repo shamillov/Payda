@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
@@ -15,9 +14,9 @@ import com.shamilov.payda.ui.adapters.OrdersPagerAdapter
 class HomeFragment : Fragment() {
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_home, container, false)
 
@@ -25,13 +24,15 @@ class HomeFragment : Fragment() {
         viewPager.adapter = OrdersPagerAdapter(this)
 
         val tabLayout: TabLayout = root.findViewById(R.id.tabLayout)
-        val tabLayoutMediator = TabLayoutMediator(tabLayout, viewPager, TabLayoutMediator.TabConfigurationStrategy {
-                tab, position ->
-            if (position == 0)
-                tab.text = getString(R.string.tabLayout_active_donation)
-            else
-                tab.text = getString(R.string.tabLayout_completed_donation)
-        })
+        val tabLayoutMediator = TabLayoutMediator(
+            tabLayout,
+            viewPager,
+            TabLayoutMediator.TabConfigurationStrategy { tab, position ->
+                if (position == 0)
+                    tab.text = getString(R.string.tabLayout_active_donation)
+                else
+                    tab.text = getString(R.string.tabLayout_completed_donation)
+            })
         tabLayoutMediator.attach()
 
         return root

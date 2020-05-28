@@ -139,6 +139,7 @@
                 android:background="@color/backgroundWhite" />
 
             <TextView
+                android:id="@+id/tvProfileAboutApp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?android:attr/selectableItemBackground"
@@ -146,7 +147,7 @@
                 android:focusable="true"
                 android:padding="12dp"
                 android:paddingStart="14dp"
-                android:text="Поделиться"
+                android:text="О приложении"
                 android:textColor="@color/textColorBlack"
                 android:textSize="16sp" />
         </LinearLayout>

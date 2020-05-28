@@ -10,6 +10,9 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.appbar.AppBarLayout
 import com.shamilov.payda.R
 
+/**
+ * Created by Shamilov on 20.05.2020
+ */
 class ProfileFragment : Fragment(), View.OnClickListener {
 
     override fun onCreateView(
@@ -22,8 +25,8 @@ class ProfileFragment : Fragment(), View.OnClickListener {
         val appBarLayout = activity?.findViewById<AppBarLayout>(R.id.toolbarLayout)
         appBarLayout?.elevation = 5F
 
-        var textView: TextView = root.findViewById(R.id.tvSendUs)
-        textView.setOnClickListener(this)
+        val tvContact: TextView = root.findViewById(R.id.tvSendUs)
+        tvContact.setOnClickListener(this)
 
         return root
     }

@@ -4,7 +4,9 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:background="@color/backgroundWhite"
-    android:padding="18dp">
+    android:paddingTop="18dp"
+    android:paddingStart="18dp"
+    android:paddingEnd="18dp">
 
     <TextView
         android:id="@+id/textView"
@@ -34,14 +36,15 @@
             android:padding="10dp">
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etContactName"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Введите имя"
-                app:boxCornerRadiusBottomEnd="24dp"
-                app:boxCornerRadiusBottomStart="24dp"
-                app:boxCornerRadiusTopEnd="24dp"
-                app:boxCornerRadiusTopStart="24dp"
+                app:boxCornerRadiusBottomEnd="28dp"
+                app:boxCornerRadiusBottomStart="28dp"
+                app:boxCornerRadiusTopEnd="28dp"
+                app:boxCornerRadiusTopStart="28dp"
                 android:layout_marginBottom="8dp">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -51,14 +54,15 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etContactEmail"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Введите почту"
-                app:boxCornerRadiusBottomEnd="24dp"
-                app:boxCornerRadiusBottomStart="24dp"
-                app:boxCornerRadiusTopEnd="24dp"
-                app:boxCornerRadiusTopStart="24dp"
+                app:boxCornerRadiusBottomEnd="28dp"
+                app:boxCornerRadiusBottomStart="28dp"
+                app:boxCornerRadiusTopEnd="28dp"
+                app:boxCornerRadiusTopStart="28dp"
                 android:layout_marginBottom="8dp">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -68,6 +72,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etContactQuestion"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -90,9 +95,11 @@
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnContactSend"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Отправить"
+        android:enabled="true"
+        android:text="@string/btn_contact_send"
         android:backgroundTint="@color/colorPrimaryDark"
         app:cornerRadius="18dp"
         android:textAllCaps="false"

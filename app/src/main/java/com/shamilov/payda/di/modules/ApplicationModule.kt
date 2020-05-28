@@ -3,6 +3,7 @@ package com.shamilov.payda.di.modules
 import android.content.Context
 import com.shamilov.payda.domain.executor.SchedulerProvider
 import com.shamilov.payda.domain.executor.SchedulerProviderImpl
+import com.shamilov.payda.ui.adapters.DonationActiveAdapter
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

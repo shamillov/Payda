@@ -1,4 +1,4 @@
-package com.shamilov.payda.ui.adapters
+package com.shamilov.payda.ui.helpers
 
 import android.content.Context
 import android.util.AttributeSet
@@ -53,7 +53,6 @@ class NestedScrollableHost : FrameLayout {
     private fun handleInterceptTouchEvent(e: MotionEvent) {
         val orientation = parentViewPager?.orientation ?: return
 
-        // Early return if child can't scroll in same direction as parent
         if (!canChildScroll(orientation, -1f) && !canChildScroll(orientation, 1f)) {
             return
         }
@@ -67,21 +66,16 @@ class NestedScrollableHost : FrameLayout {
             val dy = e.y - initialY
             val isVpHorizontal = orientation == ORIENTATION_HORIZONTAL
 
-            // assuming ViewPager2 touch-slop is 2x touch-slop of child
             val scaledDx = dx.absoluteValue * if (isVpHorizontal) .5f else 1f
             val scaledDy = dy.absoluteValue * if (isVpHorizontal) 1f else .5f
 
             if (scaledDx > touchSlop || scaledDy > touchSlop) {
                 if (isVpHorizontal == (scaledDy > scaledDx)) {
-                    // Gesture is perpendicular, allow all parents to intercept
                     parent.requestDisallowInterceptTouchEvent(false)
                 } else {
-                    // Gesture is parallel, query child if movement in that direction is possible
                     if (canChildScroll(orientation, if (isVpHorizontal) dx else dy)) {
-                        // Child can scroll, disallow all parents to intercept
                         parent.requestDisallowInterceptTouchEvent(true)
                     } else {
-                        // Child cannot scroll, allow all parents to intercept
                         parent.requestDisallowInterceptTouchEvent(false)
                     }
                 }

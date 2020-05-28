@@ -39,7 +39,7 @@ class DonationActivePresenter(private val donationUseCase: GetActiveDonationUsec
         )
     }
 
-    fun onDestroy() {
+    fun onStop() {
         if (!disposable.isDisposed) {
             disposable.dispose()
         }

@@ -28,4 +28,16 @@
         android:name="com.shamilov.payda.ui.fragments.ContactFragment"
         android:label="Send"
         tools:layout="@layout/fragment_contact" />
+
+    <fragment
+        android:id="@+id/navigation_about_app"
+        android:name="com.shamilov.payda.ui.about.AboutAppFragment"
+        android:label="About"
+        tools:layout="@layout/fragment_about_app" />
+
+    <fragment
+        android:id="@+id/navigation_assistance"
+        android:name="com.shamilov.payda.ui.fragments.AssistanceFragment"
+        android:label="Assistance"
+        tools:layout="@layout/fragment_assistance" />
 </navigation>

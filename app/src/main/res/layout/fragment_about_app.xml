@@ -4,37 +4,29 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:background="@color/backgroundWhite"
-    android:padding="18dp">
+    android:paddingTop="18dp"
+    android:paddingStart="18dp"
+    android:paddingEnd="18dp">
 
     <TextView
-        android:id="@+id/tvUserDonationCount"
+        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="1210.0"
-        android:textSize="50sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="О приложении:"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="мои пожертвования"
-        app:layout_constraintTop_toBottomOf="@+id/tvUserDonationCount" />
-
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="18dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6">
+        app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -50,7 +42,7 @@
                 android:focusable="true"
                 android:padding="12dp"
                 android:paddingStart="14dp"
-                android:text="Избранное"
+                android:text="Обратная связь"
                 android:textColor="@color/textColorBlack"
                 android:textSize="16sp" />
 
@@ -69,7 +61,7 @@
                 android:focusable="true"
                 android:padding="12dp"
                 android:paddingStart="14dp"
-                android:text="Мои пожертвования"
+                android:text="Оценить приложение"
                 android:textColor="@color/textColorBlack"
                 android:textSize="16sp" />
 
@@ -88,7 +80,7 @@
                 android:focusable="true"
                 android:padding="12dp"
                 android:paddingStart="14dp"
-                android:text="Банковские карты"
+                android:text="Политика конфиденциальности"
                 android:textColor="@color/textColorBlack"
                 android:textSize="16sp" />
 
@@ -107,27 +99,7 @@
                 android:focusable="true"
                 android:padding="12dp"
                 android:paddingStart="14dp"
-                android:text="Поддержать проект Payda"
-                android:textColor="@color/textColorBlack"
-                android:textSize="16sp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:background="@color/backgroundWhite" />
-
-            <TextView
-                android:id="@+id/tvProfileAssist"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:padding="12dp"
-                android:paddingStart="14dp"
-                android:text="Оставить заявку на помощь"
+                android:text="Пользовательское соглашение"
                 android:textColor="@color/textColorBlack"
                 android:textSize="16sp" />
 
@@ -147,53 +119,10 @@
                 android:focusable="true"
                 android:padding="12dp"
                 android:paddingStart="14dp"
-                android:text="О приложении"
+                android:text="О проекте Payda"
                 android:textColor="@color/textColorBlack"
                 android:textSize="16sp" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Мы в соц.сетях:"
-        android:layout_marginBottom="6dp"
-        android:gravity="center"
-        app:layout_constraintBottom_toTopOf="@+id/materialCardView2" />
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/materialCardView2"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:src="@drawable/logo_instagram_share" />
-
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:src="@drawable/logo_telegram_share"/>
-
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:src="@drawable/logo_vk_share"/>
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "704638998277",
+    "firebase_url": "https://payda-95.firebaseio.com",
+    "project_id": "payda-95",
+    "storage_bucket": "payda-95.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:704638998277:android:e2e79feb47fdd86da5496c",
+        "android_client_info": {
+          "package_name": "com.shamilov.payda"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "704638998277-7du60af2leub90jk34baa5bs1leekr69.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVDMEAz-YwD75zAJfl68ah7BZw5811uxo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "704638998277-7du60af2leub90jk34baa5bs1leekr69.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

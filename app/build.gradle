@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
@@ -40,10 +41,13 @@ android {
 
 dependencies {
     //Retrofit
-    def retrofit_version = "2.7.0"
+    def retrofit_version = '2.9.0'
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
+
+    //Google Analytics
+    implementation 'com.google.firebase:firebase-analytics:17.4.2'
 
     //RxJava
     def rxJava_version = "2.2.17"
@@ -57,7 +61,7 @@ dependencies {
     kapt "androidx.room:room-compiler:$room_version"
 
     //Dagger
-    def dagger = "2.27"
+    def dagger = '2.28'
     implementation "com.google.dagger:dagger:$dagger"
     kapt "com.google.dagger:dagger-compiler:$dagger"
 
@@ -83,7 +87,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.2.2'
     implementation 'androidx.navigation:navigation-ui-ktx:2.2.2'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }

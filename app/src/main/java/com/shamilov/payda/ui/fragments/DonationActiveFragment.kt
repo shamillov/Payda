@@ -109,8 +109,8 @@ class DonationActiveFragment : Fragment(), DonationActiveView, SwipeRefreshLayou
         Toast.makeText(context, "Share", Toast.LENGTH_SHORT).show()
     }
 
-    override fun onDestroy() {
-        presenter.onDestroy()
-        super.onDestroy()
+    override fun onStop() {
+        presenter.onStop()
+        super.onStop()
     }
 }

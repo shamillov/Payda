@@ -31,10 +31,6 @@ class DonationActiveFragment : Fragment(), DonationActiveView, SwipeRefreshLayou
     @Inject
     lateinit var presenter: DonationActivePresenter
     private lateinit var adapter: DonationActiveAdapter
-//    private lateinit var repository: DonationRepository
-//    private lateinit var useCase: GetActiveDonationUsecase
-//    private lateinit var schedulers: SchedulerProvider
-//    private lateinit var mapper: DonationMapper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         App.instance.getAppComponent().inject(this)
@@ -60,16 +56,6 @@ class DonationActiveFragment : Fragment(), DonationActiveView, SwipeRefreshLayou
 
         initAdapter()
         presenter.getData(isNetworkAvailable())
-//        init()
-    }
-
-    private fun init() {
-//        schedulers = SchedulerProviderImpl()
-//        mapper = DonationMapper()
-//        repository = DonationRepositoryImpl(mapper)
-//        useCase = GetActiveDonationUsecase(repository, schedulers)
-//        presenter = DonationActivePresenter(this, useCase)
-//        presenter.getData(isNetworkAvailable())
     }
 
     private fun initAdapter() {
@@ -117,6 +103,10 @@ class DonationActiveFragment : Fragment(), DonationActiveView, SwipeRefreshLayou
 
     override fun onDonationHelpClick(donation: DonationActiveEntity) {
         Toast.makeText(context, donation.description, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onShareClick() {
+        Toast.makeText(context, "Share", Toast.LENGTH_SHORT).show()
     }
 
     override fun onDestroy() {

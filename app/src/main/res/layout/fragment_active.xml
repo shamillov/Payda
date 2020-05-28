@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:visibility="gone"
-        android:text="Нет соединения с интернетом"
+        android:text="@string/no_internet_connection"
         android:textSize="22sp"
         android:textIsSelectable="true" />
 

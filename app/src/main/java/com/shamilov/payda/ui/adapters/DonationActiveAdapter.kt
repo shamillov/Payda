@@ -11,6 +11,9 @@ import com.shamilov.payda.domain.model.DonationActiveEntity
 import com.shamilov.payda.ui.interfaces.OnDonationActiveClickListener
 import kotlinx.android.synthetic.main.item_donation_active.view.*
 
+/**
+ * Created by Shamilov on 20.05.2020
+ */
 class DonationActiveAdapter(private val listener: OnDonationActiveClickListener) :
     RecyclerView.Adapter<DonationActiveAdapter.DonationViewHolder>() {
     private val donationList: MutableList<DonationActiveEntity> = ArrayList()
@@ -23,14 +26,15 @@ class DonationActiveAdapter(private val listener: OnDonationActiveClickListener)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DonationViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_donation_active, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(
+            R.layout.item_donation_active,
+            parent,
+            false)
         return DonationViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: DonationViewHolder, position: Int) {
         holder.bind(donationList[position])
-
         holder.viewPager.adapter = ImageSliderAdapter()
     }
 
@@ -42,11 +46,12 @@ class DonationActiveAdapter(private val listener: OnDonationActiveClickListener)
         var tvAmountActive: TextView = itemView.tvAmountActive
         var tvFundLocationActive: TextView = itemView.tvFundLocationActive
         var tvProgressActive: TextView = itemView.tvProgressActive
-        var viewPager: ViewPager2 = itemView.ivContentActive1
+        var viewPager: ViewPager2 = itemView.ivContentActive
 
         init {
             itemView.setOnClickListener { listener.onDonationClick(donationList[adapterPosition]) }
             itemView.btnDonationHelp.setOnClickListener { listener.onDonationHelpClick(donationList[adapterPosition]) }
+            itemView.btnShareDonation.setOnClickListener { listener.onShareClick() }
         }
 
         fun bind(donation: DonationActiveEntity) {

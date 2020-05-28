@@ -25,13 +25,18 @@ class ProfileFragment : Fragment(), View.OnClickListener {
         val appBarLayout = activity?.findViewById<AppBarLayout>(R.id.toolbarLayout)
         appBarLayout?.elevation = 5F
 
-        val tvContact: TextView = root.findViewById(R.id.tvSendUs)
+        val tvContact: TextView = root.findViewById(R.id.tvProfileAssist)
+        val tvAbout: TextView = root.findViewById(R.id.tvProfileAboutApp)
         tvContact.setOnClickListener(this)
+        tvAbout.setOnClickListener(this)
 
         return root
     }
 
     override fun onClick(v: View?) {
-        findNavController().navigate(R.id.navigation_contact)
+        when(v?.id) {
+            R.id.tvProfileAssist -> findNavController().navigate(R.id.navigation_assistance)
+            R.id.tvProfileAboutApp -> findNavController().navigate(R.id.navigation_about_app)
+        }
     }
 }

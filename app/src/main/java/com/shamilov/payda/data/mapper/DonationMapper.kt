@@ -1,10 +1,14 @@
 package com.shamilov.payda.data.mapper
 
 import com.shamilov.payda.data.model.DonationActiveData
+import com.shamilov.payda.data.model.DonationCompletedData
 import com.shamilov.payda.domain.model.DonationActiveEntity
+import com.shamilov.payda.domain.model.DonationCompletedEntity
 
+/**
+ * Created by Shamilov on 20.05.2020
+ */
 class DonationMapper {
-
     fun map(donation: DonationActiveData): DonationActiveEntity {
         return DonationActiveEntity(
             donation.donationTitle,
@@ -26,6 +30,12 @@ class DonationMapper {
                 progress = it.donationProgress,
                 images = it.images
             )
+        }
+    }
+
+    fun mapCompletedList(donationList: List<DonationCompletedData>): List<DonationCompletedEntity> {
+        return donationList.map {
+            DonationCompletedEntity()
         }
     }
 }

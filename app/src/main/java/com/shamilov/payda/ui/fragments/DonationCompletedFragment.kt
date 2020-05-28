@@ -9,29 +9,39 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.shamilov.payda.App
 import com.shamilov.payda.R
-import com.shamilov.payda.data.mapper.DonationMapper
 import com.shamilov.payda.data.model.DonationCompletedData
-import com.shamilov.payda.domain.repository.DonationRepository
 import com.shamilov.payda.ui.adapters.DonationCompletedAdapter
 import com.shamilov.payda.ui.interfaces.OnDonationCompletedClickListener
 import com.shamilov.payda.ui.presenters.DonationCompletedPresenter
 import com.shamilov.payda.ui.views.DonationCompletedView
 import kotlinx.android.synthetic.main.fragment_completed.*
+import javax.inject.Inject
 
+/**
+ * Created by Shamilov on 20.05.2020
+ */
 class DonationCompletedFragment : Fragment(), DonationCompletedView,
     SwipeRefreshLayout.OnRefreshListener,
     OnDonationCompletedClickListener {
 
     private val TAG: String = DonationCompletedFragment::class.java.simpleName
 
-    private lateinit var presenter: DonationCompletedPresenter
+    @Inject
+    lateinit var presenter: DonationCompletedPresenter
     private lateinit var adapter: DonationCompletedAdapter
-    private lateinit var repository: DonationRepository
-    private lateinit var mapper: DonationMapper
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        App.instance.getAppComponent().inject(this)
+        super.onCreate(savedInstanceState)
+
+        presenter.attachView(this)
+    }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_completed, container, false)
@@ -47,9 +57,6 @@ class DonationCompletedFragment : Fragment(), DonationCompletedView,
     }
 
     private fun init() {
-        mapper = DonationMapper()
-//        repository = DonationRepositoryImpl(mapper)
-        presenter = DonationCompletedPresenter(this)
         presenter.getData(isNetworkAvailable())
     }
 
@@ -77,7 +84,8 @@ class DonationCompletedFragment : Fragment(), DonationCompletedView,
     }
 
     override fun showNetworkError() {
-
+        tvNetworkErrorCompleted.visibility = View.VISIBLE
+        recyclerViewCompleted.visibility = View.GONE
     }
 
     private fun isNetworkAvailable(): Boolean {
@@ -95,6 +103,10 @@ class DonationCompletedFragment : Fragment(), DonationCompletedView,
     }
 
     override fun onDonationHelpClick(donation: DonationCompletedData) {
+
+    }
+
+    override fun onShareClick() {
 
     }
 }

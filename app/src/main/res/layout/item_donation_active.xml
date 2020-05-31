@@ -35,7 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
-                android:text="Фонд БисмиЛлах1"
+                android:text="Название фонда"
                 app:layout_constraintStart_toEndOf="@+id/ivFundLogoActive"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -43,15 +43,19 @@
                 android:id="@+id/tvFundLocationActive"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Грозный"
+                android:text="Локация"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="@+id/tvFundNameActive"
                 app:layout_constraintTop_toBottomOf="@+id/tvFundNameActive" />
 
-            <com.google.android.material.button.MaterialButton
+            <ImageView
                 android:id="@+id/btnShareDonation"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:src="@drawable/ic_reply_black_24dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -61,8 +65,6 @@
             android:id="@+id/nestedScrollableHost"
             android:layout_width="match_parent"
             android:layout_height="250dp"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
@@ -149,7 +151,7 @@
                 android:textStyle="bold"
                 android:gravity="center"
                 android:textSize="16sp"
-                android:text="Помогите этому человеку накормить детей и стариков" />
+                android:text="Заголовок" />
 
         </LinearLayout>
 
@@ -160,7 +162,7 @@
             android:layout_marginTop="8dp"
             android:layout_margin="6dp"
             android:paddingBottom="8dp"
-            android:text="Помогите этому человеку накормить детей и стариковПомогите этому человеку накормить детей и стариковПомогите этому человеку накормить детей и стариков"
+            android:text="Описание"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

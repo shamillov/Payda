@@ -1,6 +1,7 @@
 package com.shamilov.payda.ui.fragments
 
 import android.content.Context
+import android.content.Intent
 import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.shamilov.payda.App
 import com.shamilov.payda.R
 import com.shamilov.payda.domain.model.DonationActiveEntity
@@ -17,6 +19,7 @@ import com.shamilov.payda.ui.adapters.DonationActiveAdapter
 import com.shamilov.payda.ui.interfaces.OnDonationActiveClickListener
 import com.shamilov.payda.ui.presenters.DonationActivePresenter
 import com.shamilov.payda.ui.views.DonationActiveView
+import kotlinx.android.synthetic.main.fragment_about_donation.*
 import kotlinx.android.synthetic.main.fragment_active.*
 import javax.inject.Inject
 
@@ -40,7 +43,8 @@ class DonationActiveFragment : Fragment(), DonationActiveView, SwipeRefreshLayou
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_active, container, false)
@@ -98,7 +102,12 @@ class DonationActiveFragment : Fragment(), DonationActiveView, SwipeRefreshLayou
     }
 
     override fun onDonationClick(donation: DonationActiveEntity) {
-        Toast.makeText(context, donation.title, Toast.LENGTH_SHORT).show()
+        val bottomSheetBehavior = BottomSheetBehavior.from(bottom_sheet_layout)
+        if (bottomSheetBehavior.state != BottomSheetBehavior.STATE_EXPANDED) {
+            bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+        } else {
+            bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+        }
     }
 
     override fun onDonationHelpClick(donation: DonationActiveEntity) {
@@ -106,7 +115,13 @@ class DonationActiveFragment : Fragment(), DonationActiveView, SwipeRefreshLayou
     }
 
     override fun onShareClick() {
-        Toast.makeText(context, "Share", Toast.LENGTH_SHORT).show()
+        val share = Intent()
+        share.apply {
+            action = Intent.ACTION_SEND
+            type = "text/plain"
+            putExtra(Intent.EXTRA_TEXT, "Ссылка на приложение")
+        }
+        startActivity(Intent.createChooser(share, null))
     }
 
     override fun onStop() {

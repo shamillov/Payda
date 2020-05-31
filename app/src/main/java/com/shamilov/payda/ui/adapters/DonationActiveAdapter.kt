@@ -10,6 +10,8 @@ import com.shamilov.payda.R
 import com.shamilov.payda.domain.model.DonationActiveEntity
 import com.shamilov.payda.ui.interfaces.OnDonationActiveClickListener
 import kotlinx.android.synthetic.main.item_donation_active.view.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * Created by Shamilov on 20.05.2020
@@ -57,9 +59,9 @@ class DonationActiveAdapter(private val listener: OnDonationActiveClickListener)
         fun bind(donation: DonationActiveEntity) {
             tvTitleActive.text = donation.title
             tvDescriptionActive.text = donation.description
-            tvAmountActive.text = donation.amount.toString()
+            tvAmountActive.text = String.format(Locale.CANADA_FRENCH, "%,d", donation.amount)
             tvFundLocationActive.text = donation.location
-            tvProgressActive.text = donation.progress.toString()
+            tvProgressActive.text = String.format(Locale.CANADA_FRENCH, "%,d", donation.progress)
         }
     }
 }

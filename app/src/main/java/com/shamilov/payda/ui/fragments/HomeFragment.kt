@@ -24,16 +24,13 @@ class HomeFragment : Fragment() {
         viewPager.adapter = OrdersPagerAdapter(this)
 
         val tabLayout: TabLayout = root.findViewById(R.id.tabLayout)
-        val tabLayoutMediator = TabLayoutMediator(
-            tabLayout,
-            viewPager,
-            TabLayoutMediator.TabConfigurationStrategy { tab, position ->
-                if (position == 0)
-                    tab.text = getString(R.string.tabLayout_active_donation)
-                else
-                    tab.text = getString(R.string.tabLayout_completed_donation)
-            })
-        tabLayoutMediator.attach()
+        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+            if (position == 0)
+                tab.text = getString(R.string.tabLayout_active_donation)
+            else
+                tab.text = getString(R.string.tabLayout_completed_donation)
+
+        }.attach()
 
         return root
     }

@@ -39,4 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:visibility="gone" />
+
+    <include
+        layout="@layout/fragment_about_donation"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

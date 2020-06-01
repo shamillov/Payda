@@ -5,9 +5,11 @@ import com.shamilov.payda.data.remote.api.DonationService
 import com.shamilov.payda.utils.const.Const
 import dagger.Module
 import dagger.Provides
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 /**
@@ -18,11 +20,13 @@ class NetworkModule {
     @Provides
     @Singleton
     fun provideRetrofit(
+        okHttpClient: OkHttpClient,
         gsonConverterFactory: GsonConverterFactory,
         rxJava2CallAdapterFactory: RxJava2CallAdapterFactory
     ): Retrofit {
         return Retrofit.Builder()
             .baseUrl(Const.BASE_URL)
+            .client(okHttpClient)
             .addConverterFactory(gsonConverterFactory)
             .addCallAdapterFactory(rxJava2CallAdapterFactory)
             .build()
@@ -32,6 +36,16 @@ class NetworkModule {
     @Singleton
     fun provideService(retrofit: Retrofit): DonationService {
         return retrofit.create(DonationService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideOkHttpClient(): OkHttpClient {
+        return OkHttpClient.Builder()
+            .connectTimeout(30, TimeUnit.SECONDS)
+            .writeTimeout(30, TimeUnit.SECONDS)
+            .readTimeout(30, TimeUnit.SECONDS)
+            .build()
     }
 
     @Provides

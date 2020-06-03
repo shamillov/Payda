@@ -8,7 +8,7 @@ import io.reactivex.Observable
 /**
  * Created by Shamilov on 20.05.2020
  */
-class GetActiveDonationUsecase(
+class GetActiveDonationUseCase(
     private val repository: DonationRepository,
     private val schedulers: SchedulerProvider
 ) : ObservableUseCase<DonationActiveEntity> {

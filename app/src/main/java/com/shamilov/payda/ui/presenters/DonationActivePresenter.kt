@@ -1,13 +1,13 @@
 package com.shamilov.payda.ui.presenters
 
-import com.shamilov.payda.domain.interactor.GetActiveDonationUsecase
+import com.shamilov.payda.domain.interactor.GetActiveDonationUseCase
 import com.shamilov.payda.ui.views.DonationActiveView
 import io.reactivex.disposables.CompositeDisposable
 
 /**
  * Created by Shamilov on 20.05.2020
  */
-class DonationActivePresenter(private val donationUseCase: GetActiveDonationUsecase) {
+class DonationActivePresenter(private val donationUseCase: GetActiveDonationUseCase) {
 
     private val TAG: String = DonationCompletedPresenter::class.java.simpleName
 

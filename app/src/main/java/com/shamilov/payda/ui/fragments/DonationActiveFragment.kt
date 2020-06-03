@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.appbar.AppBarLayout
@@ -57,6 +58,12 @@ class DonationActiveFragment : Fragment(), DonationActiveView, SwipeRefreshLayou
         appBarLayout?.elevation = 0F
 
         swipeRefreshDonationActive.setOnRefreshListener(this)
+        swipeRefreshDonationActive.setColorSchemeColors(context?.let {
+            ContextCompat.getColor(
+                it,
+                R.color.colorPrimaryDark
+            )
+        }!!)
 
         initAdapter()
         presenter.getData(isNetworkAvailable())

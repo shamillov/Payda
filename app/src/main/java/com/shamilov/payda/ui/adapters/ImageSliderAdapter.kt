@@ -6,13 +6,14 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.shamilov.payda.R
+import com.shamilov.payda.data.model.Image
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.images.view.*
 
 /**
  * Created by Shamilov on 25.05.2020
  */
-class ImageSliderAdapter : RecyclerView.Adapter<ImageSliderAdapter.ImageSliderViewHolder>() {
+class ImageSliderAdapter(private val imageList: List<Image>) : RecyclerView.Adapter<ImageSliderAdapter.ImageSliderViewHolder>() {
 
     var list: List<String> = listOf(
         "https://avatars.mds.yandex.net/get-pdb/216365/cafc6922-7989-4b22-b23d-36a495ce95a0/s1200",

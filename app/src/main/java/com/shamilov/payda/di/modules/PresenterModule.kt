@@ -1,6 +1,6 @@
 package com.shamilov.payda.di.modules
 
-import com.shamilov.payda.domain.interactor.GetActiveDonationUsecase
+import com.shamilov.payda.domain.interactor.GetActiveDonationUseCase
 import com.shamilov.payda.ui.presenters.DonationActivePresenter
 import dagger.Module
 import dagger.Provides
@@ -12,7 +12,7 @@ import dagger.Provides
 class PresenterModule {
 
     @Provides
-    fun providePresenter(interactor: GetActiveDonationUsecase): DonationActivePresenter {
+    fun providePresenter(interactor: GetActiveDonationUseCase): DonationActivePresenter {
         return DonationActivePresenter(interactor)
     }
 

@@ -36,8 +36,9 @@ class DonationActiveAdapter(private val listener: OnDonationActiveClickListener)
     }
 
     override fun onBindViewHolder(holder: DonationViewHolder, position: Int) {
+        val imageAdapter = ImageSliderAdapter(donationList[position].images)
         holder.bind(donationList[position])
-        holder.viewPager.adapter = ImageSliderAdapter()
+        holder.viewPager.adapter = imageAdapter
     }
 
     override fun getItemCount(): Int = donationList.count()

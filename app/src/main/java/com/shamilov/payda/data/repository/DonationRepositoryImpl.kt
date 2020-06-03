@@ -1,6 +1,7 @@
 package com.shamilov.payda.data.repository
 
 import com.shamilov.payda.data.mapper.DonationMapper
+import com.shamilov.payda.data.model.Fund
 import com.shamilov.payda.data.remote.api.DonationService
 import com.shamilov.payda.domain.model.DonationActiveEntity
 import com.shamilov.payda.domain.model.DonationCompletedEntity
@@ -23,5 +24,9 @@ class DonationRepositoryImpl(
     override fun getCompletedDonation(): Observable<List<DonationCompletedEntity>> {
         return api.getCompletedDonation()
             .map { mapper.mapCompletedList(it) }
+    }
+
+    override fun getFunds(): Observable<List<Fund>> {
+        return api.getFunds()
     }
 }

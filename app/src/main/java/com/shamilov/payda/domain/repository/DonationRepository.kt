@@ -1,5 +1,6 @@
 package com.shamilov.payda.domain.repository
 
+import com.shamilov.payda.data.model.Fund
 import com.shamilov.payda.domain.model.DonationActiveEntity
 import com.shamilov.payda.domain.model.DonationCompletedEntity
 import io.reactivex.Observable
@@ -10,4 +11,5 @@ import io.reactivex.Observable
 interface DonationRepository {
     fun getActiveDonation(): Observable<List<DonationActiveEntity>>
     fun getCompletedDonation(): Observable<List<DonationCompletedEntity>>
+    fun getFunds(): Observable<List<Fund>>
 }

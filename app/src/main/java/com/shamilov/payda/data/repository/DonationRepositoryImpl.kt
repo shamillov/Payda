@@ -18,12 +18,12 @@ class DonationRepositoryImpl(
 
     override fun getActiveDonation(): Observable<List<DonationActiveEntity>> {
         return api.getActiveDonation()
-            .map { mapper.mapList(it) }
+            .map { mapper.mapDonationActiveList(it) }
     }
 
     override fun getCompletedDonation(): Observable<List<DonationCompletedEntity>> {
         return api.getCompletedDonation()
-            .map { mapper.mapCompletedList(it) }
+            .map { mapper.mapDonationCompletedList(it) }
     }
 
     override fun getFunds(): Observable<List<Fund>> {

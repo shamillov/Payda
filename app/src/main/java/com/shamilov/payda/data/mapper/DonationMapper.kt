@@ -9,7 +9,7 @@ import com.shamilov.payda.domain.model.DonationCompletedEntity
  * Created by Shamilov on 20.05.2020
  */
 class DonationMapper {
-    fun map(donation: DonationActiveData): DonationActiveEntity {
+    fun mapDonationActive(donation: DonationActiveData): DonationActiveEntity {
         return DonationActiveEntity(
             donation.donationTitle,
             donation.donationDescription,
@@ -20,7 +20,7 @@ class DonationMapper {
         )
     }
 
-    fun mapList(donationList: List<DonationActiveData>): List<DonationActiveEntity> {
+    fun mapDonationActiveList(donationList: List<DonationActiveData>): List<DonationActiveEntity> {
         return donationList.map {
             DonationActiveEntity(
                 title = it.donationTitle,
@@ -33,7 +33,7 @@ class DonationMapper {
         }
     }
 
-    fun mapCompletedList(donationList: List<DonationCompletedData>): List<DonationCompletedEntity> {
+    fun mapDonationCompletedList(donationList: List<DonationCompletedData>): List<DonationCompletedEntity> {
         return donationList.map {
             DonationCompletedEntity()
         }

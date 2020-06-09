@@ -16,9 +16,9 @@ import kotlinx.android.synthetic.main.images.view.*
 class ImageSliderAdapter(private val imageList: List<Image>) : RecyclerView.Adapter<ImageSliderAdapter.ImageSliderViewHolder>() {
 
     var list: List<String> = listOf(
-        "https://avatars.mds.yandex.net/get-pdb/216365/cafc6922-7989-4b22-b23d-36a495ce95a0/s1200",
-        "https://avatars.mds.yandex.net/get-pdb/1604606/7393a5f6-4306-4e20-8f71-af8011c9e1a2/s1200",
-        "https://avatars.mds.yandex.net/get-pdb/1976538/f5317206-7561-4a5a-9f26-22dd5d847fee/s1200"
+        "https://chechnyatoday.com/images/uploads/2018/09/26/IMG-20180925-WA0021.jpg",
+        "https://www.grozny-inform.ru/LoadedImages/2015/07/12/foto_1.jpg",
+        "https://gdb.rferl.org/68534DE4-6A6C-440A-82C2-918F22846678_w1023_r1_s.jpg"
     )
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageSliderViewHolder {

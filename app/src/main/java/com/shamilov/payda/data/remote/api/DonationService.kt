@@ -2,7 +2,7 @@ package com.shamilov.payda.data.remote.api
 
 import com.shamilov.payda.data.model.DonationActiveData
 import com.shamilov.payda.data.model.DonationCompletedData
-import com.shamilov.payda.data.model.Fund
+import com.shamilov.payda.data.model.FundsData
 import com.shamilov.payda.utils.const.Const
 import io.reactivex.Observable
 import retrofit2.http.GET
@@ -15,5 +15,5 @@ interface DonationService {
     fun getCompletedDonation(): Observable<List<DonationCompletedData>>
 
     @GET(Const.ENDPOINT_FUNDS)
-    fun getFunds(): Observable<List<Fund>>
+    fun getFunds(): Observable<List<FundsData>>
 }

@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.shamilov.payda.R
-import com.shamilov.payda.domain.model.DonationActiveEntity
+import com.shamilov.payda.domain.model.FeeEntity
 import com.shamilov.payda.ui.interfaces.OnDonationActiveClickListener
 import kotlinx.android.synthetic.main.item_donation_active.view.*
 import java.util.*
@@ -18,9 +18,9 @@ import kotlin.collections.ArrayList
  */
 class DonationActiveAdapter(private val listener: OnDonationActiveClickListener) :
     RecyclerView.Adapter<DonationActiveAdapter.DonationViewHolder>() {
-    private val donationList: MutableList<DonationActiveEntity> = ArrayList()
+    private val donationList: MutableList<FeeEntity> = ArrayList()
 
-    fun setData(list: List<DonationActiveEntity>) {
+    fun setData(list: List<FeeEntity>) {
         this.donationList.clear()
         this.donationList.addAll(list)
 
@@ -47,6 +47,7 @@ class DonationActiveAdapter(private val listener: OnDonationActiveClickListener)
         var tvTitleActive: TextView = itemView.tvTitleActive
         var tvDescriptionActive: TextView = itemView.tvDescriptionActive
         var tvAmountActive: TextView = itemView.tvAmountActive
+        var tvFundName: TextView = itemView.tvFundNameActive
         var tvFundLocationActive: TextView = itemView.tvFundLocationActive
         var tvProgressActive: TextView = itemView.tvProgressActive
         var viewPager: ViewPager2 = itemView.ivContentActive
@@ -57,10 +58,11 @@ class DonationActiveAdapter(private val listener: OnDonationActiveClickListener)
             itemView.btnShareDonation.setOnClickListener { listener.onShareClick() }
         }
 
-        fun bind(donation: DonationActiveEntity) {
+        fun bind(donation: FeeEntity) {
             tvTitleActive.text = donation.title
             tvDescriptionActive.text = donation.description
             tvAmountActive.text = String.format(Locale.CANADA_FRENCH, "%,d", donation.amount)
+            tvFundName.text = "Фонд ${donation.name}"
             tvFundLocationActive.text = donation.location
             tvProgressActive.text = String.format(Locale.CANADA_FRENCH, "%,d", donation.progress)
         }

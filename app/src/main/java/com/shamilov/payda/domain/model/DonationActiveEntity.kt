@@ -3,6 +3,7 @@ package com.shamilov.payda.domain.model
 import com.shamilov.payda.data.model.Image
 
 data class DonationActiveEntity(
+    val fundId: Int,
     val title: String,
     val description: String,
     val amount: Int,

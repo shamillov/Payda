@@ -28,7 +28,7 @@ class DonationActivePresenter(private val donationUseCase: GetActiveDonationUseC
     private fun getDonation() {
         view.showProgressBar()
 
-        disposable.add(donationUseCase.execute()
+        disposable.addAll(donationUseCase.execute()
             .subscribe({
                 view.hideProgressBar()
                 view.onSuccess(it)

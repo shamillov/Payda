@@ -1,12 +1,14 @@
 package com.shamilov.payda.data.repository
 
 import com.shamilov.payda.data.mapper.DonationMapper
+import com.shamilov.payda.domain.model.FeeEntity
 import com.shamilov.payda.data.remote.api.DonationService
 import com.shamilov.payda.domain.model.DonationActiveEntity
 import com.shamilov.payda.domain.model.DonationCompletedEntity
 import com.shamilov.payda.domain.model.FundsEntity
 import com.shamilov.payda.domain.repository.DonationRepository
 import io.reactivex.Observable
+import io.reactivex.functions.BiFunction
 
 /**
  * Created by Shamilov on 20.05.2020
@@ -29,5 +31,12 @@ class DonationRepositoryImpl(
     override fun getFunds(): Observable<List<FundsEntity>> {
         return api.getFunds()
             .map { mapper.mapFundsList(it) }
+    }
+
+    override fun getFee(): Observable<List<FeeEntity>> {
+        return Observable.zip(
+            getActiveDonation(),
+            getFunds(),
+            BiFunction { t1, t2 -> mapper.convertToFee(t1, t2) })
     }
 }

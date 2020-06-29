@@ -1,25 +1,26 @@
-package com.shamilov.payda.data.model
+package com.shamilov.payda.domain.model
 
 import com.google.gson.annotations.SerializedName
+import com.shamilov.payda.data.model.Image
 
 /**
  * Created by Shamilov on 22.06.2020
  */
-data class Fee(
+data class FeeEntity(
     @SerializedName("logo")
-    val fundLogo: String,
+    val logo: String,
     @SerializedName("name")
-    val fundName: String,
+    val name: String,
     @SerializedName("region")
     val location: String,
     @SerializedName("images")
     val images: List<Image>,
     @SerializedName("donations")
-    val donationProgress: Int,
+    val progress: Int,
     @SerializedName("amount")
-    val donationAmount: Int,
+    val amount: Int,
     @SerializedName("name")
-    val donationTitle: String,
+    val title: String,
     @SerializedName("description")
-    val donationDescription: String
+    val description: String
 )

@@ -15,7 +15,7 @@ import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.shamilov.payda.App
 import com.shamilov.payda.R
-import com.shamilov.payda.domain.model.DonationActiveEntity
+import com.shamilov.payda.domain.model.FeeEntity
 import com.shamilov.payda.ui.adapters.DonationActiveAdapter
 import com.shamilov.payda.ui.interfaces.OnDonationActiveClickListener
 import com.shamilov.payda.ui.presenters.DonationActivePresenter
@@ -85,7 +85,7 @@ class DonationActiveFragment : Fragment(), DonationActiveView, SwipeRefreshLayou
         recyclerViewActive.visibility = View.VISIBLE
     }
 
-    override fun onSuccess(data: List<DonationActiveEntity>) {
+    override fun onSuccess(data: List<FeeEntity>) {
         adapter.setData(data)
     }
 
@@ -108,7 +108,7 @@ class DonationActiveFragment : Fragment(), DonationActiveView, SwipeRefreshLayou
         swipeRefreshDonationActive.isRefreshing = false
     }
 
-    override fun onDonationClick(donation: DonationActiveEntity) {
+    override fun onDonationClick(donation: FeeEntity) {
         val bottomSheetBehavior = BottomSheetBehavior.from(bottom_sheet_layout)
         if (bottomSheetBehavior.state != BottomSheetBehavior.STATE_EXPANDED) {
             bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
@@ -117,7 +117,7 @@ class DonationActiveFragment : Fragment(), DonationActiveView, SwipeRefreshLayou
         }
     }
 
-    override fun onDonationHelpClick(donation: DonationActiveEntity) {
+    override fun onDonationHelpClick(donation: FeeEntity) {
         Toast.makeText(context, donation.description, Toast.LENGTH_SHORT).show()
     }
 

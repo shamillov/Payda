@@ -2,12 +2,18 @@ package com.shamilov.payda.ui.presenters
 
 import com.shamilov.payda.domain.interactor.GetActiveDonationUseCase
 import com.shamilov.payda.ui.views.DonationActiveView
+import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.internal.operators.observable.ObservableFromIterable
+import moxy.InjectViewState
+import moxy.MvpPresenter
 
 /**
  * Created by Shamilov on 20.05.2020
  */
-class DonationActivePresenter(private val donationUseCase: GetActiveDonationUseCase) {
+
+@InjectViewState
+class DonationActivePresenter(private val donationUseCase: GetActiveDonationUseCase) : MvpPresenter<DonationActiveView>() {
 
     private val TAG: String = DonationCompletedPresenter::class.java.simpleName
 
@@ -18,30 +24,40 @@ class DonationActivePresenter(private val donationUseCase: GetActiveDonationUseC
         if (hasNetwork)
             getDonation()
         else
-            view.showNetworkError()
+            viewState.showNetworkError()
     }
 
-    fun attachView(view: DonationActiveView) {
-        this.view = view
-    }
+//    fun attachView(view: DonationActiveView) {
+//        this.view = view
+//    }
 
     private fun getDonation() {
-        view.showProgressBar()
+        viewState.showProgressBar()
 
-        disposable.addAll(donationUseCase.execute()
+        disposable.add(donationUseCase.execute()
             .subscribe({
-                view.hideProgressBar()
-                view.onSuccess(it)
+                viewState.hideProgressBar()
+                viewState.onSuccess(it)
             }, {
-                view.hideProgressBar()
-                view.onFailure(it.toString())
+                viewState.hideProgressBar()
+                viewState.onFailure(it.toString())
             })
         )
     }
 
-    fun onStop() {
-        if (!disposable.isDisposed) {
-            disposable.clear()
-        }
+    fun refreshData() {
+        disposable.add(donationUseCase.execute()
+            .subscribe({
+                viewState.onSuccess(it)
+            }, {
+                viewState.onFailure(it.toString())
+            })
+        )
     }
+
+//    fun onStop() {
+//        if (!disposable.isDisposed) {
+//            disposable.clear()
+//        }
+//    }
 }

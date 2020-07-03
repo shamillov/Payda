@@ -22,18 +22,22 @@ import com.shamilov.payda.ui.presenters.DonationActivePresenter
 import com.shamilov.payda.ui.views.DonationActiveView
 import kotlinx.android.synthetic.main.fragment_about_donation.*
 import kotlinx.android.synthetic.main.fragment_active.*
+import moxy.MvpAppCompatFragment
+import moxy.ktx.moxyPresenter
 import javax.inject.Inject
+import javax.inject.Provider
 
 /**
  * Created by Shamilov on 20.05.2020
  */
-class DonationActiveFragment : Fragment(), DonationActiveView, SwipeRefreshLayout.OnRefreshListener,
+class DonationActiveFragment : MvpAppCompatFragment(), DonationActiveView, SwipeRefreshLayout.OnRefreshListener,
     OnDonationActiveClickListener {
 
     private val TAG = DonationActiveFragment::class.java.simpleName
 
     @Inject
-    lateinit var presenter: DonationActivePresenter
+    lateinit var presenterProvider: Provider<DonationActivePresenter>
+    private val presenter by moxyPresenter {presenterProvider.get()}
     private lateinit var adapter: DonationActiveAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -131,8 +135,8 @@ class DonationActiveFragment : Fragment(), DonationActiveView, SwipeRefreshLayou
         startActivity(Intent.createChooser(share, null))
     }
 
-    override fun onStop() {
-        presenter.onStop()
-        super.onStop()
-    }
+//    override fun onStop() {
+//        presenter.onStop()
+//        super.onStop()
+//    }
 }

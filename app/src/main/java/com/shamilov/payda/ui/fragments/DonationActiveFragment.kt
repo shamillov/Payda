@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -43,8 +42,6 @@ class DonationActiveFragment : MvpAppCompatFragment(), DonationActiveView, Swipe
     override fun onCreate(savedInstanceState: Bundle?) {
         App.instance.getAppComponent().inject(this)
         super.onCreate(savedInstanceState)
-
-        presenter.attachView(this)
     }
 
     override fun onCreateView(

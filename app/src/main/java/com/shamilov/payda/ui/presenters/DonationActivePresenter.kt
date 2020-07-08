@@ -2,9 +2,7 @@ package com.shamilov.payda.ui.presenters
 
 import com.shamilov.payda.domain.interactor.GetActiveDonationUseCase
 import com.shamilov.payda.ui.views.DonationActiveView
-import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.internal.operators.observable.ObservableFromIterable
 import moxy.InjectViewState
 import moxy.MvpPresenter
 

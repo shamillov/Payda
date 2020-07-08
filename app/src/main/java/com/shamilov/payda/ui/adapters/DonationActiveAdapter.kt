@@ -18,6 +18,8 @@ import kotlin.collections.ArrayList
  */
 class DonationActiveAdapter(private val listener: OnDonationActiveClickListener) :
     RecyclerView.Adapter<DonationActiveAdapter.DonationViewHolder>() {
+
+    private val TAG: String = DonationActiveAdapter::class.java.simpleName
     private val donationList: MutableList<FeeEntity> = ArrayList()
 
     fun setData(list: List<FeeEntity>) {

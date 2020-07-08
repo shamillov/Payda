@@ -13,7 +13,8 @@ import kotlinx.android.synthetic.main.images.view.*
 /**
  * Created by Shamilov on 25.05.2020
  */
-class ImageSliderAdapter(private val imageList: List<Image>) : RecyclerView.Adapter<ImageSliderAdapter.ImageSliderViewHolder>() {
+class ImageSliderAdapter(private val imageList: List<Image>) :
+    RecyclerView.Adapter<ImageSliderAdapter.ImageSliderViewHolder>() {
 
     var list: List<String> = listOf(
         "https://chechnyatoday.com/images/uploads/2018/09/26/IMG-20180925-WA0021.jpg",
@@ -36,7 +37,8 @@ class ImageSliderAdapter(private val imageList: List<Image>) : RecyclerView.Adap
     }
 
     override fun onBindViewHolder(holder: ImageSliderViewHolder, position: Int) {
-        Picasso.get().load(list[position]).centerCrop().fit().into(holder.imageView)
+        Picasso.get().load(list[position]).centerCrop().fit()
+            .placeholder(R.drawable.image_loading_animation).into(holder.imageView)
     }
 
     inner class ImageSliderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

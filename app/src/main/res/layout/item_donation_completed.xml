@@ -57,7 +57,7 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <com.shamilov.payda.ui.helpers.NestedScrollableHost
+        <com.shamilov.payda.utils.NestedScrollableHost
             android:id="@+id/nestedScrollableHost"
             android:layout_width="match_parent"
             android:layout_height="250dp"
@@ -71,7 +71,7 @@
                 android:id="@+id/ivContentActive"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
-        </com.shamilov.payda.ui.helpers.NestedScrollableHost>
+        </com.shamilov.payda.utils.NestedScrollableHost>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout2"

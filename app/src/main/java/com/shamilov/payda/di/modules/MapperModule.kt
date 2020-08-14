@@ -8,12 +8,12 @@ import javax.inject.Singleton
 /**
  * Created by Shamilov on 25.05.2020
  */
-@Module
+//@Module
 class MapperModule {
 
-    @Singleton
-    @Provides
-    fun provideDonationMapper(): DonationMapper {
-        return DonationMapper()
-    }
+//    @Singleton
+//    @Provides
+//    fun provideDonationMapper(): DonationMapper {
+//        return DonationMapper()
+//    }
 }

@@ -7,37 +7,37 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.shamilov.payda.ui.fragments.HomeFragment"
+        android:name="com.shamilov.payda.presentation.ui.donation.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.shamilov.payda.ui.fragments.ProfileFragment"
+        android:name="com.shamilov.payda.presentation.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" />
 
     <fragment
         android:id="@+id/navigation_fund"
-        android:name="com.shamilov.payda.ui.fragments.FundFragment"
+        android:name="com.shamilov.payda.presentation.ui.fund.FundFragment"
         android:label="@string/title_fund"
         tools:layout="@layout/fragment_fund" />
 
     <fragment
         android:id="@+id/navigation_contact"
-        android:name="com.shamilov.payda.ui.fragments.ContactFragment"
+        android:name="com.shamilov.payda.presentation.ui.feedback.ContactFragment"
         android:label="Send"
         tools:layout="@layout/fragment_contact" />
 
     <fragment
         android:id="@+id/navigation_about_app"
-        android:name="com.shamilov.payda.ui.about.AboutAppFragment"
+        android:name="com.shamilov.payda.presentation.ui.about.AboutAppFragment"
         android:label="About"
         tools:layout="@layout/fragment_about_app" />
 
     <fragment
         android:id="@+id/navigation_assistance"
-        android:name="com.shamilov.payda.ui.fragments.AssistanceFragment"
+        android:name="com.shamilov.payda.presentation.ui.assistance.AssistanceFragment"
         android:label="Assistance"
         tools:layout="@layout/fragment_assistance" />
 </navigation>

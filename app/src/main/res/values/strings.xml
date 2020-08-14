@@ -9,8 +9,8 @@
     <string name="cardView_donation_task">цель</string>
     <string name="cardView_donation_progress">собрано</string>
 
-<!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="no_internet_connection">Нет соединения с интернетом</string>
     <string name="btn_contact_send">Отправить</string>
+    <string name="donation_fond">Благотворительный фонд %s</string>
 </resources>

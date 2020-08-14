@@ -2,19 +2,22 @@ package com.shamilov.payda
 
 import android.app.Application
 import com.google.firebase.analytics.FirebaseAnalytics
+import com.shamilov.payda.di.*
 import com.shamilov.payda.di.components.AppComponent
-import com.shamilov.payda.di.components.DaggerAppComponent
 import com.shamilov.payda.di.modules.ApplicationModule
 import com.shamilov.payda.di.modules.InteractorModule
 import com.shamilov.payda.di.modules.MapperModule
 import com.shamilov.payda.di.modules.PresenterModule
+import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidLogger
+import org.koin.core.context.startKoin
 
 /**
  * Created by Shamilov on 25.05.2020
  */
 class App : Application() {
 
-    private lateinit var appComponent: AppComponent
+//    private lateinit var appComponent: AppComponent
     private lateinit var firebaseAnalytics: FirebaseAnalytics
 
     override fun onCreate() {
@@ -22,22 +25,17 @@ class App : Application() {
 
         instance = this
         firebaseAnalytics = FirebaseAnalytics.getInstance(this)
-        appComponent = initializeDagger()
+
+        startKoin {
+            androidLogger()
+            androidContext(this@App)
+            modules(listOf(dataModule, networkModule, mapperModule, interactorModule, schedulesModule))
+        }
     }
 
-    private fun initializeDagger(): AppComponent {
-        return DaggerAppComponent
-            .builder()
-            .applicationModule(ApplicationModule(this))
-            .interactorModule(InteractorModule())
-            .mapperModule(MapperModule())
-            .presenterModule(PresenterModule())
-            .build()
-    }
-
-    fun getAppComponent(): AppComponent {
-        return appComponent
-    }
+//    fun getAppComponent(): AppComponent {
+//        return appComponent
+//    }
 
     companion object {
         lateinit var instance: App

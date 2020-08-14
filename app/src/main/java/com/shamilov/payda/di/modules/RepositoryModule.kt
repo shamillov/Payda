@@ -11,15 +11,15 @@ import javax.inject.Singleton
 /**
  * Created by Shamilov on 25.05.2020
  */
-@Module
+//@Module
 class RepositoryModule {
-
-    @Singleton
-    @Provides
-    fun provideDonationRepository(
-        service: DonationService,
-        mapper: DonationMapper
-    ): DonationRepository {
-        return DonationRepositoryImpl(service, mapper)
-    }
+//
+//    @Singleton
+//    @Provides
+//    fun provideDonationRepository(
+//        service: DonationService,
+//        mapper: DonationMapper
+//    ): DonationRepository {
+//        return DonationRepositoryImpl(service, mapper)
+//    }
 }

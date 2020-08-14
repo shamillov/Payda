@@ -1,67 +1,48 @@
 package com.shamilov.payda.data.mapper
 
-import com.shamilov.payda.data.model.DonationActiveData
-import com.shamilov.payda.data.model.DonationCompletedData
-import com.shamilov.payda.domain.model.FeeEntity
-import com.shamilov.payda.data.model.FundsData
-import com.shamilov.payda.domain.model.DonationActiveEntity
-import com.shamilov.payda.domain.model.DonationCompletedEntity
-import com.shamilov.payda.domain.model.FundsEntity
+import com.shamilov.payda.data.model.DonationData
+import com.shamilov.payda.data.model.FundData
+import com.shamilov.payda.data.model.ImageData
+import com.shamilov.payda.domain.model.DonationEntity
+import com.shamilov.payda.domain.model.FundEntity
+import com.shamilov.payda.domain.model.ImageEntity
 
 /**
  * Created by Shamilov on 20.05.2020
  */
 class DonationMapper {
 
-    fun mapDonationActiveList(donationList: List<DonationActiveData>): List<DonationActiveEntity> {
+    fun mapDonationList(donationList: List<DonationData>): List<DonationEntity> {
         return donationList.map {
-            DonationActiveEntity(
-                fundId = it.fundId,
-                title = it.donationTitle,
-                description = it.donationDescription,
-                amount = it.donationAmount,
-                location = it.fundLocation,
-                progress = it.donationProgress,
-                images = it.images
-            )
-        }
-    }
-
-    fun mapDonationCompletedList(donationList: List<DonationCompletedData>): List<DonationCompletedEntity> {
-        return donationList.map {
-            DonationCompletedEntity()
-        }
-    }
-
-    fun mapFundsList(fundsList: List<FundsData>): List<FundsEntity> {
-        return fundsList.map {
-            FundsEntity(
+            DonationEntity(
                 id = it.id,
-                logo = it.logo,
-                name = it.name
+                fundId = it.fund.id,
+                title = it.title,
+                description = it.description,
+                amount = it.amount,
+                region = it.region,
+                progress = it.donations,
+                images = mapImages(it.images),
+                fundLogo = it.fund.logo,
+                fundName = it.fund.name
             )
         }
     }
 
-    fun convertToFee(donation: List<DonationActiveEntity>, funds: List<FundsEntity>): List<FeeEntity> {
-        val feeEntity: MutableList<FeeEntity> = ArrayList()
+    fun mapFunds(fund: FundData): FundEntity {
+        return FundEntity(
+            id = fund.id,
+            logo = fund.logo,
+            name = fund.name
+        )
+    }
 
-        donation.forEach { 
-            val fund = funds.filter { fund -> it.fundId == fund.id }.first()
-            feeEntity.add(
-                FeeEntity(
-                    logo = fund.logo,
-                    name = fund.name,
-                    location = it.location,
-                    images = it.images,
-                    progress = it.progress,
-                    amount = it.amount,
-                    title = it.title,
-                    description = it.description
-                )
+    private fun mapImages(image: List<ImageData>): List<ImageEntity> {
+        return image.map {
+            ImageEntity(
+                id = it.id,
+                image = it.image
             )
         }
-
-        return feeEntity
     }
 }

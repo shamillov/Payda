@@ -4,6 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundWhite"
-    tools:context=".ui.fragments.FundFragment">
+    tools:context=".presentation.ui.fund.FundFragment">
 
 </androidx.constraintlayout.widget.ConstraintLayout>

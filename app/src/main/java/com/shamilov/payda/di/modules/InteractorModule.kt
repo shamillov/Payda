@@ -1,8 +1,7 @@
 package com.shamilov.payda.di.modules
 
 import com.shamilov.payda.domain.executor.SchedulerProvider
-import com.shamilov.payda.domain.interactor.GetActiveDonationUseCase
-import com.shamilov.payda.domain.interactor.GetCompletedDonationUseCase
+import com.shamilov.payda.domain.interactor.GetDonationUseCase
 import com.shamilov.payda.domain.repository.DonationRepository
 import dagger.Module
 import dagger.Provides
@@ -11,24 +10,24 @@ import javax.inject.Singleton
 /**
  * Created by Shamilov on 25.05.2020
  */
-@Module
+//@Module
 class InteractorModule {
 
-    @Singleton
-    @Provides
-    fun provideGetActiveDonationUseCase(
-        repository: DonationRepository,
-        scheduler: SchedulerProvider
-    ): GetActiveDonationUseCase {
-        return GetActiveDonationUseCase(repository, scheduler)
-    }
-
-    @Singleton
-    @Provides
-    fun provideGetCompletedUseCase(
-        repository: DonationRepository,
-        scheduler: SchedulerProvider
-    ): GetCompletedDonationUseCase {
-        return GetCompletedDonationUseCase(repository, scheduler)
-    }
+//    @Singleton
+//    @Provides
+//    fun provideGetActiveDonationUseCase(
+//        repository: DonationRepository,
+//        scheduler: SchedulerProvider
+//    ): GetDonationUseCase {
+//        return GetDonationUseCase(repository, scheduler)
+//    }
+//
+//    @Singleton
+//    @Provides
+//    fun provideGetCompletedUseCase(
+//        repository: DonationRepository,
+//        scheduler: SchedulerProvider
+//    ): GetDonationUseCase {
+//        return GetDonationUseCase(repository, scheduler)
+//    }
 }

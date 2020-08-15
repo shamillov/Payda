@@ -4,10 +4,7 @@ import com.shamilov.payda.domain.interactor.GetDonationUseCase
 import com.shamilov.payda.domain.model.DonationEntity
 import com.shamilov.payda.presentation.base.BasePresenter
 import com.shamilov.payda.presentation.ui.donation.completed.DonationCompletedPresenter
-import io.reactivex.disposables.CompositeDisposable
 import moxy.InjectViewState
-import moxy.MvpPresenter
-import org.koin.core.KoinComponent
 import org.koin.core.inject
 
 /**

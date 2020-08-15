@@ -9,7 +9,7 @@ class NavigationControllerImpl(private val navController: NavController) : Navig
     }
 
     override fun navigateFromProfileToAboutApp() {
-        navController.navigate(R.id.navigation_about_app)
+        navController.navigate(R.id.action_profileFragment_to_aboutCarFragment)
     }
 
     override fun navigateFromProfileToAssistance() {

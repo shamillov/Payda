@@ -1,12 +1,14 @@
 package com.shamilov.payda.data.remote
 
+import com.shamilov.payda.BuildConfig
 import com.shamilov.payda.data.remote.api.DonationService
-import com.shamilov.payda.utils.Const
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+
+const val BASE_URL: String = BuildConfig.PAYDA_SERVICE_HOST
 
 object ApiServiceFactory {
     fun createOkHttpClient(): OkHttpClient {
@@ -26,7 +28,7 @@ object ApiServiceFactory {
             .client(client)
             .addCallAdapterFactory(rxJavaAdapter)
             .addConverterFactory(gsonAdapter)
-            .baseUrl(Const.BASE_URL)
+            .baseUrl(BASE_URL)
             .build()
     }
 

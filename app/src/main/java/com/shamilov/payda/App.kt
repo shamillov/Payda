@@ -3,11 +3,6 @@ package com.shamilov.payda
 import android.app.Application
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.shamilov.payda.di.*
-import com.shamilov.payda.di.components.AppComponent
-import com.shamilov.payda.di.modules.ApplicationModule
-import com.shamilov.payda.di.modules.InteractorModule
-import com.shamilov.payda.di.modules.MapperModule
-import com.shamilov.payda.di.modules.PresenterModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin

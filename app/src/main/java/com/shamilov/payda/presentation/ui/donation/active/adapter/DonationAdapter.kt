@@ -10,9 +10,12 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.shamilov.payda.R
 import com.shamilov.payda.domain.model.DonationEntity
 import com.shamilov.payda.presentation.base.BaseViewHolder
+import com.shamilov.payda.presentation.ui.donation.active.viewholder.DonationViewHolder
+import com.shamilov.payda.presentation.ui.donation.active.viewholder.HeaderViewHolder
 import com.shamilov.payda.presentation.ui.donation.adapter.ImageSliderAdapter
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_donation_active.view.*
+import java.lang.IllegalStateException
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -24,9 +27,14 @@ class DonationAdapter(
     private val donateClickListener: (Int) -> Unit,
     private val shareListener: () -> Unit,
     private val addToFavoriteListener: (Boolean) -> Unit
-) : RecyclerView.Adapter<DonationAdapter.DonationViewHolder>() {
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val TAG: String = DonationAdapter::class.java.simpleName
+
+    companion object {
+        private const val TYPE_HEADER = 0
+        private const val TYPE_DONATION = 1
+    }
 
     private val donations: MutableList<DonationEntity> = ArrayList()
     private val searchDonation: MutableList<DonationEntity> = ArrayList()
@@ -40,16 +48,35 @@ class DonationAdapter(
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DonationViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_donation_active, parent, false)
-        return DonationViewHolder(view)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return when (viewType) {
+            TYPE_HEADER -> HeaderViewHolder(
+                LayoutInflater.from(parent.context).inflate(R.layout.item_help_us, parent, false)
+            )
+            TYPE_DONATION -> DonationViewHolder(
+                LayoutInflater.from(parent.context).inflate(R.layout.item_donation_active, parent, false),
+                listener,
+                donateClickListener,
+                shareListener,
+                addToFavoriteListener
+            )
+            else -> throw IllegalStateException("fail")
+        }
     }
 
-    override fun onBindViewHolder(holder: DonationViewHolder, position: Int) {
-        holder.bind(searchDonation[position])
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        when (holder) {
+            is HeaderViewHolder -> holder.onBind()
+            is DonationViewHolder -> holder.onBind(searchDonation[position])
+        }
     }
 
-    override fun getItemCount(): Int = searchDonation.count()
+    override fun getItemViewType(position: Int): Int {
+        return if (position == 0) TYPE_HEADER
+        else TYPE_DONATION
+    }
+
+    override fun getItemCount(): Int = searchDonation.size
 
     fun filter(query: String) {
         searchDonation.clear()
@@ -61,42 +88,5 @@ class DonationAdapter(
             }
         )
         notifyDataSetChanged()
-    }
-
-    inner class DonationViewHolder(itemView: View) : BaseViewHolder(itemView) {
-        var viewPager: ViewPager2 = itemView.ivContentActive
-        var tabLayout: TabLayout = itemView.tabsLayout
-
-        private val adapter: ImageSliderAdapter by lazy { ImageSliderAdapter() }
-
-        fun bind(donation: DonationEntity) {
-            viewPager.adapter = adapter
-            TabLayoutMediator(tabLayout, viewPager) { _, _ -> }
-                .attach()
-
-            adapter.setData(donation.images)
-
-            itemView.tvTitleActive.text = donation.title
-            itemView.tvDescriptionActive.text = donation.description
-            itemView.tvFundLocationActive.text = donation.region
-            itemView.tvFundNameActive.text = context.getString(R.string.donation_fond, donation.fundName)
-            itemView.tvAmountActive.text =
-                String.format(Locale.CANADA_FRENCH, "%,d", donation.amount)
-            itemView.tvProgressActive.text =
-                String.format(Locale.CANADA_FRENCH, "%,d", donation.progress)
-
-            Picasso.get()
-                .load("https://hayra.ru/wp-content/uploads/2016/08/13627994_165961013828805_230291218_n.jpg")
-                .into(itemView.ivFundLogoActive)
-
-            initListeners()
-        }
-
-        private fun initListeners() {
-            itemView.setOnClickListener { listener.invoke(donations[adapterPosition]) }
-            itemView.btnDonationHelp.setOnClickListener { donateClickListener.invoke(donations[adapterPosition].id) }
-            itemView.btnShareDonation.setOnClickListener { shareListener.invoke() }
-//            itemView.ivFavoriteActive.setOnClickListener { addToFavoriteListener.invoke(isClicked) }
-        }
     }
 }

@@ -1,8 +1,6 @@
 package com.shamilov.payda.presentation.ui.donation.active.viewholder
 
 import android.view.View
-import androidx.viewpager2.widget.ViewPager2
-import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.shamilov.payda.R
 import com.shamilov.payda.domain.model.DonationEntity
@@ -19,14 +17,12 @@ class DonationViewHolder(
     private val shareListener: () -> Unit,
     private val addToFavoriteListener: (Boolean) -> Unit
 ) : BaseViewHolder(itemView) {
-    var viewPager: ViewPager2 = itemView.ivContentActive
-    var tabLayout: TabLayout = itemView.tabsLayout
 
     private val adapter: ImageSliderAdapter by lazy { ImageSliderAdapter() }
 
     fun onBind(donation: DonationEntity) {
-        viewPager.adapter = adapter
-        TabLayoutMediator(tabLayout, viewPager) { _, _ -> }
+        itemView.vpImages.adapter = adapter
+        TabLayoutMediator(itemView.tabsLayout, itemView.vpImages) { _, _ -> }
             .attach()
         adapter.setData(donation.images)
 

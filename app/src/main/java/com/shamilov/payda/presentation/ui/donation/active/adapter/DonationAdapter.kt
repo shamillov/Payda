@@ -67,7 +67,7 @@ class DonationAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
             is HeaderViewHolder -> holder.onBind()
-            is DonationViewHolder -> holder.onBind(searchDonation[position])
+            is DonationViewHolder -> holder.onBind(searchDonation[position - 1])
         }
     }
 
@@ -76,7 +76,7 @@ class DonationAdapter(
         else TYPE_DONATION
     }
 
-    override fun getItemCount(): Int = searchDonation.size
+    override fun getItemCount(): Int = searchDonation.size + 1
 
     fun filter(query: String) {
         searchDonation.clear()

@@ -3,11 +3,8 @@ package com.shamilov.payda.presentation.ui.donation.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.shamilov.payda.R
-import com.shamilov.payda.data.model.ImageData
 import com.shamilov.payda.domain.model.ImageEntity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.images.view.*
@@ -49,17 +46,16 @@ class ImageSliderAdapter : RecyclerView.Adapter<ImageSliderAdapter.ImageSliderVi
     }
 
     inner class ImageSliderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var imageView: ImageView = itemView.imageView
 
         fun bind(image: String) {
-            val progress = CircularProgressDrawable(itemView.context)
-            progress.apply {
-                strokeWidth = 5f
-                centerRadius = 30f
-                start()
-            }
+//            val progress = CircularProgressDrawable(itemView.context)
+//            progress.apply {
+//                strokeWidth = 5f
+//                centerRadius = 30f
+//                start()
+//            }
 
-            Picasso.get().load(image).centerCrop().fit().placeholder(progress).into(imageView)
+            Picasso.get().load(image).centerCrop().fit().into(itemView.imageView)
         }
     }
 }

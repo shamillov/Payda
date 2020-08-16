@@ -4,6 +4,7 @@ import android.app.ActionBar
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.graphics.Rect
 import android.net.ConnectivityManager
 import android.os.Bundle
 import android.util.Log
@@ -15,6 +16,7 @@ import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.github.ybq.android.spinkit.style.Circle
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -61,6 +63,7 @@ class DonationActiveFragment : BaseFragment(R.layout.fragment_active), DonationA
         recyclerViewActive.setHasFixedSize(true)
         recyclerViewActive.layoutManager = LinearLayoutManager(context)
         recyclerViewActive.adapter = adapter
+        recyclerViewActive.addItemDecoration(DividerItemDecoration())
     }
 
     private fun initViews() {
@@ -224,5 +227,18 @@ class DonationActiveFragment : BaseFragment(R.layout.fragment_active), DonationA
                 return false
             }
         })
+    }
+
+    inner class DividerItemDecoration : RecyclerView.ItemDecoration() {
+        override fun getItemOffsets(
+            outRect: Rect,
+            view: View,
+            parent: RecyclerView,
+            state: RecyclerView.State
+        ) {
+            if (parent.getChildAdapterPosition(view) == 0) {
+                outRect.top = 16
+            }
+        }
     }
 }

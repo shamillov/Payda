@@ -10,5 +10,5 @@ import moxy.viewstate.strategy.StateStrategyType
 interface LoadingView : BaseView {
     fun showLoading(loading: Boolean)
     fun showSwipeLoading(loading: Boolean)
-    fun showNetworkError(hasNetwork: Boolean)
+    fun showNetworkError(showError: Boolean)
 }

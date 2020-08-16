@@ -10,12 +10,15 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AccelerateInterpolator
+import android.view.animation.AlphaAnimation
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.SearchView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.github.ybq.android.spinkit.style.Circle
@@ -61,21 +64,16 @@ class DonationActiveFragment : BaseFragment(R.layout.fragment_active), DonationA
 
     private fun initAdapter() {
         recyclerViewActive.setHasFixedSize(true)
-        recyclerViewActive.layoutManager = LinearLayoutManager(context)
         recyclerViewActive.adapter = adapter
         recyclerViewActive.addItemDecoration(DividerItemDecoration())
+        recyclerViewActive.layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation_fall_down)
     }
 
     private fun initViews() {
-//        val appBarLayout = activity?.findViewById<AppBarLayout>(R.id.toolbarLayout)
-//        appBarLayout?.elevation = 0F
-
-        swipeRefreshDonationActive.setOnRefreshListener(this)
         swipeRefreshDonationActive.setColorSchemeColors(context?.let {
             ContextCompat.getColor(it, R.color.colorPrimaryDark)
         }!!)
 
-//        progressBarActive.indeterminateDrawable.colorFilter
         val doubleBounce = Circle()
         progressBarActive.setIndeterminateDrawable(doubleBounce)
     }
@@ -94,8 +92,8 @@ class DonationActiveFragment : BaseFragment(R.layout.fragment_active), DonationA
         swipeRefreshDonationActive.isRefreshing = loading
     }
 
-    override fun showNetworkError(hasNetwork: Boolean) {
-        if (hasNetwork) {
+    override fun showNetworkError(showError: Boolean) {
+        if (showError) {
             tvNetworkErrorActive.visibility = View.VISIBLE
             recyclerViewActive.visibility = View.GONE
         } else {
@@ -120,6 +118,10 @@ class DonationActiveFragment : BaseFragment(R.layout.fragment_active), DonationA
         initBottomSheet(donation)
     }
 
+    override fun addToFavorite(isFavorite: Boolean) {
+
+    }
+
     override fun donate(donationId: Int) {
         testPay()
     }
@@ -132,10 +134,6 @@ class DonationActiveFragment : BaseFragment(R.layout.fragment_active), DonationA
             putExtra(Intent.EXTRA_TEXT, "Ссылка на приложение")
         }
         startActivity(Intent.createChooser(share, null))
-    }
-
-    override fun addToFavorite(isFavorite: Boolean) {
-
     }
 
     private fun initBottomSheet(donation: DonationEntity) {
@@ -203,6 +201,7 @@ class DonationActiveFragment : BaseFragment(R.layout.fragment_active), DonationA
     }
 
     private fun initListeners() {
+        swipeRefreshDonationActive.setOnRefreshListener(this)
         parentFragment?.searchView?.setOnQueryTextFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
                 parentFragment?.toolbarTitle?.visibility = View.GONE

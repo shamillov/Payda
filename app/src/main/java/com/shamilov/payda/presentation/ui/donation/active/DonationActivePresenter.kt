@@ -20,7 +20,6 @@ class DonationActivePresenter : BasePresenter<DonationActiveView>() {
     fun loadData(hasNetwork: Boolean) {
         if (hasNetwork) {
             loadDonations()
-            viewState.showNetworkError(false)
         } else {
             viewState.showNetworkError(true)
         }
@@ -35,11 +34,9 @@ class DonationActivePresenter : BasePresenter<DonationActiveView>() {
                     viewState.showNetworkError(false)
                 }
                 .doOnError { viewState.showSwipeLoading(false) }
-                .subscribe({
-                    viewState.onSuccess(it)
-                }, {
-                    viewState.onFailure(it.localizedMessage)
-                })
+                .subscribe(
+                    { viewState.onSuccess(it) },
+                    { throwable -> handleError(throwable) })
         }
     }
 
@@ -65,11 +62,9 @@ class DonationActivePresenter : BasePresenter<DonationActiveView>() {
                 .doOnSubscribe { viewState.showLoading(true) }
                 .doOnComplete { viewState.showLoading(false) }
                 .doOnError { viewState.showLoading(false) }
-                .subscribe({
-                    viewState.onSuccess(it)
-                }, {
-                    viewState.onFailure(it.toString())
-                })
+                .subscribe(
+                    { viewState.onSuccess(it) },
+                    { throwable -> handleError(throwable) })
         }
     }
 }

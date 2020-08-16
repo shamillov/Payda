@@ -49,34 +49,41 @@ class DonationAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return when (viewType) {
-            TYPE_HEADER -> HeaderViewHolder(
-                LayoutInflater.from(parent.context).inflate(R.layout.item_help_us, parent, false)
-            )
-            TYPE_DONATION -> DonationViewHolder(
-                LayoutInflater.from(parent.context).inflate(R.layout.item_donation_active, parent, false),
-                listener,
-                donateClickListener,
-                shareListener,
-                addToFavoriteListener
-            )
-            else -> throw IllegalStateException("fail")
-        }
+//        return when (viewType) {
+////            TYPE_HEADER -> HeaderViewHolder(
+////                LayoutInflater.from(parent.context).inflate(R.layout.item_help_us, parent, false)
+////            )
+//            TYPE_DONATION -> DonationViewHolder(
+//                LayoutInflater.from(parent.context).inflate(R.layout.item_donation_active, parent, false),
+//                listener,
+//                donateClickListener,
+//                shareListener,
+//                addToFavoriteListener
+//            )
+//            else -> throw IllegalStateException("fail")
+//        }
+        return DonationViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.item_donation_active, parent, false),
+            listener,
+            donateClickListener,
+            shareListener,
+            addToFavoriteListener
+        )
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
-            is HeaderViewHolder -> holder.onBind()
-            is DonationViewHolder -> holder.onBind(searchDonation[position - 1])
+//            is HeaderViewHolder -> holder.onBind()
+            is DonationViewHolder -> holder.onBind(searchDonation[position])
         }
     }
 
-    override fun getItemViewType(position: Int): Int {
-        return if (position == 0) TYPE_HEADER
-        else TYPE_DONATION
-    }
+//    override fun getItemViewType(position: Int): Int {
+//        return if (position == 0) TYPE_HEADER
+//        else TYPE_DONATION
+//    }
 
-    override fun getItemCount(): Int = searchDonation.size + 1
+    override fun getItemCount(): Int = searchDonation.size
 
     fun filter(query: String) {
         searchDonation.clear()

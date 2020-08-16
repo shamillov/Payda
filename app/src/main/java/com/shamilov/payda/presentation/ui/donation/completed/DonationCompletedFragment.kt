@@ -51,8 +51,8 @@ class DonationCompletedFragment : BaseFragment(R.layout.fragment_completed),
         recyclerViewCompleted.visibility = View.GONE
     }
 
-    override fun showNetworkError(hasNetwork: Boolean) {
-        if (hasNetwork) {
+    override fun showNetworkError(showError: Boolean) {
+        if (showError) {
             tvNetworkErrorCompleted.visibility = View.VISIBLE
             recyclerViewCompleted.visibility = View.GONE
         } else {

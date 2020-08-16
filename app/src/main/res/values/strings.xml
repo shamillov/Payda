@@ -13,4 +13,8 @@
     <string name="no_internet_connection">Нет соединения с интернетом</string>
     <string name="btn_contact_send">Отправить</string>
     <string name="donation_fond">Благотворительный фонд %s</string>
+    <string name="connection_error_message">Ошибка соединения с интернетом</string>
+    <string name="not_found_error_message">Данные не найдены</string>
+    <string name="server_error_message">Произошла ошибка сервера</string>
+    <string name="error_happened">Произошла ошибка</string>
 </resources>

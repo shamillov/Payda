@@ -1,6 +1,5 @@
 package com.shamilov.payda.presentation.ui.donation.active
 
-import android.app.ActionBar
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -10,14 +9,9 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AccelerateInterpolator
-import android.view.animation.AlphaAnimation
-import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.SearchView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -28,7 +22,6 @@ import com.shamilov.payda.domain.model.DonationEntity
 import com.shamilov.payda.presentation.base.BaseFragment
 import com.shamilov.payda.presentation.ui.donation.active.adapter.DonationAdapter
 import kotlinx.android.synthetic.main.fragment_active.*
-import kotlinx.android.synthetic.main.fragment_home.*
 import moxy.ktx.moxyPresenter
 import ru.yandex.money.android.sdk.*
 import java.math.BigDecimal
@@ -202,30 +195,31 @@ class DonationActiveFragment : BaseFragment(R.layout.fragment_active), DonationA
 
     private fun initListeners() {
         swipeRefreshDonationActive.setOnRefreshListener(this)
-        parentFragment?.searchView?.setOnQueryTextFocusChangeListener { _, hasFocus ->
-            if (hasFocus) {
-                parentFragment?.toolbarTitle?.visibility = View.GONE
-                parentFragment?.searchView?.layoutParams = ConstraintLayout.LayoutParams(
-                    ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.WRAP_CONTENT
-                )
-            } else {
-                parentFragment?.toolbarTitle?.visibility = View.VISIBLE
-                parentFragment?.searchView?.layoutParams = ConstraintLayout.LayoutParams(
-                    ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT
-                )
-            }
-        }
-        parentFragment?.searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String): Boolean {
-                adapter.filter(query)
-                return false
-            }
 
-            override fun onQueryTextChange(newText: String): Boolean {
-                adapter.filter(newText)
-                return false
-            }
-        })
+//        parentFragment?.searchView?.setOnQueryTextFocusChangeListener { _, hasFocus ->
+//            if (hasFocus) {
+//                parentFragment?.toolbarTitle?.visibility = View.GONE
+//                parentFragment?.searchView?.layoutParams = ConstraintLayout.LayoutParams(
+//                    ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.WRAP_CONTENT
+//                )
+//            } else {
+//                parentFragment?.toolbarTitle?.visibility = View.VISIBLE
+//                parentFragment?.searchView?.layoutParams = ConstraintLayout.LayoutParams(
+//                    ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT
+//                )
+//            }
+//        }
+//        parentFragment?.searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+//            override fun onQueryTextSubmit(query: String): Boolean {
+//                adapter.filter(query)
+//                return false
+//            }
+//
+//            override fun onQueryTextChange(newText: String): Boolean {
+//                adapter.filter(newText)
+//                return false
+//            }
+//        })
     }
 
     inner class DividerItemDecoration : RecyclerView.ItemDecoration() {

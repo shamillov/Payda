@@ -1,18 +1,26 @@
 <resources>
+    <!-- App name -->
     <string name="app_name">Payda</string>
+
+    <!-- bottom navigation title -->
     <string name="title_home">Сборы</string>
     <string name="title_profile">Профиль</string>
     <string name="title_fund">Фонды</string>
+
+    <!--  tabs name  -->
     <string name="tabLayout_active_donation">Активные</string>
     <string name="tabLayout_completed_donation">Завершенные</string>
+
+    <!--  donation  -->
     <string name="cardView_donation_help">Помочь</string>
     <string name="cardView_donation_task">цель</string>
     <string name="cardView_donation_progress">собрано</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="no_internet_connection">Нет соединения с интернетом</string>
     <string name="btn_contact_send">Отправить</string>
     <string name="donation_fond">Благотворительный фонд %s</string>
+
+    <!-- error message -->
     <string name="connection_error_message">Ошибка соединения с интернетом</string>
     <string name="not_found_error_message">Данные не найдены</string>
     <string name="server_error_message">Произошла ошибка сервера</string>

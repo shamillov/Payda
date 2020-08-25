@@ -71,6 +71,9 @@ dependencies {
     //Yandex.Kassa
     implementation "com.yandex.money:checkout:3.0.3"
 
+    implementation "com.xwray:groupie:$groupie_version"
+    implementation "com.xwray:groupie-kotlin-android-extensions:$groupie_version"
+
     //Koin
     implementation "org.koin:koin-core:$koin_version"
     implementation "org.koin:koin-android:$koin_version"

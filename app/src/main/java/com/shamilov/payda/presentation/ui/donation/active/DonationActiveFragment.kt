@@ -15,10 +15,11 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.github.ybq.android.spinkit.style.Circle
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.shamilov.payda.R
 import com.shamilov.payda.domain.model.DonationEntity
+import com.shamilov.payda.extension.hide
+import com.shamilov.payda.extension.show
 import com.shamilov.payda.presentation.base.BaseFragment
 import com.shamilov.payda.presentation.ui.donation.active.adapter.DonationAdapter
 import kotlinx.android.synthetic.main.fragment_active.*
@@ -37,7 +38,7 @@ class DonationActiveFragment : BaseFragment(R.layout.fragment_active), DonationA
 
     private val presenter by moxyPresenter { DonationActivePresenter() }
 
-    private val adapter by lazy {
+    private val donationAdapter by lazy {
         DonationAdapter(
             { presenter.donationClicked(it) },
             { presenter.helpClicked(it) },
@@ -56,28 +57,25 @@ class DonationActiveFragment : BaseFragment(R.layout.fragment_active), DonationA
     }
 
     private fun initAdapter() {
-        recyclerViewActive.setHasFixedSize(true)
-        recyclerViewActive.adapter = adapter
-        recyclerViewActive.addItemDecoration(DividerItemDecoration())
-        recyclerViewActive.layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation_fall_down)
+        recyclerViewActive.apply {
+            setHasFixedSize(true)
+            adapter = donationAdapter
+            addItemDecoration(DividerItemDecoration())
+            layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation_fall_down)
+        }
     }
 
     private fun initViews() {
-        swipeRefreshDonationActive.setColorSchemeColors(context?.let {
-            ContextCompat.getColor(it, R.color.colorPrimaryDark)
-        }!!)
-
-        val doubleBounce = Circle()
-        progressBarActive.setIndeterminateDrawable(doubleBounce)
+        swipeRefreshDonationActive.setColorSchemeColors(ContextCompat.getColor(requireContext(), R.color.colorPrimaryDark))
     }
 
     override fun showLoading(loading: Boolean) {
         if (loading) {
-            progressBarActive.visibility = View.VISIBLE
-            recyclerViewActive.visibility = View.GONE
+            progressBarActive.show()
+            recyclerViewActive.hide()
         } else {
-            progressBarActive.visibility = View.GONE
-            recyclerViewActive.visibility = View.VISIBLE
+            progressBarActive.hide()
+            recyclerViewActive.show()
         }
     }
 
@@ -87,16 +85,16 @@ class DonationActiveFragment : BaseFragment(R.layout.fragment_active), DonationA
 
     override fun showNetworkError(showError: Boolean) {
         if (showError) {
-            tvNetworkErrorActive.visibility = View.VISIBLE
-            recyclerViewActive.visibility = View.GONE
+            tvNetworkErrorActive.show()
+            recyclerViewActive.hide()
         } else {
-            tvNetworkErrorActive.visibility = View.GONE
-            recyclerViewActive.visibility = View.VISIBLE
+            tvNetworkErrorActive.hide()
+            recyclerViewActive.show()
         }
     }
 
     override fun onSuccess(data: List<DonationEntity>) {
-        adapter.setData(data)
+        donationAdapter.setData(data)
     }
 
     override fun onFailure(error: String) {

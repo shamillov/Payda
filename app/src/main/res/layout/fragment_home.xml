@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/toolbarLayout"
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/white">
@@ -20,7 +20,7 @@
                 android:id="@+id/toolbarTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp"
+                android:layout_margin="@dimen/default_margin"
                 android:text="@string/app_name"
                 android:textColor="@color/colorPrimary"
                 android:textSize="26sp"
@@ -29,12 +29,17 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <SearchView
-                android:id="@+id/searchView"
+            <ImageView
+                android:id="@+id/btnSearchView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_margin="16dp"
+                android:src="@drawable/ic_search"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackground"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <!--        <com.google.android.material.appbar.MaterialToolbar-->

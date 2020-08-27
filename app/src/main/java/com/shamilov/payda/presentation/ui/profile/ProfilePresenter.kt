@@ -9,11 +9,11 @@ import moxy.InjectViewState
 class ProfilePresenter(private val navController: NavController) : BasePresenter<ProfileView>() {
 
     fun navigateToAssistance() {
-        navController.navigate(R.id.navigation_assistance)
+        navController.navigate(R.id.assistanceFragment)
     }
 
     fun navigateToAboutApp() {
-        navController.navigate(R.id.action_profileFragment_to_aboutCarFragment)
+        navController.navigate(R.id.actionProfileToAboutApp)
 
     }
 

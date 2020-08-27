@@ -66,7 +66,12 @@ class DonationActiveFragment : BaseFragment(R.layout.fragment_active), DonationA
     }
 
     private fun initViews() {
-        swipeRefreshDonationActive.setColorSchemeColors(ContextCompat.getColor(requireContext(), R.color.colorPrimaryDark))
+        swipeRefreshDonationActive.setColorSchemeColors(
+            ContextCompat.getColor(
+                requireContext(),
+                R.color.colorPrimaryDark
+            )
+        )
     }
 
     override fun showLoading(loading: Boolean) {

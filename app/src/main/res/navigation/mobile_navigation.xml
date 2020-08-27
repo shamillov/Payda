@@ -3,46 +3,47 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/homeFragment">
 
     <fragment
-        android:id="@+id/navigation_home"
+        android:id="@+id/homeFragment"
         android:name="com.shamilov.payda.presentation.ui.donation.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_profile"
+        android:id="@+id/profileFragment"
         android:name="com.shamilov.payda.presentation.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile">
         <action
-            android:id="@+id/action_profileFragment_to_aboutCarFragment"
-            app:destination="@id/navigation_about_app"/>
+            android:id="@+id/actionProfileToAboutApp"
+            app:destination="@id/aboutAppFragment"/>
         <action
-            android:id="@+id/action_profileFragment_to_assistanceFragment"/>
+            android:id="@+id/actionProfileToAssistance"
+            app:destination="@id/assistanceFragment"/>
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_fund"
+        android:id="@+id/fundFragment"
         android:name="com.shamilov.payda.presentation.ui.fund.FundFragment"
         android:label="@string/title_fund"
         tools:layout="@layout/fragment_fund" />
 
     <fragment
-        android:id="@+id/navigation_contact"
+        android:id="@+id/contactFragment"
         android:name="com.shamilov.payda.presentation.ui.feedback.ContactFragment"
         android:label="Send"
         tools:layout="@layout/fragment_contact" />
 
     <fragment
-        android:id="@+id/navigation_about_app"
+        android:id="@+id/aboutAppFragment"
         android:name="com.shamilov.payda.presentation.ui.about.AboutAppFragment"
         android:label="About"
         tools:layout="@layout/fragment_about_app" />
 
     <fragment
-        android:id="@+id/navigation_assistance"
+        android:id="@+id/assistanceFragment"
         android:name="com.shamilov.payda.presentation.ui.assistance.AssistanceFragment"
         android:label="Assistance"
         tools:layout="@layout/fragment_assistance" />

@@ -16,8 +16,6 @@ class FundFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_fund, container, false)
-        val appBarLayout = activity?.findViewById<AppBarLayout>(R.id.toolbarLayout)
-        appBarLayout?.elevation = 5F
 
         return root
     }

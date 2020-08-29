@@ -18,10 +18,18 @@
         tools:layout="@layout/fragment_profile">
         <action
             android:id="@+id/actionProfileToAboutApp"
-            app:destination="@id/aboutAppFragment"/>
+            app:destination="@id/aboutAppFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"/>
         <action
             android:id="@+id/actionProfileToAssistance"
-            app:destination="@id/assistanceFragment"/>
+            app:destination="@id/assistanceFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"/>
     </fragment>
 
     <fragment
@@ -47,4 +55,5 @@
         android:name="com.shamilov.payda.presentation.ui.assistance.AssistanceFragment"
         android:label="Assistance"
         tools:layout="@layout/fragment_assistance" />
+
 </navigation>

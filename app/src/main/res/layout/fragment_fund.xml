@@ -7,23 +7,23 @@
     android:background="@color/backgroundWhite"
     tools:context=".presentation.ui.fund.FundFragment">
 
-    <com.google.android.material.appbar.AppBarLayout
+    <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/white"
+        android:elevation="@dimen/default_elevation"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/toolbarTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/default_margin"
             android:text="@string/title_fund"
-            android:textColor="@color/colorPrimary"
             android:textSize="26sp"
             android:textStyle="bold"
             android:layout_gravity="center"/>
-    </com.google.android.material.appbar.AppBarLayout>
+    </com.google.android.material.appbar.MaterialToolbar>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

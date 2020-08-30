@@ -40,20 +40,34 @@
 
     <fragment
         android:id="@+id/contactFragment"
-        android:name="com.shamilov.payda.presentation.ui.feedback.ContactFragment"
+        android:name="com.shamilov.payda.presentation.ui.feedback.FeedbackFragment"
         android:label="Send"
-        tools:layout="@layout/fragment_contact" />
+        tools:layout="@layout/fragment_feedback" />
 
     <fragment
         android:id="@+id/aboutAppFragment"
         android:name="com.shamilov.payda.presentation.ui.about.AboutAppFragment"
         android:label="About"
-        tools:layout="@layout/fragment_about_app" />
+        tools:layout="@layout/fragment_about_app" >
+        <action
+            android:id="@+id/actionAboutAppToFeedback"
+            app:destination="@id/feedbackFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"/>
+    </fragment>
 
     <fragment
         android:id="@+id/assistanceFragment"
         android:name="com.shamilov.payda.presentation.ui.assistance.AssistanceFragment"
         android:label="Assistance"
         tools:layout="@layout/fragment_assistance" />
+
+    <fragment
+        android:id="@+id/feedbackFragment"
+        android:name="com.shamilov.payda.presentation.ui.feedback.FeedbackFragment"
+        android:label="Feedback"
+        tools:layout="@layout/fragment_feedback"/>
 
 </navigation>

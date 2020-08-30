@@ -8,6 +8,9 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.shamilov.payda.R
 
+/**
+ * Created by Shamilov on 20.05.2020
+ */
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     override fun onCreate(savedInstanceState: Bundle?) {

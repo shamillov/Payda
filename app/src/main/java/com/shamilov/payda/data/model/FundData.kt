@@ -5,35 +5,34 @@ import com.google.gson.annotations.SerializedName
 /**
  * Created by Shamilov on 22.06.2020
  */
-
 data class FundData (
     @SerializedName("bg")
-    var bg: String,
+    var bg: String?,
 
     @SerializedName("bgContentType")
-    var bgContentType: String,
+    var bgContentType: String?,
 
     @SerializedName("description")
-    var description: String,
+    var description: String?,
 
     @SerializedName("id")
-    var id: Int,
+    var id: Int?,
 
     @SerializedName("logo")
-    var logo: String,
+    var logo: String?,
 
     @SerializedName("logoContentType")
-    var logoContentType: String,
+    var logoContentType: String?,
 
     @SerializedName("name")
-    var name: String,
+    var name: String?,
 
     @SerializedName("paymentSystemId")
-    var paymentSystemId: Int,
+    var paymentSystemId: Int?,
 
     @SerializedName("region")
-    var region: String,
+    var region: String?,
 
     @SerializedName("users")
-    var users: List<UserData>
+    var users: List<UserData>?
 )

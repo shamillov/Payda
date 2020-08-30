@@ -9,6 +9,9 @@ import com.shamilov.payda.domain.interactor.GetDonationUseCase
 import com.shamilov.payda.domain.repository.DonationRepository
 import org.koin.dsl.module
 
+/**
+ * Created by Shamilov on 15.08.2020
+ */
 val dataModule = module {
     single<DonationRepository> { DonationRepositoryImpl(get(), get()) }
 }

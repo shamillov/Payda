@@ -17,18 +17,21 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:layout_margin="@dimen/default_margin"
             android:gravity="center"
             android:layout_gravity="center"
             android:text="Помочь проекту Payda"/>
 
         <com.google.android.material.button.MaterialButton
-            android:layout_width="wrap_content"
+            android:id="@+id/btnDonationHelp"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
-            app:cornerRadius="16dp"
-            android:layout_gravity="center"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="@string/cardView_donation_help"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
             android:layout_margin="@dimen/default_margin"
-            android:text="Помочь"/>
+            app:cornerRadius="18dp"/>
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

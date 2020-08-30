@@ -3,30 +3,36 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:background="@color/backgroundWhite"
-    android:paddingTop="18dp"
-    android:paddingStart="18dp"
-    android:paddingEnd="18dp">
+    android:background="@color/backgroundWhite">
 
-    <TextView
-        android:id="@+id/textView"
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="О приложении:"
-        android:textSize="16sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/white"
+        android:elevation="@dimen/default_elevation"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/toolbarTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_margin"
+            android:text="@string/title_about_app"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"/>
+
+    </com.google.android.material.appbar.MaterialToolbar>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
+        android:layout_margin="@dimen/default_margin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -34,15 +40,16 @@
             android:background="@color/white"
             android:orientation="vertical">
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/btnFeedback"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?android:attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
-                android:padding="12dp"
-                android:paddingStart="14dp"
-                android:text="Обратная связь"
+                android:padding="16dp"
+                android:drawableEnd="@drawable/ic_arrow_right"
+                android:text="@string/title_feedback"
                 android:textColor="@color/textColorBlack"
                 android:textSize="16sp" />
 
@@ -53,14 +60,14 @@
                 android:layout_marginEnd="8dp"
                 android:background="@color/backgroundWhite" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?android:attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
-                android:padding="12dp"
-                android:paddingStart="14dp"
+                android:padding="16dp"
+                android:drawableEnd="@drawable/ic_arrow_right"
                 android:text="Оценить приложение"
                 android:textColor="@color/textColorBlack"
                 android:textSize="16sp" />
@@ -72,14 +79,14 @@
                 android:layout_marginEnd="8dp"
                 android:background="@color/backgroundWhite" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?android:attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
-                android:padding="12dp"
-                android:paddingStart="14dp"
+                android:padding="16dp"
+                android:drawableEnd="@drawable/ic_arrow_right"
                 android:text="Политика конфиденциальности"
                 android:textColor="@color/textColorBlack"
                 android:textSize="16sp" />
@@ -91,14 +98,14 @@
                 android:layout_marginEnd="8dp"
                 android:background="@color/backgroundWhite" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?android:attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
-                android:padding="12dp"
-                android:paddingStart="14dp"
+                android:padding="16dp"
+                android:drawableEnd="@drawable/ic_arrow_right"
                 android:text="Пользовательское соглашение"
                 android:textColor="@color/textColorBlack"
                 android:textSize="16sp" />
@@ -110,19 +117,20 @@
                 android:layout_marginEnd="8dp"
                 android:background="@color/backgroundWhite" />
 
-            <TextView
-                android:id="@+id/tvProfileAboutApp"
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/btnAboutApp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?android:attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
-                android:padding="12dp"
-                android:paddingStart="14dp"
+                android:padding="16dp"
+                android:drawableEnd="@drawable/ic_arrow_right"
                 android:text="О проекте Payda"
                 android:textColor="@color/textColorBlack"
                 android:textSize="16sp" />
         </LinearLayout>
+
     </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

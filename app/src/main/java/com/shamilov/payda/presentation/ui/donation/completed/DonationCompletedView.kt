@@ -6,6 +6,9 @@ import com.shamilov.payda.presentation.base.LoadingView
 import moxy.viewstate.strategy.AddToEndSingleStrategy
 import moxy.viewstate.strategy.StateStrategyType
 
+/**
+ * Created by Shamilov on 20.05.2020
+ */
 @StateStrategyType(AddToEndSingleStrategy::class)
 interface DonationCompletedView : LoadingView {
     fun onSuccess(data: List<DonationEntity>)

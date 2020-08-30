@@ -124,7 +124,7 @@
                 android:id="@+id/btnDonationHelp"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/colorPrimaryDark"
+                android:backgroundTint="@color/colorPrimary"
                 android:text="@string/cardView_donation_help"
                 android:textAllCaps="false"
                 android:textColor="@color/white"

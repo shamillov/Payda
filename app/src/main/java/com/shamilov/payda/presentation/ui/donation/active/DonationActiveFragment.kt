@@ -9,19 +9,20 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.shamilov.payda.R
 import com.shamilov.payda.domain.model.DonationEntity
 import com.shamilov.payda.extension.hide
 import com.shamilov.payda.extension.show
 import com.shamilov.payda.presentation.base.BaseFragment
-import com.shamilov.payda.presentation.ui.donation.active.adapter.DonationAdapter
+import com.xwray.groupie.Group
+import com.xwray.groupie.GroupAdapter
+import com.xwray.groupie.GroupieViewHolder
+import jp.wasabeef.recyclerview.animators.FadeInUpAnimator
 import kotlinx.android.synthetic.main.fragment_active.*
 import moxy.ktx.moxyPresenter
 import ru.yandex.money.android.sdk.*
@@ -31,37 +32,36 @@ import java.util.*
 /**
  * Created by Shamilov on 20.05.2020
  */
-class DonationActiveFragment : BaseFragment(R.layout.fragment_active), DonationActiveView,
-    SwipeRefreshLayout.OnRefreshListener {
+class DonationActiveFragment : BaseFragment(R.layout.fragment_active), DonationActiveView {
 
     private val TAG = DonationActiveFragment::class.java.simpleName
 
     private val presenter by moxyPresenter { DonationActivePresenter() }
 
-    private val donationAdapter by lazy {
-        DonationAdapter(
-            { presenter.donationClicked(it) },
-            { presenter.helpClicked(it) },
-            { presenter.shareClicked() },
-            { presenter.favoriteClicked(it) }
-        )
-    }
+    private val donationAdapter by lazy { GroupAdapter<GroupieViewHolder>() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initRecyclerView()
         initViews()
-        initAdapter()
         initListeners()
         presenter.loadData(isNetworkAvailable())
     }
 
-    private fun initAdapter() {
+    private fun initRecyclerView() {
         recyclerViewActive.apply {
             setHasFixedSize(true)
             adapter = donationAdapter
             addItemDecoration(DividerItemDecoration())
-            layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation_fall_down)
+            itemAnimator = FadeInUpAnimator()
+        }
+
+        recyclerViewActive.itemAnimator?.apply {
+            addDuration = 300
+            removeDuration = 300
+            moveDuration = 300
+            changeDuration = 300
         }
     }
 
@@ -69,19 +69,17 @@ class DonationActiveFragment : BaseFragment(R.layout.fragment_active), DonationA
         swipeRefreshDonationActive.setColorSchemeColors(
             ContextCompat.getColor(
                 requireContext(),
-                R.color.colorPrimaryDark
+                R.color.colorPrimary
             )
         )
     }
 
     override fun showLoading(loading: Boolean) {
-        if (loading) {
+        if (loading)
             progressBarActive.show()
-            recyclerViewActive.hide()
-        } else {
+        else
             progressBarActive.hide()
-            recyclerViewActive.show()
-        }
+
     }
 
     override fun showSwipeLoading(loading: Boolean) {
@@ -98,16 +96,17 @@ class DonationActiveFragment : BaseFragment(R.layout.fragment_active), DonationA
         }
     }
 
-    override fun onSuccess(data: List<DonationEntity>) {
-        donationAdapter.setData(data)
+    override fun onSuccess(data: List<Group>) {
+        donationAdapter.clear()
+        donationAdapter.addAll(data)
     }
 
     override fun onFailure(error: String) {
         Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
     }
 
-    override fun onRefresh() {
-        presenter.refreshData()
+    override fun onUpdate(data: List<Group>) {
+        donationAdapter.update(data)
     }
 
     override fun openDonation(donation: DonationEntity) {
@@ -116,6 +115,13 @@ class DonationActiveFragment : BaseFragment(R.layout.fragment_active), DonationA
 
     override fun addToFavorite(isFavorite: Boolean) {
 
+    }
+
+    override fun showEmptyMessage(show: Boolean) {
+        if (show)
+            tvEmptyMessage.show()
+        else
+            tvEmptyMessage.hide()
     }
 
     override fun donate(donationId: Int) {
@@ -197,7 +203,7 @@ class DonationActiveFragment : BaseFragment(R.layout.fragment_active), DonationA
     }
 
     private fun initListeners() {
-        swipeRefreshDonationActive.setOnRefreshListener(this)
+        swipeRefreshDonationActive.setOnRefreshListener { presenter.refreshData() }
 
 //        parentFragment?.searchView?.setOnQueryTextFocusChangeListener { _, hasFocus ->
 //            if (hasFocus) {

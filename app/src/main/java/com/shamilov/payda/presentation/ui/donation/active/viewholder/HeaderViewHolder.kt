@@ -1,10 +1,19 @@
 package com.shamilov.payda.presentation.ui.donation.active.viewholder
 
-import android.view.View
-import androidx.recyclerview.widget.RecyclerView
+import com.shamilov.payda.R
+import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
+import com.xwray.groupie.kotlinandroidextensions.Item
 
-class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    fun onBind() {
+/**
+ * Created by Shamilov on 20.07.2020
+ */
+class HeaderViewHolder() : Item() {
+    override fun bind(viewHolder: GroupieViewHolder, position: Int) {
 
     }
+
+    override fun getLayout(): Int {
+        return R.layout.item_donation_header
+    }
+
 }

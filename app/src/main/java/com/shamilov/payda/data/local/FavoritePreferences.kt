@@ -3,6 +3,9 @@ package com.shamilov.payda.data.local
 import android.content.Context
 import android.content.SharedPreferences
 
+/**
+ * Created by Shamilov on 12.07.2020
+ */
 class FavoritePreferences(context: Context) {
 
     companion object {

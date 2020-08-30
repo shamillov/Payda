@@ -21,11 +21,11 @@ class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
     }
 
     private fun initListeners() {
-        tvProfileAssist.setOnClickListener {
+        btnAssistance.setOnClickListener {
             presenter.navigateToAssistance()
-
         }
-        tvProfileAboutApp.setOnClickListener {
+
+        btnAboutApp.setOnClickListener {
             presenter.navigateToAboutApp()
         }
     }

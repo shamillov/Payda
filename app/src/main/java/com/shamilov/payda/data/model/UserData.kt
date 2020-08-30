@@ -2,7 +2,9 @@ package com.shamilov.payda.data.model
 
 import com.google.gson.annotations.SerializedName
 
-
+/**
+ * Created by Shamilov on 15.07.2020
+ */
 class UserData {
     @SerializedName("activated")
     var activated: Boolean? = null

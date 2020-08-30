@@ -8,6 +8,9 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
+/**
+ * Created by Shamilov on 15.08.2020
+ */
 const val BASE_URL: String = BuildConfig.PAYDA_SERVICE_HOST
 
 object ApiServiceFactory {

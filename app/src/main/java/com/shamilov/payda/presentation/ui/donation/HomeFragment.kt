@@ -11,6 +11,9 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.shamilov.payda.R
 import com.shamilov.payda.presentation.ui.donation.adapter.OrdersPagerAdapter
 
+/**
+ * Created by Shamilov on 20.05.2020
+ */
 class HomeFragment : Fragment() {
 
     override fun onCreateView(

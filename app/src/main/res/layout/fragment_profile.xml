@@ -5,24 +5,25 @@
     android:layout_height="match_parent"
     android:background="@color/backgroundWhite">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/white"
+        android:elevation="@dimen/default_elevation"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/toolbarTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_margin="@dimen/default_margin"
             android:text="@string/title_profile"
-            android:textColor="@color/colorPrimary"
             android:textSize="26sp"
-            android:textStyle="bold"
-            android:layout_gravity="center"/>
-    </com.google.android.material.appbar.AppBarLayout>
+            android:textStyle="bold" />
+
+    </com.google.android.material.appbar.MaterialToolbar>
 
     <TextView
         android:id="@+id/tvUserDonationCount"
@@ -34,7 +35,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appBarLayout" />
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
     <TextView
         android:id="@+id/textView6"
@@ -61,14 +62,14 @@
             android:background="@color/white"
             android:orientation="vertical">
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?android:attr/selectableItemBackground"
                 android:clickable="true"
+                android:drawableEnd="@drawable/ic_arrow_right"
                 android:focusable="true"
-                android:padding="12dp"
-                android:paddingStart="14dp"
+                android:padding="16dp"
                 android:text="Избранное"
                 android:textColor="@color/textColorBlack"
                 android:textSize="16sp" />
@@ -80,14 +81,14 @@
                 android:layout_marginEnd="8dp"
                 android:background="@color/backgroundWhite" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?android:attr/selectableItemBackground"
                 android:clickable="true"
+                android:drawableEnd="@drawable/ic_arrow_right"
                 android:focusable="true"
-                android:padding="12dp"
-                android:paddingStart="14dp"
+                android:padding="16dp"
                 android:text="Мои пожертвования"
                 android:textColor="@color/textColorBlack"
                 android:textSize="16sp" />
@@ -99,14 +100,14 @@
                 android:layout_marginEnd="8dp"
                 android:background="@color/backgroundWhite" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?android:attr/selectableItemBackground"
                 android:clickable="true"
+                android:drawableEnd="@drawable/ic_arrow_right"
                 android:focusable="true"
-                android:padding="12dp"
-                android:paddingStart="14dp"
+                android:padding="16dp"
                 android:text="Банковские карты"
                 android:textColor="@color/textColorBlack"
                 android:textSize="16sp" />
@@ -118,14 +119,14 @@
                 android:layout_marginEnd="8dp"
                 android:background="@color/backgroundWhite" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?android:attr/selectableItemBackground"
                 android:clickable="true"
+                android:drawableEnd="@drawable/ic_arrow_right"
                 android:focusable="true"
-                android:padding="12dp"
-                android:paddingStart="14dp"
+                android:padding="16dp"
                 android:text="Поддержать проект Payda"
                 android:textColor="@color/textColorBlack"
                 android:textSize="16sp" />
@@ -137,15 +138,15 @@
                 android:layout_marginEnd="8dp"
                 android:background="@color/backgroundWhite" />
 
-            <TextView
-                android:id="@+id/tvProfileAssist"
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/btnAssistance"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?android:attr/selectableItemBackground"
                 android:clickable="true"
+                android:drawableEnd="@drawable/ic_arrow_right"
                 android:focusable="true"
-                android:padding="12dp"
-                android:paddingStart="14dp"
+                android:padding="16dp"
                 android:text="Оставить заявку на помощь"
                 android:textColor="@color/textColorBlack"
                 android:textSize="16sp" />
@@ -157,19 +158,20 @@
                 android:layout_marginEnd="8dp"
                 android:background="@color/backgroundWhite" />
 
-            <TextView
-                android:id="@+id/tvProfileAboutApp"
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/btnAboutApp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?android:attr/selectableItemBackground"
                 android:clickable="true"
+                android:drawableEnd="@drawable/ic_arrow_right"
                 android:focusable="true"
-                android:padding="12dp"
-                android:paddingStart="14dp"
-                android:text="О приложении"
+                android:padding="16dp"
+                android:text="@string/title_about_app"
                 android:textColor="@color/textColorBlack"
                 android:textSize="16sp" />
         </LinearLayout>
+
     </com.google.android.material.card.MaterialCardView>
 
     <TextView

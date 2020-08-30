@@ -1,48 +1,58 @@
 package com.shamilov.payda.presentation.ui.donation.active.viewholder
 
-import android.view.View
 import com.google.android.material.tabs.TabLayoutMediator
 import com.shamilov.payda.R
 import com.shamilov.payda.domain.model.DonationEntity
-import com.shamilov.payda.presentation.base.BaseViewHolder
 import com.shamilov.payda.presentation.ui.donation.adapter.ImageSliderAdapter
 import com.squareup.picasso.Picasso
+import com.xwray.groupie.GroupAdapter
+import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
+import com.xwray.groupie.kotlinandroidextensions.Item
 import kotlinx.android.synthetic.main.item_donation_active.view.*
 import java.util.*
 
+/**
+ * Created by Shamilov on 20.07.2020
+ */
 class DonationViewHolder(
-    itemView: View,
-    private val listener: (DonationEntity) -> Unit,
-    private val donateListener: (Int) -> Unit,
-    private val shareListener: () -> Unit,
-    private val addToFavoriteListener: (Boolean) -> Unit
-) : BaseViewHolder(itemView) {
+    private val donation: DonationEntity,
+    private val listener: DonationListener
+) : Item() {
 
     private val adapter: ImageSliderAdapter by lazy { ImageSliderAdapter() }
 
-    fun onBind(donation: DonationEntity) {
-        itemView.vpImages.adapter = adapter
-        TabLayoutMediator(itemView.tabsLayout, itemView.vpImages) { _, _ -> }
-            .attach()
-        adapter.setData(donation.images)
-
-        itemView.tvTitleActive.text = donation.title
-        itemView.tvDescriptionActive.text = donation.description
-        itemView.tvFundLocationActive.text = donation.region
-        itemView.tvFundNameActive.text = context.getString(R.string.donation_fond, donation.fundName)
-        itemView.tvAmountActive.text = String.format(Locale.CANADA_FRENCH, "%,d", donation.amount)
-        itemView.tvProgressActive.text = String.format(Locale.CANADA_FRENCH, "%,d", donation.progress)
-        Picasso.get()
-            .load("https://hayra.ru/wp-content/uploads/2016/08/13627994_165961013828805_230291218_n.jpg")
-            .into(itemView.ivFundLogoActive)
-
-        initListeners(donation)
+    override fun getLayout(): Int {
+        return R.layout.item_donation_active
     }
 
-    private fun initListeners(donation: DonationEntity) {
-        itemView.setOnClickListener { listener.invoke(donation) }
-        itemView.btnDonationHelp.setOnClickListener { donateListener.invoke(donation.id) }
-        itemView.btnShareDonation.setOnClickListener { shareListener.invoke() }
-//      itemView.ivFavoriteActive.setOnClickListener { addToFavoriteListener.invoke(isClicked) }
+    override fun bind(viewHolder: GroupieViewHolder, position: Int) {
+        with(viewHolder.itemView) {
+            tvTitleActive.text = donation.title
+            tvDescriptionActive.text = donation.description
+            tvFundLocationActive.text = donation.region
+            tvFundNameActive.text = context.getString(R.string.donation_fond, donation.fundName)
+            tvAmountActive.text = String.format(Locale.CANADA_FRENCH, "%,d", donation.amount)
+            tvProgressActive.text = String.format(Locale.CANADA_FRENCH, "%,d", donation.progress)
+
+            vpImages.adapter = adapter
+            TabLayoutMediator(tabsLayout, vpImages) { _, _ -> }
+                .attach()
+            adapter.setData(donation.images)
+            Picasso.get()
+                .load("https://hayra.ru/wp-content/uploads/2016/08/13627994_165961013828805_230291218_n.jpg")
+                .into(ivFundLogoActive)
+
+            setOnClickListener { listener.onItemClick(donation) }
+            btnDonationHelp.setOnClickListener { listener.onDonateClick(donation.id) }
+            btnShareDonation.setOnClickListener { listener.onShareClick() }
+        }
     }
+
+    interface DonationListener {
+        fun onItemClick(donation: DonationEntity)
+        fun onDonateClick(donationId: Int)
+        fun onShareClick()
+        fun onFavoriteClick()
+    }
+
 }

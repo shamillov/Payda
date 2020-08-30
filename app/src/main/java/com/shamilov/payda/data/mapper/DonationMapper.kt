@@ -15,34 +15,35 @@ class DonationMapper {
     fun mapDonationList(donationList: List<DonationData>): List<DonationEntity> {
         return donationList.map {
             DonationEntity(
-                id = it.id,
-                fundId = it.fund.id,
-                title = it.title,
-                description = it.description,
-                amount = it.amount,
-                region = it.region,
-                progress = it.donations,
+                id = it.id ?: 0,
+                fundId = it.fund.id ?: 0,
+                title = it.title ?: "",
+                description = it.description ?: "",
+                amount = it.amount ?: 0,
+                region = it.region ?: "",
+                progress = it.donations ?: 0,
                 images = mapImages(it.images),
-                fundLogo = it.fund.logo,
-                fundName = it.fund.name
+                fundLogo = it.fund.logo ?: "",
+                fundName = it.fund.name ?: ""
             )
         }
     }
 
     fun mapFunds(fund: FundData): FundEntity {
         return FundEntity(
-            id = fund.id,
-            logo = fund.logo,
-            name = fund.name
+            id = fund.id ?: 0,
+            logo = fund.logo ?: "",
+            name = fund.name ?: ""
         )
     }
 
     private fun mapImages(image: List<ImageData>): List<ImageEntity> {
         return image.map {
             ImageEntity(
-                id = it.id,
-                image = it.image
+                id = it.id ?: 0,
+                image = it.image ?: ""
             )
         }
     }
+
 }

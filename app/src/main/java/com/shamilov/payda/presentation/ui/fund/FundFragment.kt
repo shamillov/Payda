@@ -8,6 +8,9 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.appbar.AppBarLayout
 import com.shamilov.payda.R
 
+/**
+ * Created by Shamilov on 20.05.2020
+ */
 class FundFragment : Fragment() {
 
     override fun onCreateView(

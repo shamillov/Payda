@@ -15,7 +15,7 @@ class AboutAppFragment: Fragment(R.layout.fragment_about_app) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        toolbar.addBackButton { findNavController().navigateUp() }
+        toolbar.addBackButton { findNavController().popBackStack() }
 
         btnFeedback.setOnClickListener { findNavController().navigate(R.id.actionAboutAppToFeedback) }
     }

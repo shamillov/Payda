@@ -15,6 +15,6 @@ class AssistanceFragment: Fragment(R.layout.fragment_assistance) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        toolbar.addBackButton { findNavController().navigateUp() }
+        toolbar.addBackButton { findNavController().popBackStack() }
     }
 }

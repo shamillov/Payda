@@ -37,7 +37,6 @@ class DonationActiveFragment : BaseFragment(R.layout.fragment_active), DonationA
     private val TAG = DonationActiveFragment::class.java.simpleName
 
     private val presenter by moxyPresenter { DonationActivePresenter() }
-
     private val donationAdapter by lazy { GroupAdapter<GroupieViewHolder>() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -79,7 +78,6 @@ class DonationActiveFragment : BaseFragment(R.layout.fragment_active), DonationA
             progressBarActive.show()
         else
             progressBarActive.hide()
-
     }
 
     override fun showSwipeLoading(loading: Boolean) {

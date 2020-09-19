@@ -30,7 +30,7 @@ class DonationActivePresenter : BasePresenter<DonationActiveView>(), DonationVie
 
     fun refreshData() {
         launch {
-            donationUseCase.execute()
+            donationUseCase.getDonations()
                 .doOnSubscribe { viewState.showSwipeLoading(true) }
                 .doOnComplete {
                     viewState.showSwipeLoading(false)
@@ -56,7 +56,7 @@ class DonationActivePresenter : BasePresenter<DonationActiveView>(), DonationVie
 
     private fun loadDonations() {
         launch {
-            donationUseCase.execute()
+            donationUseCase.getDonations()
                 .doOnSubscribe { viewState.showLoading(true) }
                 .doOnComplete { viewState.showLoading(false) }
                 .doOnError { viewState.showLoading(false) }

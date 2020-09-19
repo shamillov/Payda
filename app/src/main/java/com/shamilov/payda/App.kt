@@ -22,7 +22,6 @@ class App : Application() {
         firebaseAnalytics = FirebaseAnalytics.getInstance(this)
 
         startKoin {
-            androidLogger()
             androidContext(this@App)
             modules(listOf(dataModule, networkModule, mapperModule, interactorModule, schedulesModule))
         }

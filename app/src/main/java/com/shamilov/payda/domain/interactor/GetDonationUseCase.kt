@@ -12,7 +12,7 @@ class GetDonationUseCase(
     private val repository: DonationRepository,
     private val schedulers: SchedulerProvider
 ) : ObservableUseCase<DonationEntity> {
-    override fun execute(): Observable<List<DonationEntity>> {
+    override fun getDonations(): Observable<List<DonationEntity>> {
         return repository.getDonation()
             .subscribeOn(schedulers.io())
             .observeOn(schedulers.ui())

@@ -12,7 +12,7 @@ import org.koin.core.context.startKoin
  */
 class App : Application() {
 
-//    private lateinit var appComponent: AppComponent
+    //    private lateinit var appComponent: AppComponent
     private lateinit var firebaseAnalytics: FirebaseAnalytics
 
     override fun onCreate() {
@@ -22,9 +22,16 @@ class App : Application() {
         firebaseAnalytics = FirebaseAnalytics.getInstance(this)
 
         startKoin {
-            androidLogger()
             androidContext(this@App)
-            modules(listOf(dataModule, networkModule, mapperModule, interactorModule, schedulesModule))
+            modules(
+                listOf(
+                    dataModule,
+                    networkModule,
+                    mapperModule,
+                    interactorModule,
+                    schedulesModule
+                )
+            )
         }
     }
 

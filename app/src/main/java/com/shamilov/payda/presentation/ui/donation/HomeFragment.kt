@@ -32,7 +32,6 @@ class HomeFragment : Fragment() {
                 tab.text = getString(R.string.tabLayout_active_donation)
             else
                 tab.text = getString(R.string.tabLayout_completed_donation)
-
         }.attach()
 
         return root

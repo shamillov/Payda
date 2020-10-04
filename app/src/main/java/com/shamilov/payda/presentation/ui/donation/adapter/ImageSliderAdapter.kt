@@ -48,13 +48,6 @@ class ImageSliderAdapter : RecyclerView.Adapter<ImageSliderAdapter.ImageSliderVi
     inner class ImageSliderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(image: String) {
-//            val progress = CircularProgressDrawable(itemView.context)
-//            progress.apply {
-//                strokeWidth = 5f
-//                centerRadius = 30f
-//                start()
-//            }
-
             Picasso.get().load(image).centerCrop().fit().into(itemView.imageView)
         }
     }

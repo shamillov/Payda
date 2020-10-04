@@ -27,17 +27,18 @@ class DonationViewHolder(
 
     override fun bind(viewHolder: GroupieViewHolder, position: Int) {
         with(viewHolder.itemView) {
+            adapter.setData(donation.images)
+
             tvTitleActive.text = donation.title
             tvDescriptionActive.text = donation.description
             tvFundLocationActive.text = donation.region
             tvFundNameActive.text = context.getString(R.string.donation_fond, donation.fundName)
-            tvAmountActive.text = String.format(Locale.CANADA_FRENCH, "%,d", donation.amount)
-            tvProgressActive.text = String.format(Locale.CANADA_FRENCH, "%,d", donation.progress)
+            tvAmountActive.text = donation.amount
+            tvProgressActive.text = donation.progress
 
             vpImages.adapter = adapter
             TabLayoutMediator(tabsLayout, vpImages) { _, _ -> }
                 .attach()
-            adapter.setData(donation.images)
             Picasso.get()
                 .load("https://hayra.ru/wp-content/uploads/2016/08/13627994_165961013828805_230291218_n.jpg")
                 .into(ivFundLogoActive)

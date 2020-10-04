@@ -9,6 +9,7 @@ import com.shamilov.payda.presentation.ui.donation.completed.DonationCompletedPr
 import com.xwray.groupie.Group
 import moxy.InjectViewState
 import org.koin.core.inject
+import java.util.*
 
 /**
  * Created by Shamilov on 20.05.2020
@@ -30,9 +31,9 @@ class DonationActivePresenter : BasePresenter<DonationActiveView>(), DonationVie
 
     fun refreshData() {
         launch {
-            donationUseCase.execute()
+            donationUseCase.getDonations()
                 .doOnSubscribe { viewState.showSwipeLoading(true) }
-                .doOnComplete {
+                .doOnSuccess {
                     viewState.showSwipeLoading(false)
                     viewState.showNetworkError(false)
                     viewState.showEmptyMessage(false)
@@ -56,9 +57,9 @@ class DonationActivePresenter : BasePresenter<DonationActiveView>(), DonationVie
 
     private fun loadDonations() {
         launch {
-            donationUseCase.execute()
+            donationUseCase.getDonations()
                 .doOnSubscribe { viewState.showLoading(true) }
-                .doOnComplete { viewState.showLoading(false) }
+                .doOnSuccess { viewState.showLoading(false) }
                 .doOnError { viewState.showLoading(false) }
                 .subscribe(
                     { donation ->

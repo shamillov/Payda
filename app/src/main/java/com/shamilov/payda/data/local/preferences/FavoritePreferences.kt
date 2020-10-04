@@ -1,4 +1,4 @@
-package com.shamilov.payda.data.local
+package com.shamilov.payda.data.local.preferences
 
 import android.content.Context
 import android.content.SharedPreferences

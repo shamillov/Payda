@@ -16,13 +16,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.shamilov.payda.R
 import com.shamilov.payda.domain.model.DonationEntity
-import com.shamilov.payda.extension.hide
-import com.shamilov.payda.extension.show
+import com.shamilov.payda.extensions.hide
+import com.shamilov.payda.extensions.show
 import com.shamilov.payda.presentation.base.BaseFragment
 import com.xwray.groupie.Group
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
-import jp.wasabeef.recyclerview.animators.FadeInUpAnimator
 import kotlinx.android.synthetic.main.fragment_active.*
 import moxy.ktx.moxyPresenter
 import ru.yandex.money.android.sdk.*
@@ -37,7 +36,6 @@ class DonationActiveFragment : BaseFragment(R.layout.fragment_active), DonationA
     private val TAG = DonationActiveFragment::class.java.simpleName
 
     private val presenter by moxyPresenter { DonationActivePresenter() }
-
     private val donationAdapter by lazy { GroupAdapter<GroupieViewHolder>() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -54,14 +52,6 @@ class DonationActiveFragment : BaseFragment(R.layout.fragment_active), DonationA
             setHasFixedSize(true)
             adapter = donationAdapter
             addItemDecoration(DividerItemDecoration())
-            itemAnimator = FadeInUpAnimator()
-        }
-
-        recyclerViewActive.itemAnimator?.apply {
-            addDuration = 300
-            removeDuration = 300
-            moveDuration = 300
-            changeDuration = 300
         }
     }
 
@@ -79,7 +69,6 @@ class DonationActiveFragment : BaseFragment(R.layout.fragment_active), DonationA
             progressBarActive.show()
         else
             progressBarActive.hide()
-
     }
 
     override fun showSwipeLoading(loading: Boolean) {
@@ -97,7 +86,6 @@ class DonationActiveFragment : BaseFragment(R.layout.fragment_active), DonationA
     }
 
     override fun onSuccess(data: List<Group>) {
-        donationAdapter.clear()
         donationAdapter.addAll(data)
     }
 
@@ -129,8 +117,7 @@ class DonationActiveFragment : BaseFragment(R.layout.fragment_active), DonationA
     }
 
     override fun shareDonation() {
-        val share = Intent()
-        share.apply {
+        val share = Intent().apply {
             action = Intent.ACTION_SEND
             type = "text/plain"
             putExtra(Intent.EXTRA_TEXT, "Ссылка на приложение")
@@ -204,31 +191,6 @@ class DonationActiveFragment : BaseFragment(R.layout.fragment_active), DonationA
 
     private fun initListeners() {
         swipeRefreshDonationActive.setOnRefreshListener { presenter.refreshData() }
-
-//        parentFragment?.searchView?.setOnQueryTextFocusChangeListener { _, hasFocus ->
-//            if (hasFocus) {
-//                parentFragment?.toolbarTitle?.visibility = View.GONE
-//                parentFragment?.searchView?.layoutParams = ConstraintLayout.LayoutParams(
-//                    ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.WRAP_CONTENT
-//                )
-//            } else {
-//                parentFragment?.toolbarTitle?.visibility = View.VISIBLE
-//                parentFragment?.searchView?.layoutParams = ConstraintLayout.LayoutParams(
-//                    ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT
-//                )
-//            }
-//        }
-//        parentFragment?.searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-//            override fun onQueryTextSubmit(query: String): Boolean {
-//                adapter.filter(query)
-//                return false
-//            }
-//
-//            override fun onQueryTextChange(newText: String): Boolean {
-//                adapter.filter(newText)
-//                return false
-//            }
-//        })
     }
 
     inner class DividerItemDecoration : RecyclerView.ItemDecoration() {

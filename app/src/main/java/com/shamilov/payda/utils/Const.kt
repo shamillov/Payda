@@ -8,4 +8,5 @@ object Const {
     const val ENDPOINT_DONATION_ACTIVE: String = "api/fees"
     const val ENDPOINT_DONATION_COMPLETED: String = ""
     const val ENDPOINT_FUNDS: String = "api/funds"
+    const val ENDPOINT_PAYMENT: String = "api/fees/{id}/donate/init"
 }

@@ -1,4 +1,4 @@
-package com.shamilov.payda.extension
+package com.shamilov.payda.extensions
 
 import android.view.View
 import androidx.appcompat.widget.Toolbar

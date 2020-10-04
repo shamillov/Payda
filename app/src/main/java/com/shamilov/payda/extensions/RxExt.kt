@@ -1,4 +1,4 @@
-package com.shamilov.payda.extension
+package com.shamilov.payda.extensions
 
 import com.shamilov.payda.presentation.base.LoadingView
 import io.reactivex.Observable

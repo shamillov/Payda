@@ -9,7 +9,7 @@ import io.reactivex.Single
  * Created by Shamilov on 20.05.2020
  */
 interface DonationRepository {
-    fun getDonation(): Observable<List<DonationEntity>>
+    fun getDonation(): Single<List<DonationEntity>>
     fun payment(id: Int, amount: String, currency: String, paymentToken: String): Single<PaymentResponse>
 //    fun getFunds(): Observable<List<FundsEntity>>
 //    fun getFee(): Observable<List<FeeEntity>>

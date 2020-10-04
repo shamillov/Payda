@@ -6,7 +6,6 @@ import com.shamilov.payda.data.model.PaymentResponse
 import com.shamilov.payda.data.remote.api.DonationService
 import com.shamilov.payda.domain.model.DonationEntity
 import com.shamilov.payda.domain.repository.DonationRepository
-import io.reactivex.Observable
 import io.reactivex.Single
 
 /**
@@ -17,7 +16,7 @@ class DonationRepositoryImpl(
     private val mapper: DonationMapper
 ) : DonationRepository {
 
-    override fun getDonation(): Observable<List<DonationEntity>> {
+    override fun getDonation(): Single<List<DonationEntity>> {
         return api.getDonation()
             .map { mapper.mapDonationList(it) }
     }

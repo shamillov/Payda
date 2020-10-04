@@ -5,7 +5,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.shamilov.payda.R
-import com.shamilov.payda.extension.addBackButton
+import com.shamilov.payda.extensions.addBackButton
 import kotlinx.android.synthetic.main.fragment_about_app.*
 
 /**

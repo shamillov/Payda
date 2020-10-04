@@ -8,9 +8,9 @@ data class DonationEntity(
     val fundId: Int,
     val title: String,
     val description: String,
-    val amount: Int,
+    var amount: String,
     val region: String,
-    val progress: Int,
+    val progress: String,
     val images: List<ImageEntity>,
     val fundLogo: String,
     val fundName: String

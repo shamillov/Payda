@@ -3,6 +3,7 @@ package com.shamilov.payda.data.remote
 import com.shamilov.payda.BuildConfig
 import com.shamilov.payda.data.remote.api.DonationService
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -14,8 +15,9 @@ import java.util.concurrent.TimeUnit
 const val BASE_URL: String = BuildConfig.PAYDA_SERVICE_HOST
 
 object ApiServiceFactory {
-    fun createOkHttpClient(): OkHttpClient {
+    fun createOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
         return OkHttpClient.Builder()
+            .addInterceptor(httpLoggingInterceptor)
             .connectTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
@@ -45,5 +47,11 @@ object ApiServiceFactory {
 
     fun createGsonConverterFactory(): GsonConverterFactory {
         return GsonConverterFactory.create()
+    }
+
+    fun createHttpLoggingInterceptor(): HttpLoggingInterceptor {
+        val loggingInterceptor = HttpLoggingInterceptor()
+        loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+        return loggingInterceptor
     }
 }

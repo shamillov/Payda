@@ -34,9 +34,14 @@ android {
         jvmTarget = "1.8"
     }
 
+    buildFeatures {
+        viewBinding true
+    }
+
 }
 repositories {
     maven { url 'https://dl.bintray.com/yandex-money/maven' }
+    maven { url 'https://dl.bintray.com/lisawray/maven' }
 }
 
 dependencies {
@@ -44,6 +49,8 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
+    implementation "com.squareup.okhttp3:okhttp:4.9.0"
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.4.0'
 
     //RxJava
     implementation "io.reactivex.rxjava2:rxandroid:$rxJavaAndroid_version"
@@ -73,6 +80,7 @@ dependencies {
     //Groupie
     implementation "com.xwray:groupie:$groupie_version"
     implementation "com.xwray:groupie-kotlin-android-extensions:$groupie_version"
+    implementation "com.xwray:groupie-viewbinding:$groupie_version"
 
     //Google Analytics
     implementation "com.google.firebase:firebase-analytics:$firebaseAnalytics_version"
@@ -86,12 +94,13 @@ dependencies {
     //Yandex.Kassa
     implementation "com.yandex.money:checkout:$yandexKassa_version"
 
-    //UI
-    implementation 'jp.wasabeef:recyclerview-animators:3.0.0'
-    implementation "com.squareup.picasso:picasso:2.71828"
-    implementation 'de.hdodenhof:circleimageview:3.1.0'
-    implementation 'com.github.ybq:Android-SpinKit:1.4.0'
+    //Coil
+    implementation "io.coil-kt:coil:1.0.0-rc3"
 
+    //DataStore
+    implementation "androidx.datastore:datastore-preferences:1.0.0-alpha01"
+
+    //UI
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.2.0'

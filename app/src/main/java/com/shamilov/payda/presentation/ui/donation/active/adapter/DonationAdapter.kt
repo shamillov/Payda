@@ -1,24 +1,5 @@
 package com.shamilov.payda.presentation.ui.donation.active.adapter
 
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager2.widget.ViewPager2
-import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
-import com.shamilov.payda.R
-import com.shamilov.payda.domain.model.DonationEntity
-import com.shamilov.payda.presentation.base.BaseViewHolder
-import com.shamilov.payda.presentation.ui.donation.active.viewholder.DonationViewHolder
-import com.shamilov.payda.presentation.ui.donation.active.viewholder.HeaderViewHolder
-import com.shamilov.payda.presentation.ui.donation.adapter.ImageSliderAdapter
-import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.item_donation_active.view.*
-import java.lang.IllegalStateException
-import java.util.*
-import kotlin.collections.ArrayList
-
 /**
  * Created by Shamilov on 20.05.2020
  */

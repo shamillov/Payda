@@ -12,9 +12,12 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.shamilov.payda.R
+import com.shamilov.payda.data.local.datastore.SettingsDatastore
 import com.shamilov.payda.domain.model.DonationEntity
 import com.shamilov.payda.extensions.hide
 import com.shamilov.payda.extensions.show
@@ -23,10 +26,13 @@ import com.xwray.groupie.Group
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import kotlinx.android.synthetic.main.fragment_active.*
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 import moxy.ktx.moxyPresenter
-import ru.yandex.money.android.sdk.*
-import java.math.BigDecimal
-import java.util.*
+import org.koin.android.ext.android.inject
+import ru.yandex.money.android.sdk.Checkout
+import ru.yandex.money.android.sdk.PaymentParameters
+import ru.yandex.money.android.sdk.UiParameters
 
 /**
  * Created by Shamilov on 20.05.2020
@@ -35,11 +41,22 @@ class DonationActiveFragment : BaseFragment(R.layout.fragment_active), DonationA
 
     private val TAG = DonationActiveFragment::class.java.simpleName
 
+    companion object {
+        const val TOKEN_REQUEST_CODE = 1
+    }
+
     private val presenter by moxyPresenter { DonationActivePresenter() }
     private val donationAdapter by lazy { GroupAdapter<GroupieViewHolder>() }
+    private val dataStore: SettingsDatastore by inject()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        lifecycleScope.launch {
+            if(dataStore.getHost.first().isNotEmpty()) {
+                Log.d("qwer", "----- ${dataStore.getHost.first()} -----")
+            }
+        }
 
         initRecyclerView()
         initViews()
@@ -65,10 +82,13 @@ class DonationActiveFragment : BaseFragment(R.layout.fragment_active), DonationA
     }
 
     override fun showLoading(loading: Boolean) {
-        if (loading)
+        if (loading) {
+            recyclerViewActive.hide()
             progressBarActive.show()
-        else
+        } else {
+            recyclerViewActive.show()
             progressBarActive.hide()
+        }
     }
 
     override fun showSwipeLoading(loading: Boolean) {
@@ -86,7 +106,7 @@ class DonationActiveFragment : BaseFragment(R.layout.fragment_active), DonationA
     }
 
     override fun onSuccess(data: List<Group>) {
-        donationAdapter.addAll(data)
+        donationAdapter.update(data)
     }
 
     override fun onFailure(error: String) {
@@ -112,8 +132,9 @@ class DonationActiveFragment : BaseFragment(R.layout.fragment_active), DonationA
             tvEmptyMessage.hide()
     }
 
-    override fun donate(donationId: Int) {
-        testPay()
+    override fun donate(parameter: PaymentParameters, uiParameters: UiParameters) {
+        val intent = Checkout.createTokenizeIntent(requireContext(), parameter, uiParameters = uiParameters)
+        startActivityForResult(intent, TOKEN_REQUEST_CODE)
     }
 
     override fun shareDonation() {
@@ -144,47 +165,21 @@ class DonationActiveFragment : BaseFragment(R.layout.fragment_active), DonationA
         return cm.activeNetworkInfo != null
     }
 
-    private fun testPay() {
-        val parameters = PaymentParameters(
-            amount = Amount(BigDecimal.TEN, Currency.getInstance("RUB")),
-            title = "Название товара",
-            subtitle = "Описание товара",
-            clientApplicationKey = "test_NzI5Mjc0ssjxwvoxlwsV_HJl6U9jLTzNCqmEvUhakIg",
-            shopId = "729274",
-            savePaymentMethod = SavePaymentMethod.ON,
-            paymentMethodTypes = setOf(
-                PaymentMethodType.BANK_CARD,
-                PaymentMethodType.GOOGLE_PAY,
-                PaymentMethodType.SBERBANK
-            )
-        )
-
-        val testParameters = TestParameters(
-            true,
-            googlePayTestEnvironment = true,
-            mockConfiguration = MockConfiguration(
-                completeWithError = false,
-                paymentAuthPassed = true,
-                linkedCardsCount = 5
-            )
-        )
-
-        val ui = UiParameters(showLogo = false)
-
-        val intent = Checkout.createTokenizeIntent(requireContext(), parameters, uiParameters = ui)
-        startActivityForResult(intent, 123)
-    }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == 123) {
+        if (requestCode == TOKEN_REQUEST_CODE) {
             when (resultCode) {
                 Activity.RESULT_OK -> data?.let {
-                    Log.d("TAG", Checkout.createTokenizationResult(it).toString())
+                    val token = Checkout.createTokenizationResult(it)
+                    MaterialAlertDialogBuilder(requireContext())
+                        .setMessage(token.toString())
+                        .create()
+                        .show()
                 }
-                Activity.RESULT_CANCELED -> Toast.makeText(context, "fail", Toast.LENGTH_SHORT)
-                    .show()
+                Activity.RESULT_CANCELED -> {
+                    Toast.makeText(context, "fail", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
@@ -205,4 +200,5 @@ class DonationActiveFragment : BaseFragment(R.layout.fragment_active), DonationA
             }
         }
     }
+
 }

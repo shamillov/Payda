@@ -1,5 +1,7 @@
 package com.shamilov.payda.di
 
+import com.shamilov.payda.data.local.datastore.SettingsDatastore
+import com.shamilov.payda.data.local.preferences.ApplicationPreferences
 import com.shamilov.payda.data.mapper.DonationMapper
 import com.shamilov.payda.data.remote.ApiServiceFactory
 import com.shamilov.payda.data.repository.DonationRepositoryImpl
@@ -14,6 +16,7 @@ import org.koin.dsl.module
  */
 val dataModule = module {
     single<DonationRepository> { DonationRepositoryImpl(get(), get()) }
+    single { SettingsDatastore(get()) }
 }
 
 val mapperModule = module {
@@ -26,10 +29,11 @@ val interactorModule = module {
 
 val networkModule = module {
     single { ApiServiceFactory.createRetrofit(get(), get(), get()) }
-    single { ApiServiceFactory.createOkHttpClient() }
+    single { ApiServiceFactory.createOkHttpClient(get()) }
     single { ApiServiceFactory.createApiService(get()) }
     single { ApiServiceFactory.createRxJava2CallAdapterFactory() }
     single { ApiServiceFactory.createGsonConverterFactory() }
+    single { ApiServiceFactory.createHttpLoggingInterceptor() }
 }
 
 val schedulesModule = module {

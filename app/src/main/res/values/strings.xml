@@ -33,4 +33,8 @@
     <string name="email">Email</string>
     <string name="send">Отправить</string>
 
+    <!-- keys -->
+    <string name="client_application_id">test_NzI5Mjc0ssjxwvoxlwsV_HJl6U9jLTzNCqmEvUhakIg</string>
+    <string name="shop_id">729274</string>
+
 </resources>

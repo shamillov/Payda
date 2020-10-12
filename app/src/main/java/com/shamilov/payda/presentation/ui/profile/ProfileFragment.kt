@@ -28,5 +28,9 @@ class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
         btnAboutApp.setOnClickListener {
             presenter.navigateToAboutApp()
         }
+
+        btnSettings.setOnClickListener {
+            presenter.navigateToSettings()
+        }
     }
 }

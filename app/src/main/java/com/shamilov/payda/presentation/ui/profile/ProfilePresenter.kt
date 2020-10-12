@@ -17,7 +17,10 @@ class ProfilePresenter(private val navController: NavController) : BasePresenter
 
     fun navigateToAboutApp() {
         navController.navigate(R.id.actionProfileToAboutApp)
+    }
 
+    fun navigateToSettings() {
+        navController.navigate(R.id.actionProfileToSettings)
     }
 
 }

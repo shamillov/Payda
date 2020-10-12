@@ -30,6 +30,9 @@
             app:popExitAnim="@anim/slide_out_right"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"/>
+        <action
+            android:id="@+id/actionProfileToSettings"
+            app:destination="@id/settingsFragment"/>
     </fragment>
 
     <fragment
@@ -69,5 +72,9 @@
         android:name="com.shamilov.payda.presentation.ui.feedback.FeedbackFragment"
         android:label="Feedback"
         tools:layout="@layout/fragment_feedback"/>
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.shamilov.payda.presentation.ui.settings.SettingsFragment"/>
 
 </navigation>

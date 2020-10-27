@@ -45,6 +45,7 @@ repositories {
 }
 
 dependencies {
+    implementation project(":common")
     //Retrofit
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"

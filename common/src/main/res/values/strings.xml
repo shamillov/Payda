@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- navigation title -->
+    <string name="title_home">Сборы</string>
+    <string name="title_profile">Профиль</string>
+    <string name="title_fund">Фонды</string>
+    <string name="title_about_app">О приложении</string>
+    <string name="title_assistance">Заявка на помощь</string>
+    <string name="title_feedback">Обратная связь</string>
+
+    <!--  tabs name  -->
+    <string name="tabLayout_active_donation">Активные</string>
+    <string name="tabLayout_completed_donation">Завершенные</string>
+
+    <!--  donation  -->
+    <string name="cardView_donation_help">Помочь</string>
+    <string name="cardView_donation_task">цель</string>
+    <string name="cardView_donation_progress">собрано</string>
+    <string name="donation_fond">Благотворительный фонд %s</string>
+
+    <!-- server error message -->
+    <string name="no_internet_connection">Нет соединения с интернетом</string>
+    <string name="connection_error_message">Ошибка соединения с интернетом</string>
+    <string name="not_found_error_message">Данные не найдены</string>
+    <string name="server_error_message">Произошла ошибка сервера</string>
+    <string name="error_happened">Произошла ошибка</string>
+
+    <!-- global -->
+    <string name="name">Имя</string>
+    <string name="email">Email</string>
+    <string name="send">Отправить</string>
+
+    <!-- keys -->
+    <string name="client_application_id">test_NzI5Mjc0ssjxwvoxlwsV_HJl6U9jLTzNCqmEvUhakIg</string>
+    <string name="shop_id">729274</string>
+</resources>

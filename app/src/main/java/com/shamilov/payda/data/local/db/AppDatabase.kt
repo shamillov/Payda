@@ -8,7 +8,7 @@ import com.shamilov.payda.data.local.db.entity.FavoriteDonationEntity
 /**
  * Created by Shamilov on 27.10.2020
  */
-@Database(entities = [FavoriteDonationEntity::class], version = 1)
+//@Database(entities = [FavoriteDonationEntity::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun favoriteDao(): FavoriteDonationDao
 }

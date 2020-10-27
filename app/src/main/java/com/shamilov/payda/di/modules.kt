@@ -19,7 +19,7 @@ import org.koin.dsl.module
 val dataModule = module {
     single<DonationRepository> { DonationRepositoryImpl(get(), get()) }
     single { SettingsDatastore(get()) }
-    single { DatabaseFactory.getDatabase(get()) }
+//    single { DatabaseFactory.getDatabase(get()) }
 }
 
 val mapperModule = module {

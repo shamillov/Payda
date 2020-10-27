@@ -2,6 +2,7 @@ package com.shamilov.payda.data.remote
 
 import com.shamilov.payda.BuildConfig
 import com.shamilov.payda.data.remote.api.DonationService
+import com.shamilov.payda.utils.HostSelectionInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -15,9 +16,12 @@ import java.util.concurrent.TimeUnit
 const val BASE_URL: String = BuildConfig.PAYDA_SERVICE_HOST
 
 object ApiServiceFactory {
-    fun createOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
+    fun createOkHttpClient(
+        httpLoggingInterceptor: HttpLoggingInterceptor,
+        hostSelectionInterceptor: HostSelectionInterceptor
+    ): OkHttpClient {
         return OkHttpClient.Builder()
-            .addInterceptor(httpLoggingInterceptor)
+            .addInterceptor(hostSelectionInterceptor)
             .connectTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)

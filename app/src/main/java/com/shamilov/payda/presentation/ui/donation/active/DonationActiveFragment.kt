@@ -16,12 +16,15 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.shamilov.payda.BuildConfig
 import com.shamilov.payda.R
 import com.shamilov.payda.data.local.datastore.SettingsDatastore
+import com.shamilov.payda.data.remote.ApiServiceFactory
 import com.shamilov.payda.domain.model.DonationEntity
 import com.shamilov.payda.extensions.hide
 import com.shamilov.payda.extensions.show
 import com.shamilov.payda.presentation.base.BaseFragment
+import com.shamilov.payda.utils.HostSelectionInterceptor
 import com.xwray.groupie.Group
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
@@ -47,14 +50,20 @@ class DonationActiveFragment : BaseFragment(R.layout.fragment_active), DonationA
 
     private val presenter by moxyPresenter { DonationActivePresenter() }
     private val donationAdapter by lazy { GroupAdapter<GroupieViewHolder>() }
+
+    //TODO: Временное решение
     private val dataStore: SettingsDatastore by inject()
+    private val hostSelectionInterceptor: HostSelectionInterceptor by inject()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //TODO: Временное решение
         lifecycleScope.launch {
             if(dataStore.getHost.first().isNotEmpty()) {
-                Log.d("qwer", "----- ${dataStore.getHost.first()} -----")
+                hostSelectionInterceptor.setHost(dataStore.getHost.first())
+            } else {
+                hostSelectionInterceptor.setHost(BuildConfig.PAYDA_SERVICE_HOST)
             }
         }
 

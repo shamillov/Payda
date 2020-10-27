@@ -33,10 +33,7 @@ class DonationViewHolder(
     override fun getLayout() = R.layout.item_donation_active
 
     override fun bind(viewBinding: ItemDonationActiveBinding, position: Int) {
-        val items = mutableListOf<Group>().apply {
-            addAll(list.map { ImageSliderViewHolder(it) })
-        }
-        adapter.update(items)
+        setImageItemAdapter()
 
         viewBinding.apply {
             tvTitleActive.text = donation.title
@@ -57,6 +54,13 @@ class DonationViewHolder(
             TabLayoutMediator(tabsLayout, vpImages) { _, _ -> }.attach()
         }
 
+    }
+
+    private fun setImageItemAdapter() {
+        val items = mutableListOf<Group>().apply {
+            addAll(list.map { ImageSliderViewHolder(it) })
+        }
+        adapter.update(items)
     }
 
     override fun initializeViewBinding(view: View) = ItemDonationActiveBinding.bind(view)

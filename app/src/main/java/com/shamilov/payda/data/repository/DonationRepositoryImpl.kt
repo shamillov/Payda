@@ -29,4 +29,8 @@ class DonationRepositoryImpl(
     ): Single<PaymentResponse> {
         return api.payment(id, PaymentRequest(amount, currency, paymentToken))
     }
+
+    override fun getFavoritesDonation(): List<Int> {
+        return emptyList()
+    }
 }

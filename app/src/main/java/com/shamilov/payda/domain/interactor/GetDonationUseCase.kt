@@ -19,4 +19,8 @@ class GetDonationUseCase(
             .subscribeOn(schedulers.io())
             .observeOn(schedulers.ui())
     }
+
+    fun getFavoritesDonation(): List<Int> {
+        return emptyList()
+    }
 }

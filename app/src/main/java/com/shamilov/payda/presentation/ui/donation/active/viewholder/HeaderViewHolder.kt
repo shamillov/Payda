@@ -10,14 +10,12 @@ import com.xwray.groupie.viewbinding.BindableItem
 /**
  * Created by Shamilov on 20.07.2020
  */
-class HeaderViewHolder() : BindableItem<ItemDonationHeaderBinding>() {
-
-    override fun getLayout() = R.layout.item_donation_header
+class HeaderViewHolder : BindableItem<ItemDonationHeaderBinding>() {
 
     override fun bind(viewBinding: ItemDonationHeaderBinding, position: Int) {
 
     }
 
+    override fun getLayout() = R.layout.item_donation_header
     override fun initializeViewBinding(view: View) = ItemDonationHeaderBinding.bind(view)
-
 }

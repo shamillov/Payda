@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cvDonationActive"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
-                android:text="Название фонда"
+                tools:text="Название фонда"
                 app:layout_constraintStart_toEndOf="@+id/ivFundLogoActive"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -45,7 +45,7 @@
                 android:id="@+id/tvFundLocationActive"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Локация"
+                tools:text="Локация"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="@+id/tvFundNameActive"
                 app:layout_constraintTop_toBottomOf="@+id/tvFundNameActive" />
@@ -107,7 +107,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
-                android:text="1 000 000"
+                tools:text="1 000 000"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/btnDonationHelp"
@@ -138,7 +138,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="1 000 000"
+                tools:text="1 000 000"
                 android:textColor="@color/colorPrimary"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -171,7 +171,7 @@
             app:layout_constraintTop_toBottomOf="@id/divide"
             android:layout_margin="6dp"
             android:gravity="center"
-            android:text="Заголовок"
+            tools:text="Заголовок"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -182,7 +182,7 @@
             android:layout_margin="6dp"
             android:layout_marginTop="8dp"
             android:paddingBottom="8dp"
-            android:text="Описание"
+            tools:text="Описание"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvTitleActive" />

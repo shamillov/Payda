@@ -11,6 +11,7 @@ import io.reactivex.Single
 interface DonationRepository {
     fun getDonation(): Single<List<DonationEntity>>
     fun payment(id: Int, amount: String, currency: String, paymentToken: String): Single<PaymentResponse>
+    fun getFavoritesDonation(): List<Int>
 //    fun getFunds(): Observable<List<FundsEntity>>
 //    fun getFee(): Observable<List<FeeEntity>>
 }

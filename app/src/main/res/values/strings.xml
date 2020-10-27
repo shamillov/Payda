@@ -20,9 +20,8 @@
     <string name="cardView_donation_progress">собрано</string>
     <string name="donation_fond">Благотворительный фонд %s</string>
 
-    <string name="no_internet_connection">Нет соединения с интернетом</string>
-
     <!-- server error message -->
+    <string name="no_internet_connection">Нет соединения с интернетом</string>
     <string name="connection_error_message">Ошибка соединения с интернетом</string>
     <string name="not_found_error_message">Данные не найдены</string>
     <string name="server_error_message">Произошла ошибка сервера</string>

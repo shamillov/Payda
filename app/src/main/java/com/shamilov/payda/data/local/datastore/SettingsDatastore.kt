@@ -15,10 +15,11 @@ import kotlinx.coroutines.flow.map
 class SettingsDatastore(private val context: Context) {
 
     companion object {
+        const val DATASTORE_NAME = "settings"
         val KEY = preferencesKey<String>("host")
     }
 
-    private val dataStore: DataStore<Preferences> = context.createDataStore("settings")
+    private val dataStore: DataStore<Preferences> = context.createDataStore(DATASTORE_NAME)
 
     suspend fun putBaseUrl(url: String) {
         dataStore.edit { preferences ->

@@ -6,7 +6,6 @@ import android.content.Intent
 import android.graphics.Rect
 import android.net.ConnectivityManager
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
@@ -19,7 +18,6 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.shamilov.payda.BuildConfig
 import com.shamilov.payda.R
 import com.shamilov.payda.data.local.datastore.SettingsDatastore
-import com.shamilov.payda.data.remote.ApiServiceFactory
 import com.shamilov.payda.domain.model.DonationEntity
 import com.shamilov.payda.extensions.hide
 import com.shamilov.payda.extensions.show

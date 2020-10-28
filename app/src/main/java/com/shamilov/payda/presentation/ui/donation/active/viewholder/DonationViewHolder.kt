@@ -1,6 +1,5 @@
 package com.shamilov.payda.presentation.ui.donation.active.viewholder
 
-import android.content.Context
 import android.view.View
 import coil.load
 import coil.transform.CircleCropTransformation
@@ -19,7 +18,8 @@ import com.xwray.groupie.viewbinding.BindableItem
  */
 class DonationViewHolder(
     private val donation: DonationEntity,
-    private val listener: DonationListener
+    private val listener: DonationListener,
+    private val isFavorite: Boolean
 ) : BindableItem<ItemDonationActiveBinding>() {
 
     var list: List<String> = listOf(
@@ -43,13 +43,17 @@ class DonationViewHolder(
             tvAmountActive.text = donation.amount
             tvProgressActive.text = donation.progress
             vpImages.adapter = adapter
+            btnFavorite.isChecked = isFavorite
             ivFundLogoActive.load("https://hayra.ru/wp-content/uploads/2016/08/13627994_165961013828805_230291218_n.jpg") {
                 crossfade(true)
                 transformations(CircleCropTransformation())
             }
             cvDonationActive.setOnClickListener { listener.onItemClick(donation) }
-            btnDonationHelp.setOnClickListener { listener.onDonateClick(donation.id, root.context) }
+            btnDonationHelp.setOnClickListener { listener.onDonateClick(donation.id) }
             btnShareDonation.setOnClickListener { listener.onShareClick() }
+            btnFavorite.setOnCheckedChangeListener { _, isChecked ->
+                listener.onFavoriteClick(isChecked, donation.id)
+            }
 
             TabLayoutMediator(tabsLayout, vpImages) { _, _ -> }.attach()
         }
@@ -67,9 +71,9 @@ class DonationViewHolder(
 
     interface DonationListener {
         fun onItemClick(donation: DonationEntity)
-        fun onDonateClick(id: Int, context: Context)
+        fun onDonateClick(id: Int)
         fun onShareClick()
-        fun onFavoriteClick()
+        fun onFavoriteClick(isFavorite: Boolean, id: Int)
     }
 
 }

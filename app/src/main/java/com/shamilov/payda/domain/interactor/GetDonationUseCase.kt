@@ -1,10 +1,10 @@
 package com.shamilov.payda.domain.interactor
 
+import com.shamilov.payda.data.local.db.entity.FavoriteDonationEntity
 import com.shamilov.payda.domain.executor.SchedulerProvider
 import com.shamilov.payda.domain.model.DonationEntity
 import com.shamilov.payda.domain.repository.DonationRepository
-import com.shamilov.payda.extensions.ioToUi
-import io.reactivex.Observable
+import io.reactivex.Completable
 import io.reactivex.Single
 
 /**
@@ -20,7 +20,21 @@ class GetDonationUseCase(
             .observeOn(schedulers.ui())
     }
 
-    fun getFavoritesDonation(): List<Int> {
-        return emptyList()
+    fun getFavoritesDonation(): Single<List<FavoriteDonationEntity>> {
+        return repository.getFavoritesDonation()
+            .subscribeOn(schedulers.io())
+            .observeOn(schedulers.ui())
+    }
+    
+    fun insertFavoriteDonation(donation: FavoriteDonationEntity): Completable {
+        return repository.insertFavoriteDonation(donation)
+            .subscribeOn(schedulers.io())
+            .observeOn(schedulers.ui())
+    }
+
+    fun deleteFavoriteDonation(donation: FavoriteDonationEntity): Completable {
+        return repository.deleteFavoriteDonation(donation)
+            .subscribeOn(schedulers.io())
+            .observeOn(schedulers.ui())
     }
 }

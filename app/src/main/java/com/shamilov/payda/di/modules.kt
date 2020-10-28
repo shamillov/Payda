@@ -2,8 +2,8 @@ package com.shamilov.payda.di
 
 import com.shamilov.payda.data.local.datastore.SettingsDatastore
 import com.shamilov.payda.data.local.db.DatabaseFactory
-import com.shamilov.payda.data.local.preferences.ApplicationPreferences
 import com.shamilov.payda.data.mapper.DonationMapper
+import com.shamilov.payda.data.provider.ResourceProvider
 import com.shamilov.payda.data.remote.ApiServiceFactory
 import com.shamilov.payda.data.repository.DonationRepositoryImpl
 import com.shamilov.payda.domain.executor.SchedulerProvider
@@ -11,15 +11,17 @@ import com.shamilov.payda.domain.executor.SchedulerProviderImpl
 import com.shamilov.payda.domain.interactor.GetDonationUseCase
 import com.shamilov.payda.domain.repository.DonationRepository
 import com.shamilov.payda.utils.HostSelectionInterceptor
+import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
 /**
  * Created by Shamilov on 15.08.2020
  */
 val dataModule = module {
-    single<DonationRepository> { DonationRepositoryImpl(get(), get()) }
+    single<DonationRepository> { DonationRepositoryImpl(get(), get(), get()) }
     single { SettingsDatastore(get()) }
-//    single { DatabaseFactory.getDatabase(get()) }
+    single { DatabaseFactory.getDatabase(get()).favoriteDao() }
+    single { ResourceProvider(androidContext().resources) }
 }
 
 val mapperModule = module {

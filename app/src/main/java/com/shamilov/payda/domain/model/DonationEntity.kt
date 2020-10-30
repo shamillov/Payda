@@ -13,5 +13,6 @@ data class DonationEntity(
     val progress: String,
     val images: List<ImageEntity>,
     val fundLogo: String,
-    val fundName: String
+    val fundName: String,
+    var isFavorite: Boolean = false
 )

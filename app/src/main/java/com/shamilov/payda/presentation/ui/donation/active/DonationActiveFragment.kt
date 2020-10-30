@@ -128,10 +128,6 @@ class DonationActiveFragment : BaseFragment(R.layout.fragment_active), DonationA
         initBottomSheet(donation)
     }
 
-    override fun addToFavorite(isFavorite: Boolean) {
-
-    }
-
     override fun showEmptyMessage(show: Boolean) {
         if (show)
             tvEmptyMessage.show()

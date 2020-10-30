@@ -18,8 +18,7 @@ import com.xwray.groupie.viewbinding.BindableItem
  */
 class DonationViewHolder(
     private val donation: DonationEntity,
-    private val listener: DonationListener,
-    private val isFavorite: Boolean
+    private val listener: DonationListener
 ) : BindableItem<ItemDonationActiveBinding>() {
 
     var list: List<String> = listOf(
@@ -43,7 +42,7 @@ class DonationViewHolder(
             tvAmountActive.text = donation.amount
             tvProgressActive.text = donation.progress
             vpImages.adapter = adapter
-            btnFavorite.isChecked = isFavorite
+            btnFavorite.isChecked = donation.isFavorite
             ivFundLogoActive.load("https://hayra.ru/wp-content/uploads/2016/08/13627994_165961013828805_230291218_n.jpg") {
                 crossfade(true)
                 transformations(CircleCropTransformation())

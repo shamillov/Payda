@@ -19,6 +19,5 @@ interface DonationActiveView : LoadingView {
     fun openDonation(donation: DonationEntity)
     fun donate(parameter: PaymentParameters, uiParameters: UiParameters)
     fun shareDonation()
-    fun addToFavorite(isFavorite: Boolean)
     fun showEmptyMessage(show: Boolean)
 }

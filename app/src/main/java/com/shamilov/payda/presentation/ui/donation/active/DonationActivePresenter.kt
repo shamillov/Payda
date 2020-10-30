@@ -34,6 +34,7 @@ class DonationActivePresenter : BasePresenter<DonationActiveView>(), DonationVie
         }
     }
 
+    //TODO: Реализовать загрузку избранных из бд
     fun refreshData() {
         launch {
             useCase.getDonations()
@@ -47,12 +48,7 @@ class DonationActivePresenter : BasePresenter<DonationActiveView>(), DonationVie
                 .map { donation ->
                     val items = mutableListOf<Group>()
                     items += HeaderViewHolder()
-                    items.addAll(donation.map {
-                        DonationViewHolder(
-                            donation = it,
-                            listener = this,
-                            isFavorite = false)
-                    })
+                    items.addAll(donation.map { DonationViewHolder(it, this) })
                     return@map items
                 }
                 .subscribe(
@@ -71,21 +67,27 @@ class DonationActivePresenter : BasePresenter<DonationActiveView>(), DonationVie
         launch {
             useCase.getDonations()
                 .doOnSubscribe { viewState.showLoading(true) }
-                .doOnSuccess { viewState.showLoading(false) }
-                .doOnError { viewState.showLoading(false) }
-                .map { donation ->
-                    val items = mutableListOf<Group>()
-                    items += HeaderViewHolder()
-                    items.addAll(donation.map { DonationViewHolder(it, this, false) })
-                    return@map items
-                }
                 .subscribe(
-                    { donation ->
-                        if (donation.isNotEmpty()) {
-                            viewState.onSuccess(donation)
-                        } else {
-                            viewState.showEmptyMessage(true)
-                        }
+                    { donations ->
+                        val items = mutableListOf<Group>()
+                        items += HeaderViewHolder()
+                        useCase.getFavoritesDonation()
+                            .doOnSuccess { viewState.showLoading(false) }
+                            .doOnError { viewState.showLoading(false) }
+                            .subscribe({ favorites ->
+                                donations.forEach { donation ->
+                                    donation.isFavorite = favorites.any { donation.id == it.id }
+                                }
+
+                                items.addAll(donations.map { DonationViewHolder(it, this) })
+
+                                if (donations.isNotEmpty()) {
+                                    viewState.onSuccess(items)
+                                } else {
+                                    viewState.showEmptyMessage(true)
+                                }
+                            }, { handleError(it) }
+                            )
                     },
                     { throwable -> handleError(throwable) }
                 )

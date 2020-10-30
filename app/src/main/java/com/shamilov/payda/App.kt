@@ -18,7 +18,7 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        instance = this
+//        instance = this
         firebaseAnalytics = FirebaseAnalytics.getInstance(this)
 
         startKoin {

@@ -1,11 +1,12 @@
 package com.shamilov.payda.presentation.ui.donation.active
 
+import com.shamilov.common.base.BasePresenter
 import com.shamilov.payda.R
 import com.shamilov.payda.data.local.db.entity.FavoriteDonationEntity
 import com.shamilov.payda.data.provider.ResourceProvider
-import com.shamilov.payda.domain.interactor.GetDonationUseCase
+import com.shamilov.payda.domain.interactor.DonationInteractor
 import com.shamilov.payda.domain.model.DonationEntity
-import com.shamilov.payda.presentation.base.BasePresenter
+import com.shamilov.payda.presentation.ui.donation.active.viewholder.DonationListener
 import com.shamilov.payda.presentation.ui.donation.active.viewholder.DonationViewHolder
 import com.shamilov.payda.presentation.ui.donation.active.viewholder.HeaderViewHolder
 import com.shamilov.payda.presentation.ui.donation.completed.DonationCompletedPresenter
@@ -19,11 +20,11 @@ import java.util.*
  * Created by Shamilov on 20.05.2020
  */
 @InjectViewState
-class DonationActivePresenter : BasePresenter<DonationActiveView>(), DonationViewHolder.DonationListener {
+class DonationActivePresenter : BasePresenter<DonationActiveView>(), DonationListener {
 
     private val TAG: String = DonationCompletedPresenter::class.java.simpleName
 
-    private val useCase: GetDonationUseCase by inject()
+    private val interactor: DonationInteractor by inject()
     private val resource: ResourceProvider by inject()
 
     fun loadData(hasNetwork: Boolean) {
@@ -37,7 +38,7 @@ class DonationActivePresenter : BasePresenter<DonationActiveView>(), DonationVie
     //TODO: Реализовать загрузку избранных из бд
     fun refreshData() {
         launch {
-            useCase.getDonations()
+            interactor.getDonations()
                 .doOnSubscribe { viewState.showSwipeLoading(true) }
                 .doOnSuccess {
                     viewState.showSwipeLoading(false)
@@ -65,13 +66,13 @@ class DonationActivePresenter : BasePresenter<DonationActiveView>(), DonationVie
 
     private fun loadDonations() {
         launch {
-            useCase.getDonations()
+            interactor.getDonations()
                 .doOnSubscribe { viewState.showLoading(true) }
                 .subscribe(
                     { donations ->
                         val items = mutableListOf<Group>()
                         items += HeaderViewHolder()
-                        useCase.getFavoritesDonation()
+                        interactor.getFavoritesDonation()
                             .doOnSuccess { viewState.showLoading(false) }
                             .doOnError { viewState.showLoading(false) }
                             .subscribe({ favorites ->
@@ -133,16 +134,20 @@ class DonationActivePresenter : BasePresenter<DonationActiveView>(), DonationVie
     }
 
     override fun onFavoriteClick(isFavorite: Boolean, id: Int) {
-        if (isFavorite) {
+        if (isFavorite)
             addToFavorite(id)
-        } else {
+        else
             deleteFromFavorite(id)
-        }
+
+    }
+
+    override fun onImageClick() {
+
     }
 
     private fun addToFavorite(id: Int) {
         launch {
-            useCase.insertFavoriteDonation(FavoriteDonationEntity(id))
+            interactor.insertFavoriteDonation(FavoriteDonationEntity(id))
                 .subscribe(
                     { viewState.showMessage(R.string.add_to_favorite) },
                     { handleError(it) }
@@ -152,7 +157,7 @@ class DonationActivePresenter : BasePresenter<DonationActiveView>(), DonationVie
 
     private fun deleteFromFavorite(id: Int) {
         launch {
-            useCase.deleteFavoriteDonation(FavoriteDonationEntity(id))
+            interactor.deleteFavoriteDonation(FavoriteDonationEntity(id))
                 .subscribe(
                     { viewState.showMessage(R.string.delete_from_favorite) },
                     { handleError(it) }

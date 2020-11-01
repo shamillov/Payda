@@ -1,6 +1,6 @@
 package com.shamilov.payda.presentation.ui.donation.completed
 
-import com.shamilov.payda.presentation.base.BasePresenter
+import com.shamilov.common.base.BasePresenter
 import moxy.InjectViewState
 
 /**

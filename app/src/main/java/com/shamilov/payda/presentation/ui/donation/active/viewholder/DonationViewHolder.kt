@@ -7,7 +7,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.shamilov.payda.R
 import com.shamilov.payda.databinding.ItemDonationActiveBinding
 import com.shamilov.payda.domain.model.DonationEntity
-import com.shamilov.payda.presentation.ui.donation.adapter.ImageSliderViewHolder
+import com.shamilov.payda.presentation.ui.donation.viewholder.ImageSliderViewHolder
 import com.xwray.groupie.Group
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
@@ -61,18 +61,18 @@ class DonationViewHolder(
 
     private fun setImageItemAdapter() {
         val items = mutableListOf<Group>().apply {
-            addAll(list.map { ImageSliderViewHolder(it) })
+            addAll(list.map { ImageSliderViewHolder(it, listener) })
         }
         adapter.update(items)
     }
 
     override fun initializeViewBinding(view: View) = ItemDonationActiveBinding.bind(view)
+}
 
-    interface DonationListener {
-        fun onItemClick(donation: DonationEntity)
-        fun onDonateClick(id: Int)
-        fun onShareClick()
-        fun onFavoriteClick(isFavorite: Boolean, id: Int)
-    }
-
+interface DonationListener {
+    fun onItemClick(donation: DonationEntity)
+    fun onDonateClick(id: Int)
+    fun onShareClick()
+    fun onFavoriteClick(isFavorite: Boolean, id: Int)
+    fun onImageClick()
 }

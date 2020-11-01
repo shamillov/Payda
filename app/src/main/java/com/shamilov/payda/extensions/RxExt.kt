@@ -1,6 +1,7 @@
 package com.shamilov.payda.extensions
 
-import com.shamilov.payda.presentation.base.LoadingView
+import com.shamilov.common.base.LoadingView
+import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -15,6 +16,11 @@ fun <T> Single<T>.ioToUi(): Single<T> {
 }
 
 fun <T> Observable<T>.ioToUi(): Observable<T> {
+    return subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+}
+
+fun Completable.ioToUi(): Completable {
     return subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
 }

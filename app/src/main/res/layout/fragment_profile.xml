@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/backgroundWhite">
 
     <com.google.android.material.appbar.MaterialToolbar
@@ -26,12 +27,12 @@
     </com.google.android.material.appbar.MaterialToolbar>
 
     <TextView
-        android:id="@+id/tvUserDonationCount"
+        android:id="@+id/tvUserContribution"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="1210.0"
         android:textSize="50sp"
+        tools:text="1200"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,7 +44,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="мои пожертвования"
-        app:layout_constraintTop_toBottomOf="@+id/tvUserDonationCount" />
+        app:layout_constraintTop_toBottomOf="@+id/tvUserContribution" />
 
 
     <com.google.android.material.card.MaterialCardView

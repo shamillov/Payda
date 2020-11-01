@@ -1,4 +1,4 @@
-package com.shamilov.payda.presentation.base
+package com.shamilov.common.base
 
 import android.widget.Toast
 import androidx.annotation.StringRes

@@ -1,4 +1,4 @@
-package com.shamilov.payda.presentation.base
+package com.shamilov.common.base
 
 import androidx.annotation.StringRes
 import moxy.MvpView

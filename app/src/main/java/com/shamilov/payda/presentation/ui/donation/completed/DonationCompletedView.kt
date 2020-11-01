@@ -1,8 +1,7 @@
 package com.shamilov.payda.presentation.ui.donation.completed
 
 import com.shamilov.payda.domain.model.DonationEntity
-import com.shamilov.payda.presentation.base.BaseView
-import com.shamilov.payda.presentation.base.LoadingView
+import com.shamilov.common.base.LoadingView
 import moxy.viewstate.strategy.AddToEndSingleStrategy
 import moxy.viewstate.strategy.StateStrategyType
 

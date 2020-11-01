@@ -1,4 +1,4 @@
-package com.shamilov.payda.presentation.base
+package com.shamilov.common.base
 
 import moxy.viewstate.strategy.AddToEndSingleStrategy
 import moxy.viewstate.strategy.StateStrategyType

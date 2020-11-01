@@ -1,6 +1,7 @@
 package com.shamilov.payda.presentation.ui.profile
 
-import com.shamilov.payda.presentation.base.BaseView
+import com.shamilov.common.base.BaseView
+
 
 /**
  * Created by Shamilov on 20.07.2020

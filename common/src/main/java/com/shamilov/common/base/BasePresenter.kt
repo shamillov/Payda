@@ -1,6 +1,6 @@
-package com.shamilov.payda.presentation.base
+package com.shamilov.common.base
 
-import com.shamilov.payda.R
+import com.shamilov.common.R
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import moxy.MvpPresenter

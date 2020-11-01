@@ -6,11 +6,10 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.shamilov.common.base.BaseFragment
 import moxy.ktx.moxyPresenter
-
 import com.shamilov.payda.R
 import com.shamilov.payda.domain.model.DonationEntity
-import com.shamilov.payda.presentation.base.BaseFragment
 import com.shamilov.payda.presentation.ui.donation.completed.adapter.DonationCompletedAdapter
 import kotlinx.android.synthetic.main.fragment_completed.*
 

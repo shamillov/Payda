@@ -11,7 +11,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -19,18 +18,17 @@ import com.shamilov.common.base.BaseFragment
 import com.shamilov.payda.BuildConfig
 import com.shamilov.payda.R
 import com.shamilov.payda.data.local.datastore.SettingsDatastore
+import com.shamilov.payda.databinding.FragmentActiveBinding
 import com.shamilov.payda.domain.model.DonationEntity
-import com.shamilov.payda.domain.repository.DatastoreRepository
-import com.shamilov.payda.extensions.hide
-import com.shamilov.payda.extensions.show
+import com.shamilov.payda.extensions.gone
+import com.shamilov.payda.extensions.visible
+import com.shamilov.payda.presentation.ui.donation.active.viewholder.ShimmerViewHolder
 import com.shamilov.payda.utils.HostSelectionInterceptor
 import com.xwray.groupie.Group
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
+import jp.wasabeef.recyclerview.animators.FadeInRightAnimator
 import kotlinx.android.synthetic.main.fragment_active.*
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.launch
 import moxy.ktx.moxyPresenter
 import org.koin.android.ext.android.inject
 import ru.yandex.money.android.sdk.Checkout
@@ -48,6 +46,9 @@ class DonationActiveFragment : BaseFragment(R.layout.fragment_active), DonationA
         const val TOKEN_REQUEST_CODE = 1
     }
 
+    private var _binding: FragmentActiveBinding? = null
+    private val binding: FragmentActiveBinding get() = _binding!!
+
     private val presenter by moxyPresenter { DonationActivePresenter() }
     private val donationAdapter by lazy { GroupAdapter<GroupieViewHolder>() }
 
@@ -58,14 +59,9 @@ class DonationActiveFragment : BaseFragment(R.layout.fragment_active), DonationA
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //TODO: Временное решение
-        lifecycleScope.launch {
-            if(dataStore.getHost.first().isNotEmpty()) {
-                hostSelectionInterceptor.setHost(dataStore.getHost.first())
-            } else {
-                hostSelectionInterceptor.setHost(BuildConfig.PAYDA_SERVICE_HOST)
-            }
-        }
+        _binding = FragmentActiveBinding.bind(view)
+
+        setHost()
 
         initRecyclerView()
         initViews()
@@ -74,15 +70,30 @@ class DonationActiveFragment : BaseFragment(R.layout.fragment_active), DonationA
     }
 
     private fun initRecyclerView() {
-        recyclerViewActive.apply {
+        binding.recyclerViewActive.apply {
             setHasFixedSize(true)
             adapter = donationAdapter
-            addItemDecoration(DividerItemDecoration())
+        }
+
+        if (donationAdapter.itemCount == 0) {
+            recyclerViewActive.itemAnimator = FadeInRightAnimator()
+            recyclerViewActive.itemAnimator?.apply {
+                addDuration = 300
+                removeDuration = 300
+                moveDuration = 300
+                changeDuration = 300
+            }
+
+            donationAdapter.apply {
+                add(ShimmerViewHolder())
+                add(ShimmerViewHolder())
+                add(ShimmerViewHolder())
+            }
         }
     }
 
     private fun initViews() {
-        swipeRefreshDonationActive.setColorSchemeColors(
+        binding.swipeRefreshDonationActive.setColorSchemeColors(
             ContextCompat.getColor(
                 requireContext(),
                 R.color.colorPrimary
@@ -92,25 +103,25 @@ class DonationActiveFragment : BaseFragment(R.layout.fragment_active), DonationA
 
     override fun showLoading(loading: Boolean) {
         if (loading) {
-            recyclerViewActive.hide()
-            progressBarActive.show()
+            binding.recyclerViewActive.gone()
+            binding.progressBarActive.visible()
         } else {
-            recyclerViewActive.show()
-            progressBarActive.hide()
+            binding.recyclerViewActive.visible()
+            binding.progressBarActive.gone()
         }
     }
 
     override fun showSwipeLoading(loading: Boolean) {
-        swipeRefreshDonationActive.isRefreshing = loading
+        binding.swipeRefreshDonationActive.isRefreshing = loading
     }
 
     override fun showNetworkError(showError: Boolean) {
         if (showError) {
-            tvNetworkErrorActive.show()
-            recyclerViewActive.hide()
+            binding.tvNetworkErrorActive.visible()
+            binding.recyclerViewActive.gone()
         } else {
-            tvNetworkErrorActive.hide()
-            recyclerViewActive.show()
+            binding.tvNetworkErrorActive.gone()
+            binding.recyclerViewActive.visible()
         }
     }
 
@@ -132,9 +143,9 @@ class DonationActiveFragment : BaseFragment(R.layout.fragment_active), DonationA
 
     override fun showEmptyMessage(show: Boolean) {
         if (show)
-            tvEmptyMessage.show()
+            binding.tvEmptyMessage.visible()
         else
-            tvEmptyMessage.hide()
+            binding.tvEmptyMessage.gone()
     }
 
     override fun donate(parameter: PaymentParameters, uiParameters: UiParameters) {
@@ -190,7 +201,23 @@ class DonationActiveFragment : BaseFragment(R.layout.fragment_active), DonationA
     }
 
     private fun initListeners() {
-        swipeRefreshDonationActive.setOnRefreshListener { presenter.refreshData() }
+        binding.swipeRefreshDonationActive.setOnRefreshListener { presenter.refreshData() }
+    }
+
+    private fun setHost() {
+//        lifecycleScope.launch {
+//            if(dataStore.getHost.first().isNotEmpty()) {
+//                hostSelectionInterceptor.setHost(dataStore.getHost.first())
+//            } else {
+//                hostSelectionInterceptor.setHost(BuildConfig.PAYDA_SERVICE_HOST)
+//            }
+//        }
+        hostSelectionInterceptor.setHost(BuildConfig.PAYDA_SERVICE_HOST)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
     inner class DividerItemDecoration : RecyclerView.ItemDecoration() {

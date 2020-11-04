@@ -43,8 +43,6 @@ ext {
     googlePay_version = '18.1.1'
     firebaseAnalytics_version = '17.5.0'
     material_version = '1.2.1'
-    skeleton_version = '1.1.2'
-    shimmer_layout_version = '2.1.0'
     coil_version = '1.0.0-rc3'
     datastore_version = '1.0.0-alpha02'
 }

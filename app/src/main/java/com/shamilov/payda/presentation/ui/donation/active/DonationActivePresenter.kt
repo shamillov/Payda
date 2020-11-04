@@ -67,14 +67,11 @@ class DonationActivePresenter : BasePresenter<DonationActiveView>(), DonationLis
     private fun loadDonations() {
         launch {
             interactor.getDonations()
-                .doOnSubscribe { viewState.showLoading(true) }
                 .subscribe(
                     { donations ->
                         val items = mutableListOf<Group>()
                         items += HeaderViewHolder()
                         interactor.getFavoritesDonation()
-                            .doOnSuccess { viewState.showLoading(false) }
-                            .doOnError { viewState.showLoading(false) }
                             .subscribe({ favorites ->
                                 donations.forEach { donation ->
                                     donation.isFavorite = favorites.any { donation.id == it.id }

@@ -2,15 +2,16 @@ package com.shamilov.payda.extensions
 
 import android.view.View
 import androidx.appcompat.widget.Toolbar
+import com.shamilov.payda.R
 
 /**
  * Created by Shamilov on 15.08.2020
  */
-fun View.show() {
+fun View.visible() {
     visibility = View.VISIBLE
 }
 
-fun View.hide() {
+fun View.gone() {
     visibility = View.GONE
 }
 
@@ -19,6 +20,6 @@ fun View.invisible() {
 }
 
 fun Toolbar.addBackButton(callback: (View) -> Unit) {
-    setNavigationIcon(androidx.appcompat.R.drawable.abc_ic_ab_back_material)
+    setNavigationIcon(R.drawable.abc_ic_ab_back_material)
     setNavigationOnClickListener { callback.invoke(this) }
 }

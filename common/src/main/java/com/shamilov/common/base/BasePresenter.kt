@@ -1,6 +1,10 @@
 package com.shamilov.common.base
 
+import android.os.Bundle
+import androidx.annotation.IdRes
 import com.shamilov.common.R
+import com.shamilov.common.utils.Event
+import com.shamilov.common.utils.NavigationCommand
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import moxy.MvpPresenter
@@ -34,5 +38,17 @@ abstract class BasePresenter<View: BaseView> : MvpPresenter<View>(), KoinCompone
             }
             else -> viewState.showMessage(R.string.error_happened)
         }
+    }
+
+    fun navigateBack() {
+        viewState.navigate(Event(NavigationCommand.Back))
+    }
+
+    fun navigate(@IdRes direction: Int) {
+        viewState.navigate(Event(NavigationCommand.To(direction)))
+    }
+
+    fun navigate(@IdRes direction: Int, bundle: Bundle) {
+        viewState.navigate(Event(NavigationCommand.To(direction, bundle)))
     }
 }

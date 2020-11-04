@@ -89,7 +89,7 @@ dependencies {
     implementation "com.google.firebase:firebase-analytics:$firebaseAnalytics_version"
 
     //Firebase Cloud Messaging
-    implementation 'com.google.firebase:firebase-messaging:20.3.0'
+    implementation 'com.google.firebase:firebase-messaging:21.0.0'
 
     //Google Pay
     implementation "com.google.android.gms:play-services-wallet:$googlePay_version"
@@ -106,8 +106,12 @@ dependencies {
     //Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
+    //Shimmer
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+
     //UI
     implementation "com.google.android.material:material:$material_version"
+    implementation "jp.wasabeef:recyclerview-animators:3.0.0"
 
     //AndroidX
     implementation fileTree(dir: 'libs', include: ['*.jar'])

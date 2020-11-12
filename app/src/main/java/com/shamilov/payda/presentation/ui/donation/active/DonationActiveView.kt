@@ -1,6 +1,5 @@
 package com.shamilov.payda.presentation.ui.donation.active
 
-import com.shamilov.payda.domain.model.DonationEntity
 import com.shamilov.common.base.LoadingView
 import com.xwray.groupie.Group
 import moxy.viewstate.strategy.OneExecutionStateStrategy
@@ -16,7 +15,6 @@ interface DonationActiveView : LoadingView {
     fun onSuccess(data: List<Group>)
     fun onFailure(error: String)
     fun onUpdate(data: List<Group>)
-    fun openDonation(donation: DonationEntity)
     fun donate(parameter: PaymentParameters, uiParameters: UiParameters)
     fun shareDonation()
     fun showEmptyMessage(show: Boolean)

@@ -34,7 +34,7 @@ class DonationViewHolder(
     override fun bind(viewBinding: ItemDonationActiveBinding, position: Int) {
         setImageItemAdapter()
 
-        viewBinding.apply {
+        with(viewBinding) {
             tvTitleActive.text = donation.title
             tvDescriptionActive.text = donation.description
             tvFundLocationActive.text = donation.region
@@ -54,7 +54,9 @@ class DonationViewHolder(
                 listener.onFavoriteClick(isChecked, donation.id)
             }
 
-            TabLayoutMediator(tabsLayout, vpImages) { _, _ -> }.attach()
+            if (list.size > 1) {
+                TabLayoutMediator(tabsLayout, vpImages) { _, _ -> }.attach()
+            }
         }
 
     }

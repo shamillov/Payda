@@ -1,4 +1,4 @@
-package com.shamilov.payda.data.model
+package com.shamilov.payda.data.model.response
 
 /**
  * Created by Shamilov on 22.06.2020

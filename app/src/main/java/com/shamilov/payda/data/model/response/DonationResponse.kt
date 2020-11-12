@@ -1,4 +1,4 @@
-package com.shamilov.payda.data.model
+package com.shamilov.payda.data.model.response
 
 import com.google.gson.annotations.SerializedName
 

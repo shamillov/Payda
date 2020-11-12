@@ -1,11 +1,14 @@
 package com.shamilov.payda.presentation.ui.donation.active
 
+import androidx.core.os.bundleOf
 import com.shamilov.common.base.BasePresenter
 import com.shamilov.payda.R
 import com.shamilov.payda.data.local.db.entity.FavoriteDonationEntity
 import com.shamilov.payda.data.provider.ResourceProvider
 import com.shamilov.payda.domain.interactor.DonationInteractor
 import com.shamilov.payda.domain.model.DonationEntity
+import com.shamilov.payda.presentation.navigation.NavigationActions.toDetailedDonation
+import com.shamilov.payda.presentation.ui.donation.DetailedDonationDialog.Companion.DONATION_ARGUMENTS_KEY
 import com.shamilov.payda.presentation.ui.donation.active.viewholder.DonationListener
 import com.shamilov.payda.presentation.ui.donation.active.viewholder.DonationViewHolder
 import com.shamilov.payda.presentation.ui.donation.active.viewholder.HeaderViewHolder
@@ -93,7 +96,7 @@ class DonationActivePresenter : BasePresenter<DonationActiveView>(), DonationLis
     }
 
     override fun onItemClick(donation: DonationEntity) {
-        viewState.openDonation(donation)
+        navigate(toDetailedDonation, bundleOf(DONATION_ARGUMENTS_KEY to donation))
     }
 
     override fun onDonateClick(id: Int) {

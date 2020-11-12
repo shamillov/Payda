@@ -9,18 +9,22 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.shamilov.common.base.BaseFragment
 import moxy.ktx.moxyPresenter
 import com.shamilov.payda.R
+import com.shamilov.payda.databinding.FragmentCompletedBinding
 import com.shamilov.payda.domain.model.DonationEntity
+import com.shamilov.payda.extensions.gone
+import com.shamilov.payda.extensions.visible
 import com.shamilov.payda.presentation.ui.donation.completed.adapter.DonationCompletedAdapter
-import kotlinx.android.synthetic.main.fragment_completed.*
 
 /**
  * Created by Shamilov on 20.05.2020
  */
-class DonationCompletedFragment : BaseFragment(R.layout.fragment_completed),
-    DonationCompletedView,
+class DonationCompletedFragment : BaseFragment(R.layout.fragment_completed), DonationCompletedView,
     SwipeRefreshLayout.OnRefreshListener {
 
     private val TAG: String = DonationCompletedFragment::class.java.simpleName
+
+    private var _binding: FragmentCompletedBinding? = null
+    private val binding get() = _binding!!
 
     private val presenter: DonationCompletedPresenter by moxyPresenter { DonationCompletedPresenter() }
     private val adapter: DonationCompletedAdapter by lazy { DonationCompletedAdapter() }
@@ -28,7 +32,9 @@ class DonationCompletedFragment : BaseFragment(R.layout.fragment_completed),
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        swipeRefreshDonationCompleted.setOnRefreshListener(this)
+        _binding = FragmentCompletedBinding.bind(view)
+
+        binding.swipeRefreshDonationCompleted.setOnRefreshListener(this)
 
         init()
     }
@@ -46,32 +52,32 @@ class DonationCompletedFragment : BaseFragment(R.layout.fragment_completed),
     }
 
     override fun showNetworkError() {
-        tvNetworkErrorCompleted.visibility = View.VISIBLE
-        recyclerViewCompleted.visibility = View.GONE
+        binding.tvNetworkErrorCompleted.visible()
+        binding.recyclerViewCompleted.gone()
     }
 
     override fun showNetworkError(showError: Boolean) {
         if (showError) {
-            tvNetworkErrorCompleted.visibility = View.VISIBLE
-            recyclerViewCompleted.visibility = View.GONE
+            binding.tvNetworkErrorCompleted.visible()
+            binding.recyclerViewCompleted.gone()
         } else {
-            tvNetworkErrorCompleted.visibility = View.GONE
-            recyclerViewCompleted.visibility = View.VISIBLE
+            binding.tvNetworkErrorCompleted.gone()
+            binding.recyclerViewCompleted.visible()
         }
     }
 
     override fun showLoading(loading: Boolean) {
         if (loading) {
-            progressBarCompleted.visibility = View.VISIBLE
-            recyclerViewCompleted.visibility = View.GONE
+            binding.progressBarCompleted.visible()
+            binding.recyclerViewCompleted.gone()
         } else {
-            progressBarCompleted.visibility = View.GONE
-            recyclerViewCompleted.visibility = View.VISIBLE
+            binding.progressBarCompleted.gone()
+            binding.recyclerViewCompleted.visible()
         }
     }
 
     override fun showSwipeLoading(loading: Boolean) {
-        swipeRefreshDonationCompleted.isRefreshing = loading
+        binding.swipeRefreshDonationCompleted.isRefreshing = loading
     }
 
     private fun isNetworkAvailable(): Boolean {
@@ -81,6 +87,11 @@ class DonationCompletedFragment : BaseFragment(R.layout.fragment_completed),
 
     override fun onRefresh() {
         presenter.getData(isNetworkAvailable())
-        swipeRefreshDonationCompleted.isRefreshing = false
+        binding.swipeRefreshDonationCompleted.isRefreshing = false
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

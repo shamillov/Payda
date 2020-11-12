@@ -1,9 +1,9 @@
 package com.shamilov.payda.data.remote.api
 
-import com.shamilov.payda.data.model.DonationResponse
-import com.shamilov.payda.data.model.FundResponse
-import com.shamilov.payda.data.model.PaymentRequest
-import com.shamilov.payda.data.model.PaymentResponse
+import com.shamilov.payda.data.model.response.DonationResponse
+import com.shamilov.payda.data.model.response.FundResponse
+import com.shamilov.payda.data.model.request.PaymentRequest
+import com.shamilov.payda.data.model.response.PaymentResponse
 import com.shamilov.payda.utils.Const.ENDPOINT_DONATION_ACTIVE
 import com.shamilov.payda.utils.Const.ENDPOINT_FUNDS
 import com.shamilov.payda.utils.Const.ENDPOINT_PAYMENT

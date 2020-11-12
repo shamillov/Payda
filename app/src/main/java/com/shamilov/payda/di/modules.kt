@@ -13,6 +13,7 @@ import com.shamilov.payda.data.repository.LocalRepositoryImpl
 import com.shamilov.payda.domain.executor.SchedulerProvider
 import com.shamilov.payda.domain.executor.SchedulerProviderImpl
 import com.shamilov.payda.domain.interactor.DonationInteractor
+import com.shamilov.payda.domain.interactor.ProfileInteractor
 import com.shamilov.payda.domain.repository.DatastoreRepository
 import com.shamilov.payda.domain.repository.RemoteRepository
 import com.shamilov.payda.domain.repository.LocalRepository
@@ -38,6 +39,7 @@ val mapperModule = module {
 
 val interactorModule = module {
     single { DonationInteractor(get(), get(), get()) }
+    single { ProfileInteractor(get(), get(), get()) }
 }
 
 val networkModule = module {

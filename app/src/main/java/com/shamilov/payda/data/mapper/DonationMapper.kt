@@ -1,9 +1,8 @@
 package com.shamilov.payda.data.mapper
 
-import com.shamilov.payda.data.model.DonationResponse
-import com.shamilov.payda.data.model.FundResponse
-import com.shamilov.payda.data.model.ImageResponse
-import com.shamilov.payda.data.model.UserResponse
+import com.shamilov.payda.data.model.response.DonationResponse
+import com.shamilov.payda.data.model.response.FundResponse
+import com.shamilov.payda.data.model.response.ImageResponse
 import com.shamilov.payda.domain.model.DonationEntity
 import com.shamilov.payda.domain.model.FundEntity
 import com.shamilov.payda.domain.model.ImageEntity

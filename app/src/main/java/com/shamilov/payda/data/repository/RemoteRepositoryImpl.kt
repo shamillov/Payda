@@ -1,8 +1,8 @@
 package com.shamilov.payda.data.repository
 
 import com.shamilov.payda.data.mapper.DonationMapper
-import com.shamilov.payda.data.model.PaymentRequest
-import com.shamilov.payda.data.model.PaymentResponse
+import com.shamilov.payda.data.model.request.PaymentRequest
+import com.shamilov.payda.data.model.response.PaymentResponse
 import com.shamilov.payda.data.remote.api.DonationService
 import com.shamilov.payda.domain.model.DonationEntity
 import com.shamilov.payda.domain.repository.RemoteRepository

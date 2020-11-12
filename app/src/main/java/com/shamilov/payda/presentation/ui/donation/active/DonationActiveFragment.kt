@@ -7,19 +7,15 @@ import android.graphics.Rect
 import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.shamilov.common.base.BaseFragment
 import com.shamilov.payda.BuildConfig
 import com.shamilov.payda.R
 import com.shamilov.payda.data.local.datastore.SettingsDatastore
 import com.shamilov.payda.databinding.FragmentActiveBinding
-import com.shamilov.payda.domain.model.DonationEntity
 import com.shamilov.payda.extensions.gone
 import com.shamilov.payda.extensions.visible
 import com.shamilov.payda.presentation.ui.donation.active.viewholder.ShimmerViewHolder
@@ -28,7 +24,6 @@ import com.xwray.groupie.Group
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import jp.wasabeef.recyclerview.animators.FadeInRightAnimator
-import kotlinx.android.synthetic.main.fragment_active.*
 import moxy.ktx.moxyPresenter
 import org.koin.android.ext.android.inject
 import ru.yandex.money.android.sdk.Checkout
@@ -70,14 +65,14 @@ class DonationActiveFragment : BaseFragment(R.layout.fragment_active), DonationA
     }
 
     private fun initRecyclerView() {
-        binding.recyclerViewActive.apply {
+        binding.rvDonation.apply {
             setHasFixedSize(true)
             adapter = donationAdapter
         }
 
         if (donationAdapter.itemCount == 0) {
-            recyclerViewActive.itemAnimator = FadeInRightAnimator()
-            recyclerViewActive.itemAnimator?.apply {
+            binding.rvDonation.itemAnimator = FadeInRightAnimator()
+            binding.rvDonation.itemAnimator?.apply {
                 addDuration = 300
                 removeDuration = 300
                 moveDuration = 300
@@ -103,10 +98,10 @@ class DonationActiveFragment : BaseFragment(R.layout.fragment_active), DonationA
 
     override fun showLoading(loading: Boolean) {
         if (loading) {
-            binding.recyclerViewActive.gone()
+            binding.rvDonation.gone()
             binding.progressBarActive.visible()
         } else {
-            binding.recyclerViewActive.visible()
+            binding.rvDonation.visible()
             binding.progressBarActive.gone()
         }
     }
@@ -118,10 +113,10 @@ class DonationActiveFragment : BaseFragment(R.layout.fragment_active), DonationA
     override fun showNetworkError(showError: Boolean) {
         if (showError) {
             binding.tvNetworkErrorActive.visible()
-            binding.recyclerViewActive.gone()
+            binding.rvDonation.gone()
         } else {
             binding.tvNetworkErrorActive.gone()
-            binding.recyclerViewActive.visible()
+            binding.rvDonation.visible()
         }
     }
 
@@ -135,10 +130,6 @@ class DonationActiveFragment : BaseFragment(R.layout.fragment_active), DonationA
 
     override fun onUpdate(data: List<Group>) {
         donationAdapter.update(data)
-    }
-
-    override fun openDonation(donation: DonationEntity) {
-        initBottomSheet(donation)
     }
 
     override fun showEmptyMessage(show: Boolean) {
@@ -160,20 +151,6 @@ class DonationActiveFragment : BaseFragment(R.layout.fragment_active), DonationA
             putExtra(Intent.EXTRA_TEXT, "Ссылка на приложение")
         }
         startActivity(Intent.createChooser(share, null))
-    }
-
-    private fun initBottomSheet(donation: DonationEntity) {
-        val dialog = BottomSheetDialog(requireContext())
-        val bottomSheet: View =
-            layoutInflater.inflate(R.layout.bottom_sheet_about_donation, view as ViewGroup, false)
-
-        bottomSheet.apply {
-            findViewById<TextView>(R.id.titleTvBs).text = donation.title
-            findViewById<TextView>(R.id.descriptionTvBs).text = donation.description
-        }
-
-        dialog.setContentView(bottomSheet)
-        dialog.show()
     }
 
     private fun isNetworkAvailable(): Boolean {

@@ -5,67 +5,65 @@
     android:id="@+id/cvDonationActive"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="@dimen/default_margin"
-    android:layout_marginEnd="@dimen/default_margin"
-    android:layout_marginBottom="@dimen/default_margin"
     app:cardCornerRadius="@dimen/default_corner_radius">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/containerHeader"
+        <View
+            android:id="@+id/v_header"
             android:layout_width="match_parent"
+            android:layout_height="48dp"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivFundLogoActive"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_margin="@dimen/default_margin"
+            app:layout_constraintBottom_toBottomOf="@id/v_header"
+            app:layout_constraintStart_toStartOf="@id/v_header"
+            app:layout_constraintTop_toTopOf="@id/v_header"
+            tools:src="@drawable/ic_profile" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvFundNameActive"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="5dp">
+            android:layout_marginStart="@dimen/default_margin"
+            app:layout_constraintStart_toEndOf="@+id/ivFundLogoActive"
+            app:layout_constraintTop_toTopOf="@id/v_header"
+            tools:text="Название фонда" />
 
-            <ImageView
-                android:id="@+id/ivFundLogoActive"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_margin="2dp"
-                android:src="@drawable/ic_profile"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvFundLocationActive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/tvFundNameActive"
+            app:layout_constraintTop_toBottomOf="@+id/tvFundNameActive"
+            tools:text="Локация" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvFundNameActive"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
-                tools:text="Название фонда"
-                app:layout_constraintStart_toEndOf="@+id/ivFundLogoActive"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvFundLocationActive"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="Локация"
-                android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="@+id/tvFundNameActive"
-                app:layout_constraintTop_toBottomOf="@+id/tvFundNameActive" />
-
-            <ImageView
-                android:id="@+id/btnShareDonation"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:background="?attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:src="@drawable/ic_share"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:id="@+id/btnShareDonation"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_margin="@dimen/default_margin"
+            android:background="?selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_share"
+            app:layout_constraintBottom_toBottomOf="@id/v_header"
+            app:layout_constraintEnd_toEndOf="@id/v_header"
+            app:layout_constraintTop_toTopOf="@id/v_header" />
 
         <com.shamilov.payda.utils.NestedScrollableHost
             android:id="@+id/containerContent"
             android:layout_width="match_parent"
-            android:layout_height="300dp">
+            android:layout_height="300dp"
+            app:layout_constraintTop_toBottomOf="@id/v_header">
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/vpImages"
@@ -85,72 +83,71 @@
 
         </com.shamilov.payda.utils.NestedScrollableHost>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/containerProgress"
+        <View
+            android:id="@+id/v_progress"
             android:layout_width="match_parent"
-            android:layout_marginTop="8dp"
-            android:layout_height="wrap_content">
+            android:layout_height="60dp"
+            app:layout_constraintTop_toBottomOf="@id/containerContent" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvProgressActive"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                tools:text="1 000 000"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/btnDonationHelp"
-                app:layout_constraintTop_toTopOf="@+id/btnDonationHelp" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvProgressActive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/btnDonationHelp"
+            app:layout_constraintTop_toTopOf="@+id/btnDonationHelp"
+            tools:text="1 000 000" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/cardView_donation_progress"
-                app:layout_constraintEnd_toEndOf="@+id/tvProgressActive"
-                app:layout_constraintTop_toBottomOf="@+id/tvProgressActive" />
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cardView_donation_progress"
+            app:layout_constraintEnd_toEndOf="@+id/tvProgressActive"
+            app:layout_constraintTop_toBottomOf="@+id/tvProgressActive" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnDonationHelp"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/colorPrimary"
-                android:text="@string/cardView_donation_help"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                app:cornerRadius="18dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnDonationHelp"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="@string/cardView_donation_help"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            app:cornerRadius="18dp"
+            app:layout_constraintBottom_toBottomOf="@id/v_progress"
+            app:layout_constraintEnd_toEndOf="@id/v_progress"
+            app:layout_constraintStart_toStartOf="@id/v_progress"
+            app:layout_constraintTop_toTopOf="@id/v_progress" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvAmountActive"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                tools:text="1 000 000"
-                android:textColor="@color/colorPrimary"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/btnDonationHelp"
-                app:layout_constraintTop_toTopOf="@+id/btnDonationHelp" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvAmountActive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/btnDonationHelp"
+            app:layout_constraintTop_toTopOf="@+id/btnDonationHelp"
+            tools:text="1 000 000" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/cardView_donation_task"
-                app:layout_constraintStart_toStartOf="@+id/tvAmountActive"
-                app:layout_constraintTop_toBottomOf="@+id/tvAmountActive" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cardView_donation_task"
+            app:layout_constraintStart_toStartOf="@+id/tvAmountActive"
+            app:layout_constraintTop_toBottomOf="@+id/tvAmountActive" />
 
         <View
             android:id="@+id/divide"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:background="@color/backgroundWhite" />
+            android:background="@color/backgroundWhite"
+            app:layout_constraintTop_toBottomOf="@id/v_progress" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvTitleActive"
@@ -158,13 +155,15 @@
             android:layout_height="wrap_content"
             android:layout_margin="6dp"
             android:gravity="center"
-            tools:text="Заголовок"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/v_progress"
+            tools:text="Заголовок" />
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tvTitleActive">
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvDescriptionActive"
@@ -173,15 +172,15 @@
                 android:layout_margin="6dp"
                 android:layout_marginTop="8dp"
                 android:paddingBottom="8dp"
-                tools:text="Описание"/>
+                tools:text="Описание" />
 
             <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/btnFavorite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"/>
+                android:layout_gravity="end" />
         </FrameLayout>
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>

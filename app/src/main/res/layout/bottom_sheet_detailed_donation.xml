@@ -1,20 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/bottom_sheet_layout"
     android:layout_width="match_parent"
-    android:layout_height="800dp"
+    android:layout_height="wrap_content"
     android:background="@drawable/bottom_sheet_dialog_bg"
     app:behavior_hideable="true"
-    app:behavior_peekHeight="0dp"
+    app:behavior_peekHeight="500dp"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cvDonationActive"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-
+        android:layout_height="650dp">
+        
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -28,7 +25,7 @@
                 android:background="@drawable/bottom_sheet_indicator" />
 
             <TextView
-                android:id="@+id/titleTvBs"
+                android:id="@+id/tvTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -36,7 +33,7 @@
                 android:textSize="22sp" />
 
             <TextView
-                android:id="@+id/descriptionTvBs"
+                android:id="@+id/tvDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center" />

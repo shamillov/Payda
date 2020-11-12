@@ -1,8 +1,8 @@
 package com.shamilov.payda.domain.interactor
 
 import com.shamilov.payda.data.local.db.entity.FavoriteDonationEntity
-import com.shamilov.payda.domain.executor.SchedulerProvider
 import com.shamilov.payda.domain.model.DonationEntity
+import com.shamilov.payda.domain.repository.DatastoreRepository
 import com.shamilov.payda.domain.repository.LocalRepository
 import com.shamilov.payda.domain.repository.RemoteRepository
 import com.shamilov.payda.extensions.ioToUi
@@ -14,8 +14,8 @@ import io.reactivex.Single
  */
 class DonationInteractor(
     private val remoteRepository: RemoteRepository,
-    private val schedulers: SchedulerProvider,
-    private val localRepository: LocalRepository
+    private val localRepository: LocalRepository,
+    private val datastoreRepository: DatastoreRepository
 ) {
     fun getDonations(): Single<List<DonationEntity>> {
         return remoteRepository.getDonation()

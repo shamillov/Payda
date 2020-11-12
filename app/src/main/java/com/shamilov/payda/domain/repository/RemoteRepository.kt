@@ -1,6 +1,6 @@
 package com.shamilov.payda.domain.repository
 
-import com.shamilov.payda.data.model.PaymentResponse
+import com.shamilov.payda.data.model.response.PaymentResponse
 import com.shamilov.payda.domain.model.DonationEntity
 import io.reactivex.Single
 

@@ -1,8 +1,12 @@
 package com.shamilov.payda.domain.model
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
 /**
  * Created by Shamilov on 22.06.2020
  */
+@Parcelize
 data class DonationEntity(
     val id: Int,
     val fundId: Int,
@@ -15,4 +19,4 @@ data class DonationEntity(
     val fundLogo: String,
     val fundName: String,
     var isFavorite: Boolean = false
-)
+) : Parcelable

@@ -1,8 +1,8 @@
 package com.shamilov.payda.data.repository
 
-import androidx.datastore.DataStore
-import androidx.datastore.preferences.Preferences
-import androidx.datastore.preferences.edit
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.edit
 import com.shamilov.payda.data.local.datastore.DatastoreKeys.CONTRIBUTION_KEY
 import com.shamilov.payda.data.local.datastore.DatastoreKeys.FIRST_LAUNCH_KEY
 import com.shamilov.payda.data.local.datastore.DatastoreKeys.HOST_KEY

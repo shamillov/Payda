@@ -1,6 +1,7 @@
 package com.shamilov.payda.data.local.datastore
 
-import androidx.datastore.preferences.preferencesKey
+import androidx.datastore.preferences.core.preferencesKey
+
 
 /**
  * Created by Shamilov on 01.11.2020

@@ -45,5 +45,5 @@ ext {
     firebaseAnalytics_version = '17.5.0'
     material_version = '1.2.1'
     coil_version = '1.0.0-rc3'
-    datastore_version = '1.0.0-alpha02'
+    datastore_version = '1.0.0-alpha04'
 }

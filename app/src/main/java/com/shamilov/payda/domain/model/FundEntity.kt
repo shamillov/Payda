@@ -5,6 +5,7 @@ package com.shamilov.payda.domain.model
  */
 data class FundEntity(
     val id: Int,
-    val logo: String,
+    val logo: FileEntity,
+    val background: FileEntity,
     val name: String
 )

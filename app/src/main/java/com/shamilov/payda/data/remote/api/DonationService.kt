@@ -5,12 +5,12 @@ import com.shamilov.payda.data.model.response.FundResponse
 import com.shamilov.payda.data.model.request.PaymentRequest
 import com.shamilov.payda.data.model.response.PaymentResponse
 import com.shamilov.payda.utils.Const.ENDPOINT_DONATION_ACTIVE
+import com.shamilov.payda.utils.Const.ENDPOINT_DONATION_ATTACH
 import com.shamilov.payda.utils.Const.ENDPOINT_FUNDS
 import com.shamilov.payda.utils.Const.ENDPOINT_PAYMENT
 import io.reactivex.Single
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import okhttp3.MultipartBody
+import retrofit2.http.*
 
 /**
  * Created by Shamilov on 15.08.2020
@@ -24,4 +24,11 @@ interface DonationService {
 
     @POST(ENDPOINT_PAYMENT)
     fun payment(@Path("id") id: Int, paymentRequest: PaymentRequest): Single<PaymentResponse>
+
+    @POST(ENDPOINT_DONATION_ATTACH)
+    @Multipart
+    fun attachFile(
+        @Path("id") id: Int,
+        @Part("files") files: List<MultipartBody.Part>
+    ): Single<DonationResponse>
 }

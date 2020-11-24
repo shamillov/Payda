@@ -6,6 +6,7 @@ import com.shamilov.payda.data.model.response.FundResponse
 import com.shamilov.payda.domain.model.DonationEntity
 import com.shamilov.payda.domain.model.FileEntity
 import com.shamilov.payda.domain.model.FundEntity
+import okhttp3.MultipartBody
 import java.util.*
 
 /**
@@ -14,20 +15,24 @@ import java.util.*
 class DonationMapper {
     fun mapDonationList(donationList: List<DonationResponse>): List<DonationEntity> {
         return donationList.map {
-            DonationEntity(
-                id = it.id ?: -1,
-                fundId = it.fund.id ?: -1,
-                title = it.title ?: "",
-                description = it.description ?: "",
-                amount = String.format(Locale.CANADA_FRENCH, "%,d", it.amount),
-                region = it.region ?: "",
-                progress = String.format(Locale.CANADA_FRENCH, "%,d", it.donations),
-                files = mapImageList(it.files),
-
-                fundLogo = mapFile(it.fund.logo),
-                fundName = it.fund.name ?: ""
-            )
+            mapDonation(it)
         }
+    }
+
+    fun mapDonation(donation: DonationResponse): DonationEntity {
+        return DonationEntity(
+            id = donation.id ?: -1,
+            fundId = donation.fund.id ?: -1,
+            title = donation.title ?: "",
+            description = donation.description ?: "",
+            amount = String.format(Locale.CANADA_FRENCH, "%,d", donation.amount),
+            region = donation.region ?: "",
+            progress = String.format(Locale.CANADA_FRENCH, "%,d", donation.donations),
+            files = mapImageList(donation.files),
+
+            fundLogo = mapFile(donation.fund.logo),
+            fundName = donation.fund.name ?: ""
+        )
     }
 
     fun mapFund(fund: FundResponse): FundEntity {

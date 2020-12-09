@@ -36,13 +36,13 @@ class RemoteRepositoryImpl(
         return api.payment(id, PaymentRequest(amount, currency, paymentToken))
     }
 
-    override fun attachFilesToFee(id: Int, files: List<File>): Single<DonationEntity> {
-        val toList = files.map {
-            MultipartBody.Part.createFormData("files", it.name, it.asRequestBody())
-        }.toList();
-
-        return api.attachFile(id, toList).map { mapper.mapDonation(it) }
-    }
+//    override fun attachFilesToFee(id: Int, files: List<File>): Single<DonationEntity> {
+//        val toList = files.map {
+//            MultipartBody.Part.createFormData("files", it.name, it.asRequestBody())
+//        }.toList();
+//
+//        return api.attachFile(id, toList).map { mapper.mapDonation(it) }
+//    }
 
 
 }

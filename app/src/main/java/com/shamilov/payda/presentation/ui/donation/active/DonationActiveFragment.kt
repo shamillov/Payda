@@ -45,7 +45,7 @@ class DonationActiveFragment : BaseFragment(R.layout.fragment_active), DonationA
     private val binding: FragmentActiveBinding get() = _binding!!
 
     private val presenter by moxyPresenter { DonationActivePresenter() }
-    private val donationAdapter by lazy { GroupAdapter<GroupieViewHolder>() }
+    private val donationAdapter by laziest { GroupAdapter<GroupieViewHolder>() }
 
     //TODO: Временное решение
     private val dataStore: SettingsDatastore by inject()
@@ -68,6 +68,7 @@ class DonationActiveFragment : BaseFragment(R.layout.fragment_active), DonationA
         binding.rvDonation.apply {
             setHasFixedSize(true)
             adapter = donationAdapter
+            addItemDecoration(DividerItemDecoration())
         }
 
         if (donationAdapter.itemCount == 0) {
@@ -204,8 +205,12 @@ class DonationActiveFragment : BaseFragment(R.layout.fragment_active), DonationA
             parent: RecyclerView,
             state: RecyclerView.State
         ) {
-            if (parent.getChildAdapterPosition(view) == 0) {
-                outRect.top = 16
+            outRect.top = resources.getDimension(R.dimen.default_margin).toInt()
+            outRect.left = resources.getDimension(R.dimen.default_margin).toInt()
+            outRect.right = resources.getDimension(R.dimen.default_margin).toInt()
+
+            if (parent.getChildAdapterPosition(view) == donationAdapter.itemCount - 1) {
+                outRect.bottom = resources.getDimension(R.dimen.default_margin).toInt()
             }
         }
     }

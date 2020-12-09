@@ -8,7 +8,7 @@ import com.shamilov.payda.data.provider.ResourceProvider
 import com.shamilov.payda.domain.interactor.DonationInteractor
 import com.shamilov.payda.domain.model.DonationEntity
 import com.shamilov.payda.presentation.navigation.NavigationActions.toDetailedDonation
-import com.shamilov.payda.presentation.ui.donation.DetailedDonationDialog.Companion.DONATION_ARGUMENTS_KEY
+import com.shamilov.payda.presentation.ui.detailed.DetailedDonationDialog.Companion.DONATION_ARGUMENTS_KEY
 import com.shamilov.payda.presentation.ui.donation.active.viewholder.DonationListener
 import com.shamilov.payda.presentation.ui.donation.active.viewholder.DonationViewHolder
 import com.shamilov.payda.presentation.ui.donation.active.viewholder.HeaderViewHolder

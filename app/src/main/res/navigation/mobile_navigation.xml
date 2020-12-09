@@ -85,7 +85,7 @@
 
     <dialog
         android:id="@+id/detailedDonationDialog"
-        android:name="com.shamilov.payda.presentation.ui.donation.DetailedDonationDialog"
+        android:name="com.shamilov.payda.presentation.ui.detailed.DetailedDonationDialog"
         tools:layout="@layout/bottom_sheet_detailed_donation" />
 
 </navigation>

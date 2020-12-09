@@ -38,8 +38,8 @@ val mapperModule = module {
 }
 
 val interactorModule = module {
-    single { DonationInteractor(get(), get(), get()) }
-    single { ProfileInteractor(get(), get(), get()) }
+    factory { DonationInteractor(get(), get(), get()) }
+    factory { ProfileInteractor(get(), get(), get()) }
 }
 
 val networkModule = module {

@@ -28,4 +28,8 @@ abstract class BaseFragment(layoutId: Int) : MvpAppCompatFragment(layoutId), Bas
         }
     }
 
+    protected fun <T> laziest(initializer: () -> T): Lazy<T> {
+        return lazy(LazyThreadSafetyMode.NONE, initializer)
+    }
+
 }

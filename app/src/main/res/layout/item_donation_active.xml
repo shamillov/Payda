@@ -28,7 +28,7 @@
             app:layout_constraintTop_toTopOf="@id/v_header"
             tools:src="@drawable/ic_profile" />
 
-        <com.google.android.material.textview.MaterialTextView
+        <TextView
             android:id="@+id/tvFundNameActive"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
             app:layout_constraintTop_toTopOf="@id/v_header"
             tools:text="Название фонда" />
 
-        <com.google.android.material.textview.MaterialTextView
+        <TextView
             android:id="@+id/tvFundLocationActive"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -59,7 +59,7 @@
             app:layout_constraintEnd_toEndOf="@id/v_header"
             app:layout_constraintTop_toTopOf="@id/v_header" />
 
-        <com.shamilov.payda.utils.NestedScrollableHost
+        <FrameLayout
             android:id="@+id/containerContent"
             android:layout_width="match_parent"
             android:layout_height="300dp"
@@ -81,7 +81,7 @@
                 app:tabIndicatorHeight="0dp"
                 app:tabMaxWidth="10dp" />
 
-        </com.shamilov.payda.utils.NestedScrollableHost>
+        </FrameLayout>
 
         <View
             android:id="@+id/v_progress"
@@ -89,7 +89,7 @@
             android:layout_height="60dp"
             app:layout_constraintTop_toBottomOf="@id/containerContent" />
 
-        <com.google.android.material.textview.MaterialTextView
+        <TextView
             android:id="@+id/tvProgressActive"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -100,7 +100,7 @@
             app:layout_constraintTop_toTopOf="@+id/btnDonationHelp"
             tools:text="1 000 000" />
 
-        <com.google.android.material.textview.MaterialTextView
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/cardView_donation_progress"
@@ -133,7 +133,7 @@
             app:layout_constraintTop_toTopOf="@+id/btnDonationHelp"
             tools:text="1 000 000" />
 
-        <com.google.android.material.textview.MaterialTextView
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/cardView_donation_task"
@@ -149,7 +149,7 @@
             android:background="@color/backgroundWhite"
             app:layout_constraintTop_toBottomOf="@id/v_progress" />
 
-        <com.google.android.material.textview.MaterialTextView
+        <TextView
             android:id="@+id/tvTitleActive"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -165,7 +165,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/tvTitleActive">
 
-            <com.google.android.material.textview.MaterialTextView
+            <TextView
                 android:id="@+id/tvDescriptionActive"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

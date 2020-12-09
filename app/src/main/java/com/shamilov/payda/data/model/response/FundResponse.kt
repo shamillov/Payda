@@ -4,14 +4,12 @@ package com.shamilov.payda.data.model.response
  * Created by Shamilov on 22.06.2020
  */
 data class FundResponse(
-
-
-    var description: String?,
     var id: Int?,
-    var logo: FileResponce?,
-    var background: FileResponce?,
     var name: String?,
-    var paymentSystemId: Int?,
+    var description: String?,
+    var logo: FileResponse?,
     var region: String?,
+    var background: FileResponse?,
+    var paymentSystemId: Int?,
     var users: List<UserResponse>?
 )

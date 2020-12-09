@@ -29,4 +29,9 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
                 tab.text = getString(R.string.tabLayout_completed_donation)
         }.attach()
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }

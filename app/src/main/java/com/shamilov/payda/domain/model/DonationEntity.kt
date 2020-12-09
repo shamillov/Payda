@@ -15,9 +15,9 @@ data class DonationEntity(
     var amount: String,
     val region: String,
     val progress: String,
-//    val images: List<ImageEntity>,
     val files: List<FileEntity>,
     val fundLogo: FileEntity,
     val fundName: String,
+    val active: Boolean,
     var isFavorite: Boolean = false
 ) : Parcelable

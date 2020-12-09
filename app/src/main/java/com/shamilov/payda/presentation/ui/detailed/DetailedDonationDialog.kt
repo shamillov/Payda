@@ -1,4 +1,4 @@
-package com.shamilov.payda.presentation.ui.donation
+package com.shamilov.payda.presentation.ui.detailed
 
 import android.os.Bundle
 import android.view.LayoutInflater

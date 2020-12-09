@@ -19,6 +19,7 @@ class DonationInteractor(
 ) {
     fun getDonations(): Single<List<DonationEntity>> {
         return remoteRepository.getDonation()
+            .map { it.filter { it.active } }
             .ioToUi()
     }
 

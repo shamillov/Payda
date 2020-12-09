@@ -1,12 +1,11 @@
 package com.shamilov.payda.data.mapper
 
 import com.shamilov.payda.data.model.response.DonationResponse
-import com.shamilov.payda.data.model.response.FileResponce
+import com.shamilov.payda.data.model.response.FileResponse
 import com.shamilov.payda.data.model.response.FundResponse
 import com.shamilov.payda.domain.model.DonationEntity
 import com.shamilov.payda.domain.model.FileEntity
 import com.shamilov.payda.domain.model.FundEntity
-import okhttp3.MultipartBody
 import java.util.*
 
 /**
@@ -14,25 +13,21 @@ import java.util.*
  */
 class DonationMapper {
     fun mapDonationList(donationList: List<DonationResponse>): List<DonationEntity> {
-        return donationList.map {
-            mapDonation(it)
+        return donationList.map { donation ->
+            DonationEntity(
+                id = donation.id ?: -1,
+                fundId = donation.fund.id ?: -1,
+                title = donation.title ?: "",
+                description = donation.description ?: "",
+                amount = String.format(Locale.CANADA_FRENCH, "%,d", donation.amount),
+                region = donation.region ?: "",
+                progress = String.format(Locale.CANADA_FRENCH, "%,d", donation.donations),
+                files = mapImageList(donation.files),
+                fundLogo = mapFile(donation.fund.logo),
+                active = donation.active ?: true,
+                fundName = donation.fund.name ?: ""
+            )
         }
-    }
-
-    fun mapDonation(donation: DonationResponse): DonationEntity {
-        return DonationEntity(
-            id = donation.id ?: -1,
-            fundId = donation.fund.id ?: -1,
-            title = donation.title ?: "",
-            description = donation.description ?: "",
-            amount = String.format(Locale.CANADA_FRENCH, "%,d", donation.amount),
-            region = donation.region ?: "",
-            progress = String.format(Locale.CANADA_FRENCH, "%,d", donation.donations),
-            files = mapImageList(donation.files),
-
-            fundLogo = mapFile(donation.fund.logo),
-            fundName = donation.fund.name ?: ""
-        )
     }
 
     fun mapFund(fund: FundResponse): FundEntity {
@@ -44,13 +39,13 @@ class DonationMapper {
         )
     }
 
-    private fun mapImageList(image: List<FileResponce>): List<FileEntity> {
+    private fun mapImageList(image: List<FileResponse>): List<FileEntity> {
         return image.map {
             mapFile(it)
         }
     }
 
-    private fun mapFile(file: FileResponce?): FileEntity {
+    private fun mapFile(file: FileResponse?): FileEntity {
         return FileEntity(
             name = file?.name ?: "",
             size = file?.size ?: -1,

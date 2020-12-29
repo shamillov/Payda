@@ -41,10 +41,14 @@
     </fragment>
 
     <fragment
-        android:id="@+id/fundFragment"
-        android:name="com.shamilov.payda.presentation.ui.fund.FundFragment"
+        android:id="@+id/fundsFragment"
+        android:name="com.shamilov.payda.presentation.ui.funds.FundsFragment"
         android:label="@string/title_fund"
-        tools:layout="@layout/fragment_fund" />
+        tools:layout="@layout/fragment_funds" >
+        <action
+            android:id="@+id/action_fundsFragment_to_fundFragment"
+            app:destination="@id/fundFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/contactFragment"
@@ -87,5 +91,9 @@
         android:id="@+id/detailedDonationDialog"
         android:name="com.shamilov.payda.presentation.ui.detailed.DetailedDonationDialog"
         tools:layout="@layout/bottom_sheet_detailed_donation" />
+    <fragment
+        android:id="@+id/fundFragment"
+        android:name="com.shamilov.payda.presentation.ui.fund.FundFragment"
+        android:label="FundFragment" />
 
 </navigation>

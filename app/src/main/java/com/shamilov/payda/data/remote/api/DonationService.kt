@@ -14,13 +14,16 @@ import retrofit2.http.*
  * Created by Shamilov on 15.08.2020
  */
 interface DonationService {
-    @GET(ENDPOINT_DONATION_ACTIVE)
-    fun getDonation(): Single<List<DonationResponse>>
+    @GET("api/fees")
+    fun getDonations(): Single<List<DonationResponse>>
 
-    @GET(ENDPOINT_FUNDS)
+    @GET("api/funds")
     fun getFunds(): Single<List<FundResponse>>
 
-    @POST(ENDPOINT_PAYMENT)
+    @GET("api/funds/{id}")
+    fun getFundById(@Path("id") id: Int): Single<FundResponse>
+
+    @POST("api/fees/{id}/donate/init")
     fun payment(@Path("id") id: Int, paymentRequest: PaymentRequest): Single<PaymentResponse>
 
 //    @POST(ENDPOINT_DONATION_ATTACH)

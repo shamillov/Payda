@@ -7,5 +7,6 @@ data class FundEntity(
     val id: Int,
     val logo: FileEntity,
     val background: FileEntity,
-    val name: String
+    val name: String,
+    val region: String
 )

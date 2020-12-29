@@ -5,14 +5,9 @@ import com.shamilov.payda.data.model.request.PaymentRequest
 import com.shamilov.payda.data.model.response.PaymentResponse
 import com.shamilov.payda.data.remote.api.DonationService
 import com.shamilov.payda.domain.model.DonationEntity
+import com.shamilov.payda.domain.model.FundEntity
 import com.shamilov.payda.domain.repository.RemoteRepository
 import io.reactivex.Single
-import okhttp3.MediaType
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
-import java.io.File
-import okhttp3.MediaType.Companion.toMediaType;
-import okhttp3.RequestBody.Companion.asRequestBody
 
 /**
  * Created by Shamilov on 20.05.2020
@@ -23,7 +18,7 @@ class RemoteRepositoryImpl(
 ) : RemoteRepository {
 
     override fun getDonation(): Single<List<DonationEntity>> {
-        return api.getDonation()
+        return api.getDonations()
             .map { mapper.mapDonationList(it) }
     }
 
@@ -34,6 +29,14 @@ class RemoteRepositoryImpl(
         paymentToken: String
     ): Single<PaymentResponse> {
         return api.payment(id, PaymentRequest(amount, currency, paymentToken))
+    }
+
+    override fun getFunds(): Single<List<FundEntity>> {
+        return api.getFunds().map { mapper.mapFundsList(it) }
+    }
+
+    override fun getFundById(id: Int): Single<FundEntity> {
+        return api.getFundById(id).map { mapper.mapFund(it) }
     }
 
 //    override fun attachFilesToFee(id: Int, files: List<File>): Single<DonationEntity> {

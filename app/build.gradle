@@ -68,7 +68,7 @@ dependencies {
 
     //Room
     implementation "androidx.room:room-runtime:$room_version"
-    implementation "androidx.room:room-rxjava2:2.3.0-alpha03"
+    implementation "androidx.room:room-rxjava2:2.3.0-alpha04"
     kapt "androidx.room:room-compiler:$room_version"
 
     //Koin

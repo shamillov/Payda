@@ -35,8 +35,21 @@ class DonationMapper {
             id = fund.id ?: -1,
             logo = mapFile(fund.logo),
             background = mapFile(fund.background),
-            name = fund.name ?: ""
+            name = fund.name ?: "",
+            region = fund.region ?: ""
         )
+    }
+
+    fun mapFundsList(list: List<FundResponse>): List<FundEntity> {
+        return list.map { fund ->
+            FundEntity(
+                id = fund.id ?: -1,
+                logo = mapFile(fund.logo),
+                background = mapFile(fund.background),
+                name = fund.name ?: "",
+                region = fund.region ?: ""
+            )
+        }
     }
 
     private fun mapImageList(image: List<FileResponse>): List<FileEntity> {

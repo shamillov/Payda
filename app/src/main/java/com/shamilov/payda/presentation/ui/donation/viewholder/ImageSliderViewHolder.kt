@@ -3,7 +3,7 @@ package com.shamilov.payda.presentation.ui.donation.viewholder
 import android.view.View
 import coil.load
 import com.shamilov.payda.R
-import com.shamilov.payda.databinding.ImagesBinding
+import com.shamilov.payda.databinding.ItemImageBinding
 import com.shamilov.payda.presentation.ui.donation.active.viewholder.DonationListener
 import com.xwray.groupie.viewbinding.BindableItem
 
@@ -13,14 +13,14 @@ import com.xwray.groupie.viewbinding.BindableItem
 class ImageSliderViewHolder(
     private val url: String,
     private val listener: DonationListener
-    ) : BindableItem<ImagesBinding>() {
+    ) : BindableItem<ItemImageBinding>() {
 
-    override fun getLayout() = R.layout.images
+    override fun getLayout() = R.layout.item_image
 
-    override fun bind(viewBinding: ImagesBinding, position: Int) {
+    override fun bind(viewBinding: ItemImageBinding, position: Int) {
         viewBinding.imageView.load(url) { crossfade(true) }
         viewBinding.imageView.setOnClickListener { listener.onImageClick() }
     }
 
-    override fun initializeViewBinding(view: View) = ImagesBinding.bind(view)
+    override fun initializeViewBinding(view: View) = ItemImageBinding.bind(view)
 }
